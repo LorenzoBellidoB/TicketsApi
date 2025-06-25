@@ -49,7 +49,7 @@ csb.TrustServerCertificate = true;
 Console.WriteLine($"[DEBUG] ConnectionString final: {csb.ConnectionString}");
 
 // 4) DbContext con reintentos
-builder.Services.AddDbContext<AppDbContext>(opts =>
+builder.Services.AddDbContext<DAL.AppDbContext>(opts =>
     opts.UseNpgsql(csb.ConnectionString, npg =>
         npg.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)
     )

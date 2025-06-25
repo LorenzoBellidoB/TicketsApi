@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\PerfilIberico\\TicketsApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9B1272D2-D61E-41D3-8ED1-095738AF7356}|DAL\\DAL.csproj|d:\\perfiliberico\\ticketsapi\\dal\\clsproductosdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9B1272D2-D61E-41D3-8ED1-095738AF7356}|DAL\\DAL.csproj|solutionrelative:dal\\clsproductosdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\utils\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\DAL\\AppDbContext.cs",
               "RelativeDocumentMoniker": "DAL\\AppDbContext.cs",
@@ -54,8 +54,7 @@
               "RelativeToolTip": "DAL\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T17:34:25.415Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T17:34:25.415Z"
             },
             {
               "$type": "Document",
@@ -67,8 +66,7 @@
               "RelativeToolTip": "ENT\\clsProducto.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAqwCUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T17:28:20.795Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T17:28:20.795Z"
             },
             {
               "$type": "Document",
@@ -80,12 +78,11 @@
               "RelativeToolTip": "TicketsApi\\Utils\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T17:26:00.666Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T17:26:00.666Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "clsProductosDAL.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\DAL\\clsProductosDAL.cs",
               "RelativeDocumentMoniker": "DAL\\clsProductosDAL.cs",
@@ -110,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "EmpresaController.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\Controllers\\EmpresaController.cs",
               "RelativeDocumentMoniker": "TicketsApi\\Controllers\\EmpresaController.cs",
@@ -118,12 +115,11 @@
               "RelativeToolTip": "TicketsApi\\Controllers\\EmpresaController.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAAmwCwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T16:23:31.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T16:23:31.828Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\Program.cs",
               "RelativeDocumentMoniker": "TicketsApi\\Program.cs",
