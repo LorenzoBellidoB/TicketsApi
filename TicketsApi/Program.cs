@@ -1,42 +1,54 @@
 using DAL;
 using Microsoft.EntityFrameworkCore;
-using TicketsApi.Utils;
 using Npgsql;
+using TicketsApi.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Leer DATABASE_URL o fallback
+// 1) Leemos DATABASE_URL de Render o, en desarrollo, la conexión por defecto
 var rawConnectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
     ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
+if (string.IsNullOrEmpty(rawConnectionString))
+    throw new InvalidOperationException("No se ha encontrado la cadena de conexión (DATABASE_URL o DefaultConnection).");
+
 string connectionString;
 
-// Convertir DATABASE_URL si viene en formato postgres://user:pass@host:port/db
-if (!string.IsNullOrEmpty(rawConnectionString) && rawConnectionString.StartsWith("postgres://"))
+// 2) Si viene en formato Heroku/Supabase (postgres://user:pass@host:port/dbname), la convertimos:
+if (rawConnectionString.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase))
 {
     var uri = new Uri(rawConnectionString);
-    var userInfo = uri.UserInfo.Split(':', 2); // Split una sola vez
+    var userInfo = uri.UserInfo.Split(':', 2);
 
     var npgsqlBuilder = new NpgsqlConnectionStringBuilder
     {
         Host = uri.Host,
         Port = uri.Port,
-        Username = userInfo.Length > 0 ? userInfo[0] : "",
-        Password = userInfo.Length > 1 ? userInfo[1] : "",
+        Username = userInfo.ElementAtOrDefault(0) ?? "",
+        Password = userInfo.ElementAtOrDefault(1) ?? "",
         Database = uri.AbsolutePath.Trim('/'),
-        SslMode = SslMode.Require
+        SslMode = SslMode.Require,
+        TrustServerCertificate = true  // <- IMPORTANTE en Supabase
     };
 
     connectionString = npgsqlBuilder.ToString();
 }
 else
 {
+    // Ya es una cadena Npgsql válida (ej. en local)
     connectionString = rawConnectionString;
 }
 
-// Inyectar DbContext
+// 3) Inyectamos el DbContext con retry-policy
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(connectionString, npgsqlOptions =>
+        npgsqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(10),
+            errorCodesToAdd: null
+        )
+    )
+);
 
 // Servicios propios
 builder.Services.AddScoped<clsProductosDAL>();
@@ -48,20 +60,34 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Puerto para Render
+// 4) Configuramos el puerto que Render nos asigne
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 app.Urls.Add($"http://*:{port}");
 
-// Swagger activo siempre
+// Middleware
 app.UseSwagger();
 app.UseSwaggerUI();
-
-// app.UseHttpsRedirection(); // No necesario en Render
+// app.UseHttpsRedirection(); // En Render no es necesario
 app.UseAuthorization();
 app.MapControllers();
 
-// Probar conexión
-var connectionTest = new ConnectionTest(connectionString);
-connectionTest.ProbarConexion();
+// 5) Probar conexión al arrancar
+using (var scope = app.Services.CreateScope())
+{
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    try
+    {
+        logger.LogInformation("Probando conexión a la base de datos...");
+        using var conn = new NpgsqlConnection(connectionString);
+        conn.Open();
+        logger.LogInformation("Conexión establecida correctamente.");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, " Error al conectar con la base de datos:");
+        // Si lo quieres, puedes detener la app:
+        // throw;
+    }
+}
 
 app.Run();
