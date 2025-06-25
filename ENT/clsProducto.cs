@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace ENT
     public class clsProducto
     {
         #region Propiedades
-        public int IdProducto { get; set; }
+        [Key]
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public decimal Precio_kilo { get; set; }
         public int Cantidad { get; set; }
