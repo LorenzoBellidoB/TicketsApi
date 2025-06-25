@@ -10,10 +10,20 @@ namespace ENT
         [Key]
         [Column("id")]
         public int IdDependiente { get; set; }
+
         [Column("nombre")]
         public string Nombre { get; set; }
+
         [Column("empresa_id")]
         public int IdEmpresa { get; set; }
+
+        [ForeignKey("IdEmpresa")]
+        public virtual clsEmpresa Empresa { get; set; }
+
+        public virtual ICollection<clsTicket> Tickets { get; set; }
+        public virtual ICollection<clsAlbaran> Albaranes { get; set; }
+
+
 
         #endregion
 

@@ -1,26 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace ENT
 {
+    [Table("albaranes")]
     public class clsAlbaran
     {
         #region Propiedades
+        [Key]
+        [Column("id")]
         public int IdAlbaran { get; set; }
+
+        [Column("serie")]
         public string Serie { get; set; }
+
+        [Column("numero")]
         public string Numero { get; set; }
+
+        [Column("fecha")]
         public DateTime Fecha { get; set; }
 
+        [Column("importe")]
         public decimal Importe { get; set; }
+
+        [Column("descripcion")]
         public string Descripcion { get; set; }
+
+        [Column("cliente_id")]
         public int IdCliente { get; set; }
+
+        [ForeignKey("IdCliente")]
+        public virtual clsCliente Cliente { get; set; }
+
+        [Column("kilos")]
         public decimal Kilos { get; set; }
+
+        [Column("empresa_id")]
         public int IdEmpresa { get; set; }
+
+        [ForeignKey("IdEmpresa")]
+        public virtual clsEmpresa Empresa { get; set; }
+
+        [Column("dependiente_id")]
         public int IdDependiente { get; set; }
 
+        [ForeignKey("IdDependiente")]
+        public virtual clsDependiente Dependiente { get; set; }
+
+        public virtual ICollection<clsTicket> Tickets { get; set; }
         #endregion
 
         #region Constructores

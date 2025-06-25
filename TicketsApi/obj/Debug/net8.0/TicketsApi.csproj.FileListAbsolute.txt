@@ -145,3 +145,4 @@ D:\PerfilIberico\TicketsApi\TicketsApi\bin\Debug\net8.0\ru\Microsoft.CodeAnalysi
 D:\PerfilIberico\TicketsApi\TicketsApi\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\PerfilIberico\TicketsApi\TicketsApi\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\PerfilIberico\TicketsApi\TicketsApi\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\PerfilIberico\TicketsApi\TicketsApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
