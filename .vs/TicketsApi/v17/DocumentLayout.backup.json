@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\PerfilIberico\\TicketsApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\utils\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\utils\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\utils\\connectiontest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\utils\\connectiontest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,20 +19,12 @@
       "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\ticketsapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\ticketsapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|d:\\perfiliberico\\ticketsapi\\ticketsapi\\utils\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{134942FE-7DA8-48B2-9661-AEBF48AB6DB7}|TicketsApi\\TicketsApi.csproj|solutionrelative:ticketsapi\\utils\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B1272D2-D61E-41D3-8ED1-095738AF7356}|DAL\\DAL.csproj|d:\\perfiliberico\\ticketsapi\\dal\\clsconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ConnectionTest.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\Utils\\ConnectionTest.cs",
               "RelativeDocumentMoniker": "TicketsApi\\Utils\\ConnectionTest.cs",
@@ -71,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\Utils\\AppDbContext.cs",
               "RelativeDocumentMoniker": "TicketsApi\\Utils\\AppDbContext.cs",
@@ -79,31 +79,34 @@
               "RelativeToolTip": "TicketsApi\\Utils\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T10:22:32.688Z"
+              "WhenOpened": "2025-06-25T10:22:32.688Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\appsettings.json",
               "RelativeDocumentMoniker": "TicketsApi\\appsettings.json",
               "ToolTip": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\appsettings.json",
               "RelativeToolTip": "TicketsApi\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAACMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-24T18:03:21.166Z"
+              "WhenOpened": "2025-06-24T18:03:21.166Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\Program.cs",
               "RelativeDocumentMoniker": "TicketsApi\\Program.cs",
               "ToolTip": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\Program.cs",
               "RelativeToolTip": "TicketsApi\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T17:41:54.823Z"
+              "WhenOpened": "2025-06-24T17:41:54.823Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -119,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "TicketsApi.csproj",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\TicketsApi.csproj",
               "RelativeDocumentMoniker": "TicketsApi\\TicketsApi.csproj",
@@ -167,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "EmpresaController.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\Controllers\\EmpresaController.cs",
               "RelativeDocumentMoniker": "TicketsApi\\Controllers\\EmpresaController.cs",
