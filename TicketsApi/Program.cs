@@ -25,7 +25,6 @@ if (!string.IsNullOrEmpty(rawConnectionString) && rawConnectionString.StartsWith
         Password = userInfo.Length > 1 ? userInfo[1] : "",
         Database = uri.AbsolutePath.Trim('/'),
         SslMode = SslMode.Require
-        // TrustServerCertificate ya no es necesario
     };
 
     connectionString = npgsqlBuilder.ToString();
