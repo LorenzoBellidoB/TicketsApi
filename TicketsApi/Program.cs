@@ -1,59 +1,61 @@
 using DAL;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
-using System;
-using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using TicketsApi.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1) Leemos la URL de conexión (Render: DATABASE_URL, local: DefaultConnection)
+// 1) Leemos la URL de conexión (DATABASE_URL en Render, DefaultConnection en local)
 var rawUrl = Environment.GetEnvironmentVariable("DATABASE_URL")
              ?? builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrWhiteSpace(rawUrl))
     throw new InvalidOperationException("Debe definir DATABASE_URL o DefaultConnection.");
 
-// 2) Si es postgres:// lo parseamos; si no, usamos tal cual
-string connectionString;
+// 2) Creamos un NpgsqlConnectionStringBuilder a partir de rawUrl
+var csb = new NpgsqlConnectionStringBuilder();
+
+// Si viene en formato postgres://user:pass@host:port/dbname, lo parseamos
 if (rawUrl.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase))
 {
     var uri = new Uri(rawUrl);
-    var parts = uri.UserInfo.Split(':', 2);
-    var username = parts.ElementAtOrDefault(0) ?? "";
-    var password = parts.ElementAtOrDefault(1) ?? "";
-    var database = uri.AbsolutePath.Trim('/');
+    var up = uri.UserInfo.Split(':', 2);
 
-    // 2a) Forzamos IPv4 resolviendo nosotros mismos
+    csb.Username = up.ElementAtOrDefault(0) ?? "";
+    csb.Password = up.ElementAtOrDefault(1) ?? "";
+    csb.Database = uri.AbsolutePath.Trim('/');
+
+    // ¡Aquí resolvemos y usamos sólo la IPv4!
     var addresses = Dns.GetHostAddresses(uri.Host);
-    var ipv4Address = addresses.FirstOrDefault(a => a.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                      ?? throw new InvalidOperationException($"No hay A record IPv4 para {uri.Host}");
+    var ipv4 = addresses.FirstOrDefault(a => a.AddressFamily == AddressFamily.InterNetwork)
+               ?? throw new InvalidOperationException($"No hay A record IPv4 para {uri.Host}");
+    Console.WriteLine($"[DEBUG] Usando IP v4: {ipv4}");
+    csb.Host = ipv4.ToString();
 
-    // 2b) Montamos la cadena con keywords seguros y sin propiedades obsoletas
-    connectionString =
-        $"Host={ipv4Address};" +
-        $"Port={uri.Port};" +
-        $"Username={username};" +
-        $"Password={password};" +
-        $"Database={database};" +
-        // SSL obligatorio y confianza en el certificado autofirmado de Supabase
-        $"Ssl Mode=Require;" +
-        $"Trust Server Certificate=true;";
+    csb.Port = uri.Port;
 }
 else
 {
-    // Cadena ya válida para Npgsql (entorno local, por ejemplo)
-    connectionString = rawUrl;
+    // Si rawUrl ya es una cadena Npgsql estándar
+    csb.ConnectionString = rawUrl;
 }
 
-// 3) Inyección de DbContext con retry-policy sencilla
-builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseNpgsql(connectionString, npg =>
+// 3) Forzamos SSL/TLS y confiamos certificado autofirmado
+csb.SslMode = SslMode.Require;
+csb.TrustServerCertificate = true;
+
+// DEBUG: Ver cadena final
+Console.WriteLine($"[DEBUG] ConnectionString final: {csb.ConnectionString}");
+
+// 4) Registramos el DbContext con política de reintentos
+builder.Services.AddDbContext<AppDbContext>(opts =>
+    opts.UseNpgsql(csb.ConnectionString, npg =>
         npg.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)
     )
 );
 
-// 4) Registro de tus servicios, MVC y Swagger
+// 5) Resto de servicios, controllers y swagger
 builder.Services.AddScoped<clsProductosDAL>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -61,34 +63,30 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// 5) Ajuste de puerto que Render nos asigne
+// 6) Configuramos el puerto que Render asigne
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 app.Urls.Add($"http://*:{port}");
 
-// 6) Middlewares
+// 7) Middlewares
 app.UseSwagger();
 app.UseSwaggerUI();
-// app.UseHttpsRedirection(); // En Render no suele hacer falta
 app.UseAuthorization();
 app.MapControllers();
 
-// 7) Prueba de conexión al arrancar (mira los logs)
+// 8) Test de conexión al arranque (logs de Render)
 using (var scope = app.Services.CreateScope())
 {
-    var logger = scope.ServiceProvider
-                      .GetRequiredService<ILogger<Program>>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
     try
     {
-        logger.LogInformation(">> Probando conexión a la base de datos…");
-        using var conn = new NpgsqlConnection(connectionString);
+        logger.LogInformation(" Probando conexión a la base de datos…");
+        using var conn = new NpgsqlConnection(csb.ConnectionString);
         conn.Open();
-        logger.LogInformation(" Conexión OK.");
+        logger.LogInformation(" Conexión establecida correctamente.");
     }
     catch (Exception ex)
     {
-        logger.LogError(ex, " No se pudo conectar:");
-        // Si quieres abortar al primer fallo, descomenta:
-        // throw;
+        logger.LogError(ex, " Error al conectar con la base de datos:");
     }
 }
 
