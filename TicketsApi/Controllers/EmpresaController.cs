@@ -1,6 +1,7 @@
 ﻿using DAL;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace TicketsApi.Controllers
 {
@@ -9,10 +10,12 @@ namespace TicketsApi.Controllers
     public class EmpresaController : ControllerBase
     {
         private readonly clsProductosDAL _productosDAL;
+        private readonly clsTicketsDAL _ticketsDAL;
 
-        public EmpresaController(clsProductosDAL productosDAL)
+        public EmpresaController(clsProductosDAL productosDAL, clsTicketsDAL ticketsDAL)
         {
             _productosDAL = productosDAL;
+            _ticketsDAL = ticketsDAL;
         }
 
         [HttpGet("productos")]
@@ -26,9 +29,10 @@ namespace TicketsApi.Controllers
         // Pero si los dejas para scaffold, mantenlos así:
 
         [HttpGet("details/{id}")]
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return Ok($"Detalles del producto {id} (simulado)");
+            var tickets = await _ticketsDAL.ObtenerTicketPorId(id);
+            return Ok(tickets);
         }
 
         [HttpPost("create")]
