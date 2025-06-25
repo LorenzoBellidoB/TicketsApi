@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;  // <-- necesario para [Table]
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ENT
 {
-    [Table("productos")] // Aquí indicas el nombre exacto de la tabla en la base de datos (minúsculas)
+    [Table("productos")] 
     public class clsProducto
     {
         #region Propiedades
