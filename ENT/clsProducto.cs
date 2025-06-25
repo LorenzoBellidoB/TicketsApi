@@ -9,7 +9,7 @@ namespace ENT
         #region Propiedades
         [Key]
         [Column("id")]
-        public int Id { get; set; }
+        public int IdProducto { get; set; }
         [Column("nombre")]
         public string Nombre { get; set; }
         [Column("precio_kilo")]
@@ -25,11 +25,11 @@ namespace ENT
         public clsProducto() { }
         public clsProducto(int idProducto)
         {
-            Id = idProducto;
+            IdProducto = idProducto;
         }
         public clsProducto(int idProducto, string nombre, decimal precio, int cantidad, decimal impuesto)
         {
-            Id = idProducto;
+            IdProducto = idProducto;
             Nombre = nombre;
             Precio_kilo = precio;
             Cantidad = cantidad;

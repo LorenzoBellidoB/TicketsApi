@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\PerfilIberico\\TicketsApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BA2D3D79-C348-4B25-84B9-FC4F3E1BBF61}|ENT\\ENT.csproj|d:\\perfiliberico\\ticketsapi\\ent\\clscliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA2D3D79-C348-4B25-84B9-FC4F3E1BBF61}|ENT\\ENT.csproj|solutionrelative:ent\\clscliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BA2D3D79-C348-4B25-84B9-FC4F3E1BBF61}|ENT\\ENT.csproj|d:\\perfiliberico\\ticketsapi\\ent\\clsproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BA2D3D79-C348-4B25-84B9-FC4F3E1BBF61}|ENT\\ENT.csproj|solutionrelative:ent\\clsproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,19 +39,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "clsCliente.cs",
+              "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\ENT\\clsCliente.cs",
+              "RelativeDocumentMoniker": "ENT\\clsCliente.cs",
+              "ToolTip": "D:\\PerfilIberico\\TicketsApi\\ENT\\clsCliente.cs",
+              "RelativeToolTip": "ENT\\clsCliente.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T21:58:06.087Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "clsProducto.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\ENT\\clsProducto.cs",
               "RelativeDocumentMoniker": "ENT\\clsProducto.cs",
               "ToolTip": "D:\\PerfilIberico\\TicketsApi\\ENT\\clsProducto.cs",
               "RelativeToolTip": "ENT\\clsProducto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-25T17:28:20.795Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\appsettings.json",
               "RelativeDocumentMoniker": "TicketsApi\\appsettings.json",
@@ -59,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "EmpresaController.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\Controllers\\EmpresaController.cs",
               "RelativeDocumentMoniker": "TicketsApi\\Controllers\\EmpresaController.cs",
@@ -71,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\PerfilIberico\\TicketsApi\\TicketsApi\\Program.cs",
               "RelativeDocumentMoniker": "TicketsApi\\Program.cs",
