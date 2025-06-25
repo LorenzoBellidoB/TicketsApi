@@ -24,11 +24,11 @@ namespace ENT
         }
         public clsProducto(int idProducto)
         {
-            IdProducto = idProducto;
+            Id = idProducto;
         }
         public clsProducto(int idProducto, string nombre, decimal precio, int cantidad, decimal impuesto)
         {
-            IdProducto = idProducto;
+            Id = idProducto;
             Nombre = nombre;
             Precio_kilo = precio;
             Cantidad = cantidad;
