@@ -1,0 +1,15 @@
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+D:\PerfilIberico\TicketsApi\DAL\bin\Debug\net8.0\DAL.deps.json
+D:\PerfilIberico\TicketsApi\DAL\bin\Debug\net8.0\DAL.dll
+D:\PerfilIberico\TicketsApi\DAL\bin\Debug\net8.0\DAL.pdb
+D:\PerfilIberico\TicketsApi\DAL\bin\Debug\net8.0\ENT.dll
+D:\PerfilIberico\TicketsApi\DAL\bin\Debug\net8.0\ENT.pdb
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\DAL.csproj.Up2Date
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\DAL.dll
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\refint\DAL.dll
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\DAL.pdb
+D:\PerfilIberico\TicketsApi\DAL\obj\Debug\net8.0\ref\DAL.dll
