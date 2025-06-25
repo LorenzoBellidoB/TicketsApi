@@ -16,23 +16,10 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet("productos")]
-        public IActionResult GetProductos()
+        public async Task<IActionResult> GetProductos()
         {
-            try
-            {
-                var listadoCompleto = _productosDAL.obtenerProductos();
-
-                if (listadoCompleto == null || listadoCompleto.Count == 0)
-                    return NotFound("No se han encontrado productos.");
-
-                return Ok(listadoCompleto);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error al conectar a la base de datos:");
-                Console.WriteLine(e);
-                return StatusCode(500, $"Error interno: {e.Message}");
-            }
+            var productos = await _productosDAL.obtenerProductos();
+            return Ok(productos);
         }
 
         // Los métodos MVC (Views) los puedes eliminar si solo es API
