@@ -55,8 +55,9 @@ builder.Services.AddDbContext<AppDbContext>(opts =>
     )
 );
 
+
 // 5) Servicios y Swagger
-builder.Services.AddScoped<clsProductosDAL>();
+builder.Services.AddScoped<clsProductosDAL, clsProductosDAL>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,7 +1,7 @@
 ﻿using ENT;
 using Microsoft.EntityFrameworkCore;
 
-namespace TicketsApi.Utils
+namespace DAL
 {
     public class AppDbContext : DbContext
     {

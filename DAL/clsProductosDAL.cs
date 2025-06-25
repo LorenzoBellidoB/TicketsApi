@@ -1,7 +1,6 @@
 ﻿using ENT;
 using Microsoft.EntityFrameworkCore;
 using System;
-using TicketsApi.Utils;
 
 namespace DAL
 {
