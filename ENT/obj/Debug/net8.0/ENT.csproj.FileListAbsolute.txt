@@ -10,3 +10,4 @@ D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.dll
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\refint\ENT.dll
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.pdb
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ref\ENT.dll
+D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.sourcelink.json
