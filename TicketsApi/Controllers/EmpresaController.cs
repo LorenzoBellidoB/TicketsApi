@@ -29,7 +29,8 @@ namespace TicketsApi.Controllers
         [HttpGet("empresas/{id}")]
         public async Task<IActionResult> Details(int id)
         {
-            return Ok();
+            var empresa = await _empresasDAL.obtenerEmpresaPorId(id);
+            return Ok(empresa);
         }
 
         [HttpPost("create")]

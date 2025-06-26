@@ -21,5 +21,11 @@ namespace DAL
         {
             return await _context.Empresas.ToListAsync();
         }
+
+        public async Task<clsEmpresa> obtenerEmpresaPorId(int id)
+        {
+            return await _context.Empresas
+                .FirstOrDefaultAsync(e => e.IdEmpresa == id);
+        }
     }
 }
