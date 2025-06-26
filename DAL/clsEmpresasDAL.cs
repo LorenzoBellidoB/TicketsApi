@@ -27,5 +27,33 @@ namespace DAL
             return await _context.Empresas
                 .FirstOrDefaultAsync(e => e.IdEmpresa == id);
         }
+
+        public async Task<bool> insertarEmpresa(clsEmpresa empresa)
+        {
+            bool res = false;
+            _context.Empresas.Add(empresa);
+            res = await _context.SaveChangesAsync() > 0;
+            return res;
+        }
+
+        public async Task<bool> actualizarEmpresa(clsEmpresa empresa)
+        {
+            bool res = false;
+            _context.Empresas.Update(empresa);
+            res = await _context.SaveChangesAsync() > 0;
+            return res;
+        }
+
+        public async Task<bool> eliminarEmpresa(int id)
+        {
+            bool res = false;
+            var empresa = await _context.Empresas.FindAsync(id);
+            if (empresa != null)
+            {
+                _context.Empresas.Remove(empresa);
+                res = await _context.SaveChangesAsync() > 0;
+            }
+            return res;
+        }
     }
 }

@@ -25,22 +25,19 @@ namespace TicketsApi.Controllers
             var empresas = await _empresasDAL.obtenerEmpresas();
                 if(empresas.Count == 0)
                 {
-                    salida = NotFound();
+                    salida = NotFound("No se han encontrado empresas");
                 }
                 else
                 {
                     salida = Ok(empresas);
                 }
             }
-            catch
+            catch(Exception e)
             {
-                salida = BadRequest("Error con el servidor");
+                salida = BadRequest("Error con el servidor " + e.Message);
             }
             return Ok(salida);
         }
-
-        // Los métodos MVC (Views) los puedes eliminar si solo es API
-        // Pero si los dejas para scaffold, mantenlos así:
 
         [HttpGet("empresas/{id}")]
         public async Task<IActionResult> Details(int id)
@@ -51,58 +48,71 @@ namespace TicketsApi.Controllers
             var empresa = await _empresasDAL.obtenerEmpresaPorId(id);
                 if (empresa == null)
                 {
-                    salida = NotFound();
+                    salida = NotFound("No se ha encontrado una empresa con ese id");
                 }
                 else
                 {
                     salida = Ok(empresa);
                 }
             }
-            catch
+            catch(Exception e)
             {
-                salida = BadRequest("Error con el servidor");
+                salida = BadRequest("Error con el servidor " + e.Message);
             }
 
             return Ok(salida);
         }
 
-        [HttpPost("create")]
-        public IActionResult Create([FromBody] object dummy) // Ajusta el modelo real
+        [HttpPost("empresas")]
+        public async Task<IActionResult> CrearEmpresa([FromBody] clsEmpresa empresa)
         {
             try
             {
-                return Ok("Producto creado (simulado)");
+                var resultado = await _empresasDAL.insertarEmpresa(empresa);
+                if (resultado)
+                    return Ok("Empresa creada correctamente");
+                else
+                    return BadRequest("No se pudo crear la empresa");
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest("Error al crear el producto");
+                return BadRequest("Error con el servidor: " + e.Message);
             }
         }
 
-        [HttpPut("edit/{id}")]
-        public IActionResult Edit(int id, [FromBody] object dummy)
+        [HttpPut("empresas/{id}")]
+        public async Task<IActionResult> ActualizarEmpresa(int id, [FromBody] clsEmpresa empresa)
         {
             try
             {
-                return Ok($"Producto {id} editado (simulado)");
+                if (id != empresa.IdEmpresa)
+                    return BadRequest("El ID de la URL no coincide con el del objeto");
+
+                var empresaExistente = await _empresasDAL.obtenerEmpresaPorId(id);
+                if (empresaExistente == null)
+                    return NotFound("Empresa no encontrada");
+
+                var resultado = await _empresasDAL.actualizarEmpresa(empresa);
+                return resultado ? Ok("Empresa actualizada correctamente") : BadRequest("No se pudo actualizar la empresa");
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest("Error al editar el producto");
+                return BadRequest("Error con el servidor: " + e.Message);
             }
         }
 
-        [HttpDelete("delete/{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("empresas/{id}")]
+        public async Task<IActionResult> EliminarEmpresa(int id)
         {
             try
             {
-                return Ok($"Producto {id} eliminado (simulado)");
+                var resultado = await _empresasDAL.eliminarEmpresa(id);
+                return resultado ? Ok("Empresa eliminada correctamente") : NotFound("No se encontró la empresa para eliminar");
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest("Error al eliminar el producto");
+                return BadRequest("Error con el servidor: " + e.Message);
             }
         }
-    }
+        }
 }
