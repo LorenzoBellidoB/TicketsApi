@@ -19,8 +19,24 @@ namespace TicketsApi.Controllers
         [HttpGet("empresas")]
         public async Task<IActionResult> GetEmpresas()
         {
+            IActionResult salida;
+            try
+            {
             var empresas = await _empresasDAL.obtenerEmpresas();
-            return Ok(empresas);
+                if(empresas.Count == 0)
+                {
+                    salida = NotFound();
+                }
+                else
+                {
+                    salida = Ok(empresas);
+                }
+            }
+            catch
+            {
+                salida = BadRequest("Error con el servidor");
+            }
+            return Ok(salida);
         }
 
         // Los métodos MVC (Views) los puedes eliminar si solo es API
@@ -29,8 +45,25 @@ namespace TicketsApi.Controllers
         [HttpGet("empresas/{id}")]
         public async Task<IActionResult> Details(int id)
         {
+            IActionResult salida;
+            try
+            {
             var empresa = await _empresasDAL.obtenerEmpresaPorId(id);
-            return Ok(empresa);
+                if (empresa == null)
+                {
+                    salida = NotFound();
+                }
+                else
+                {
+                    salida = Ok(empresa);
+                }
+            }
+            catch
+            {
+                salida = BadRequest("Error con el servidor");
+            }
+
+            return Ok(salida);
         }
 
         [HttpPost("create")]

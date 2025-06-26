@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/Empresa/productos": {
+    "/Empresa/empresas": {
       "get": {
         "tags": [
           "Empresa"
@@ -17,7 +17,7 @@
         }
       }
     },
-    "/Empresa/details/{id}": {
+    "/Empresa/empresas/{id}": {
       "get": {
         "tags": [
           "Empresa"
