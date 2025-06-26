@@ -1,12 +1,11 @@
 ﻿using DAL;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace TicketsApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class EmpresaController : ControllerBase
     {
         private readonly clsEmpresasDAL _empresasDAL;
@@ -16,13 +15,13 @@ namespace TicketsApi.Controllers
             _empresasDAL = empresasDAL;
         }
 
-        [HttpGet("empresas")]
+        [HttpGet]
         public async Task<IActionResult> GetEmpresas()
         {
             IActionResult salida;
             try
             {
-            var empresas = await _empresasDAL.obtenerEmpresas();
+            var empresas = await _empresasDAL.ObtenerEmpresas();
                 if(empresas.Count == 0)
                 {
                     salida = NotFound("No se han encontrado empresas");
@@ -36,16 +35,16 @@ namespace TicketsApi.Controllers
             {
                 salida = BadRequest("Error con el servidor " + e.Message);
             }
-            return Ok(salida);
+            return salida;
         }
 
-        [HttpGet("empresas/{id}")]
-        public async Task<IActionResult> Details(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEmpresa(int id)
         {
             IActionResult salida;
             try
             {
-            var empresa = await _empresasDAL.obtenerEmpresaPorId(id);
+            var empresa = await _empresasDAL.ObtenerEmpresaPorId(id);
                 if (empresa == null)
                 {
                     salida = NotFound("No se ha encontrado una empresa con ese id");
@@ -60,59 +59,65 @@ namespace TicketsApi.Controllers
                 salida = BadRequest("Error con el servidor " + e.Message);
             }
 
-            return Ok(salida);
+            return salida;
         }
 
-        [HttpPost("empresas")]
+        [HttpPost]
         public async Task<IActionResult> CrearEmpresa([FromBody] clsEmpresa empresa)
         {
+            IActionResult salida;
             try
             {
-                var resultado = await _empresasDAL.insertarEmpresa(empresa);
+                var resultado = await _empresasDAL.InsertarEmpresa(empresa);
                 if (resultado)
-                    return Ok("Empresa creada correctamente");
+                    salida = Ok("Empresa creada correctamente");
                 else
-                    return BadRequest("No se pudo crear la empresa");
+                    salida = BadRequest("No se pudo crear la empresa");
             }
             catch (Exception e)
             {
-                return BadRequest("Error con el servidor: " + e.Message);
+                salida = BadRequest("Error con el servidor: " + e.Message);
             }
+            return salida;
         }
 
-        [HttpPut("empresas/{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> ActualizarEmpresa(int id, [FromBody] clsEmpresa empresa)
         {
+            IActionResult salida;
             try
             {
                 if (id != empresa.IdEmpresa)
-                    return BadRequest("El ID de la URL no coincide con el del objeto");
+                    salida = BadRequest("El ID de la URL no coincide con el del objeto");
 
-                var empresaExistente = await _empresasDAL.obtenerEmpresaPorId(id);
+                var empresaExistente = await _empresasDAL.ObtenerEmpresaPorId(id);
                 if (empresaExistente == null)
-                    return NotFound("Empresa no encontrada");
+                    salida = NotFound("Empresa no encontrada");
 
-                var resultado = await _empresasDAL.actualizarEmpresa(empresa);
-                return resultado ? Ok("Empresa actualizada correctamente") : BadRequest("No se pudo actualizar la empresa");
+                var resultado = await _empresasDAL.ActualizarEmpresa(empresa);
+                salida = resultado ? Ok("Empresa actualizada correctamente") : BadRequest("No se pudo actualizar la empresa");
             }
             catch (Exception e)
             {
-                return BadRequest("Error con el servidor: " + e.Message);
+                salida = BadRequest("Error con el servidor: " + e.Message);
             }
+            return salida;
         }
 
-        [HttpDelete("empresas/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> EliminarEmpresa(int id)
         {
+            IActionResult salida;
             try
             {
-                var resultado = await _empresasDAL.eliminarEmpresa(id);
-                return resultado ? Ok("Empresa eliminada correctamente") : NotFound("No se encontró la empresa para eliminar");
+                var resultado = await _empresasDAL.EliminarEmpresa(id);
+                salida = resultado ? Ok("Empresa eliminada correctamente") : NotFound("No se encontró la empresa para eliminar");
             }
             catch (Exception e)
             {
-                return BadRequest("Error con el servidor: " + e.Message);
+                salida = BadRequest("Error con el servidor: " + e.Message);
             }
+            return salida;
         }
-        }
+    }
 }
