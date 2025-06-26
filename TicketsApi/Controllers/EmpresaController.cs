@@ -9,30 +9,27 @@ namespace TicketsApi.Controllers
     [Route("[controller]")]
     public class EmpresaController : ControllerBase
     {
-        private readonly clsProductosDAL _productosDAL;
-        private readonly clsTicketsDAL _ticketsDAL;
+        private readonly clsEmpresasDAL _empresasDAL;
 
-        public EmpresaController(clsProductosDAL productosDAL, clsTicketsDAL ticketsDAL)
+        public EmpresaController(clsEmpresasDAL empresasDAL)
         {
-            _productosDAL = productosDAL;
-            _ticketsDAL = ticketsDAL;
+            _empresasDAL = empresasDAL;
         }
 
-        [HttpGet("productos")]
-        public async Task<IActionResult> GetProductos()
+        [HttpGet("empresas")]
+        public async Task<IActionResult> GetEmpresas()
         {
-            var productos = await _productosDAL.obtenerProductos();
-            return Ok(productos);
+            var empresas = await _empresasDAL.obtenerEmpresas();
+            return Ok(empresas);
         }
 
         // Los métodos MVC (Views) los puedes eliminar si solo es API
         // Pero si los dejas para scaffold, mantenlos así:
 
-        [HttpGet("details/{id}")]
+        [HttpGet("empresas/{id}")]
         public async Task<IActionResult> Details(int id)
         {
-            var tickets = await _ticketsDAL.ObtenerTicketPorId(id);
-            return Ok(tickets);
+            return Ok();
         }
 
         [HttpPost("create")]

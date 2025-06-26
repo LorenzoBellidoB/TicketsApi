@@ -11,7 +11,7 @@ public class clsTicketsDAL
         _context = context;
     }
 
-    public async Task<List<clsTicket>> ObtenerTickets()
+    public async Task<List<clsTicket>> obtenerTickets()
     {
         return await _context.Tickets
             .Include(t => t.Cliente)
@@ -21,7 +21,7 @@ public class clsTicketsDAL
             .ToListAsync();
     }
 
-    public async Task<clsTicket> ObtenerTicketPorId(int id)
+    public async Task<clsTicket> obtenerTicketPorId(int id)
     {
         return await _context.Tickets
             .Include(t => t.Detalles)

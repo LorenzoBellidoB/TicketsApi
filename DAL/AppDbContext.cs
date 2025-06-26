@@ -10,8 +10,6 @@ namespace DAL
         public DbSet<clsDetalleTicket> DetallesTicket { get; set; }
         public DbSet<clsDependiente> Dependientes { get; set; }
         public DbSet<clsAlbaran> Albaranes { get; set; }
-
-        // Cuando tengas Cliente, Empresa y Proveedor:
         public DbSet<clsCliente> Clientes { get; set; }
         public DbSet<clsEmpresa> Empresas { get; set; }
         public DbSet<clsProveedor> Proveedores { get; set; }

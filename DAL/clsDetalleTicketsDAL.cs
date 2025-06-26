@@ -11,7 +11,7 @@ public class clsDetalleTicketsDAL
         _context = context;
     }
 
-    public async Task<List<clsDetalleTicket>> ObtenerDetallesPorTicketId(int ticketId)
+    public async Task<List<clsDetalleTicket>> obtenerDetallesPorTicketId(int ticketId)
     {
         return await _context.DetallesTicket
             .Where(d => d.IdTicket == ticketId)

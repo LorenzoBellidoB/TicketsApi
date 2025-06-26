@@ -61,6 +61,7 @@ builder.Services.AddScoped<clsProductosDAL, clsProductosDAL>();
 builder.Services.AddScoped<clsTicketsDAL, clsTicketsDAL>();
 builder.Services.AddScoped<clsDetalleTicketsDAL, clsDetalleTicketsDAL>();
 builder.Services.AddScoped<clsAlbaranesDAL, clsAlbaranesDAL>();
+builder.Services.AddScoped<clsEmpresasDAL, clsEmpresasDAL>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
