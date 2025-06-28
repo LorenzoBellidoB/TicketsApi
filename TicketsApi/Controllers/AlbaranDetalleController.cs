@@ -1,6 +1,7 @@
 ﻿using DAL;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TicketsApi.Controllers
 {
@@ -16,6 +17,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet]
+        //[SwaggerOperation(
+        //    Summary = "Obtiene un listado con todos los detalles del albaran",
+        //    Description = "Este método obtiene todos los detalles del albaran y los devuelve como un listado.<br>" +
+        //    "Si no se encuentra ningún albaran devuelve un mensaje de error."
+        //)]
         public async Task<IActionResult> GetAlbaranesDetalles()
         {
             IActionResult salida;
@@ -39,6 +45,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet("{id}")]
+        //[SwaggerOperation(
+        //    Summary = "Obtiene un detalle del albaran según su id",
+        //    Description = "Este método obtiene el detalle del albaran que coincida con el id proporcionado.<br>" +
+        //    "Si no se encuentra ningún albaran devuelve un mensaje de error."
+        //)]
         public async Task<IActionResult> GetAlbaranDetalle(int id)
         {
             IActionResult salida;
@@ -63,6 +74,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPost]
+        //[SwaggerOperation(
+        //    Summary = "Crea un nuevo detalle de albaran",
+        //    Description = "Este método crea un nuevo detalle de albaran a partir de los datos proporcionados en el cuerpo de la solicitud.<br>" +
+        //    "Si se crea correctamente, devuelve un mensaje de éxito."
+        //)]
         public async Task<IActionResult> CrearAlbaranDetalle([FromBody] clsAlbaranDetalle albaranDetalle)
         {
             IActionResult salida;
@@ -82,6 +98,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPut("{id}")]
+        //[SwaggerOperation(
+        //    Summary = "Actualiza un detalle de albaran",
+        //    Description = "Este método actualiza un detalle de albaran según el id proporcionado en la URL y los datos del cuerpo de la solicitud.<br>" +
+        //    "Si se actualiza correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error."
+        //)]
         public async Task<IActionResult> ActualizarAlbaranDetalle(int id, [FromBody] clsAlbaranDetalle albaranDetalle)
         {
             IActionResult salida;
@@ -105,6 +126,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        //[SwaggerOperation(
+        //    Summary = "Elimina un detalle de albaran",
+        //    Description = "Este método elimina un detalle de albaran según el id proporcionado en la URL.<br>" +
+        //    "Si se elimina correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error."
+        //)]
         public async Task<IActionResult> EliminarAlbaranDetalle(int id)
         {
             IActionResult salida;
