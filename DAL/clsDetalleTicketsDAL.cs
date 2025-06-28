@@ -11,7 +11,7 @@ public class clsDetalleTicketsDAL
         _context = context;
     }
 
-    public async Task<List<clsDetalleTicket>> ObtenerEmpresas()
+    public async Task<List<clsDetalleTicket>> ObtenerDetallesTickets()
     {
         return await _context.DetallesTicket.ToListAsync();
     }
