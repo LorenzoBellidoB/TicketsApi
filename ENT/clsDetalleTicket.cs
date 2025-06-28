@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace ENT
 {
     [Table("tickets_detalles")]
     public class clsDetalleTicket
     {
         #region Propiedades
+
         [Key]
         [Column("id")]
         public int IdDetalleTicket { get; set; }
@@ -21,29 +21,31 @@ namespace ENT
         [Column("producto_unidad_id")]
         public int IdProductoUnidad { get; set; }
 
-        [ForeignKey("IdProducto")]
+        [ForeignKey("IdProductoUnidad")]
         public virtual clsProductoUnidad ProductoUnidad { get; set; }
 
         [Column("cantidad")]
         public decimal Cantidad { get; set; }
 
-
         #endregion
+
         #region Constructores
-        public clsDetalleTicket()
-        {
-        }
+
+        public clsDetalleTicket() { }
+
         public clsDetalleTicket(int idDetalleTicket)
         {
             IdDetalleTicket = idDetalleTicket;
         }
-        public clsDetalleTicket(int idDetalleTicket, int idTicket, int idProducto, decimal precio_kilo, decimal cantidad, decimal impuesto)
+
+        public clsDetalleTicket(int idDetalleTicket, int idTicket, int idProductoUnidad, decimal cantidad)
         {
             IdDetalleTicket = idDetalleTicket;
             IdTicket = idTicket;
-            IdProducto = idProducto;
+            IdProductoUnidad = idProductoUnidad;
             Cantidad = cantidad;
         }
+
         #endregion
     }
 }
