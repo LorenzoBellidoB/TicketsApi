@@ -31,6 +31,9 @@ namespace ENT
 
         public virtual ICollection<clsDetalleTicket> Detalles { get; set; }
 
+        public virtual ICollection<clsProductoUnidad> ProductoUnidades { get; set; } = new List<clsProductoUnidad>();
+
+
 
         #endregion
         #region Constructores

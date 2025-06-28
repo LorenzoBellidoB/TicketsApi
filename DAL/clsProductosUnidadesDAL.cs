@@ -1,5 +1,7 @@
 ﻿using ENT;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DAL
 {
@@ -26,32 +28,35 @@ namespace DAL
                                  .FirstOrDefaultAsync(pu => pu.IdProductoUnidad == id);
         }
 
+        public async Task<List<clsProductoUnidad>> ObtenerProductoUnidadesPorProductoId(int productoId)
+        {
+            return await _context.ProductosUnidades
+                                 .Include(pu => pu.Producto)
+                                 .Where(pu => pu.IdProducto == productoId)
+                                 .ToListAsync();
+        }
+
         public async Task<bool> InsertarProductoUnidad(clsProductoUnidad productoUnidad)
         {
-            bool res = false;
             _context.ProductosUnidades.Add(productoUnidad);
-            res = await _context.SaveChangesAsync() > 0;
-            return res;
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<bool> ActualizarProductoUnidad(clsProductoUnidad productoUnidad)
         {
-            bool res = false;
             _context.ProductosUnidades.Update(productoUnidad);
-            res = await _context.SaveChangesAsync() > 0;
-            return res;
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<bool> EliminarProductoUnidad(int id)
         {
-            bool res = false;
             var productoUnidad = await _context.ProductosUnidades.FindAsync(id);
             if (productoUnidad != null)
             {
                 _context.ProductosUnidades.Remove(productoUnidad);
-                res = await _context.SaveChangesAsync() > 0;
+                return await _context.SaveChangesAsync() > 0;
             }
-            return res;
+            return false;
         }
     }
 }

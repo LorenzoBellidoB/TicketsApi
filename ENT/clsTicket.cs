@@ -39,6 +39,9 @@ namespace ENT
         [ForeignKey("IdAlbaran")]
         public virtual clsAlbaran Albaran { get; set; }
 
+        public virtual ICollection<clsDetalleTicket> Detalles { get; set; } = new List<clsDetalleTicket>();
+
+
         #endregion
         #region Constructores
         public clsTicket()
