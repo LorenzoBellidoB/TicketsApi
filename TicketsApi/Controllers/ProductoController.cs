@@ -22,7 +22,7 @@ namespace TicketsApi.Controllers
             IActionResult salida;
             try
             {
-                var productos = await _productoDAL.obtenerProductos();
+                var productos = await _productoDAL.ObtenerProductos();
                 if (productos.Count == 0)
                 {
                     salida = NotFound("No se han encontrado productos");
@@ -45,7 +45,7 @@ namespace TicketsApi.Controllers
             IActionResult salida;
             try
             {
-                var producto = await _productoDAL.obtenerProductos(id);
+                var producto = await _productoDAL.ObtenerProductoPorId(id);
                 if (producto == null)
                 {
                     salida = NotFound("No se ha encontrado un producto con ese id");
@@ -64,16 +64,16 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearEmpresa([FromBody] clsEmpresa empresa)
+        public async Task<IActionResult> CrearProducto([FromBody] clsProducto producto)
         {
             IActionResult salida;
             try
             {
-                var resultado = await _productoDAL.InsertarEmpresa(empresa);
+                var resultado = await _productoDAL.InsertarProducto(producto);
                 if (resultado)
-                    salida = Ok("Empresa creada correctamente");
+                    salida = Ok("Producto creada correctamente");
                 else
-                    salida = BadRequest("No se pudo crear la empresa");
+                    salida = BadRequest("No se pudo crear el producto");
             }
             catch (Exception e)
             {
@@ -83,20 +83,20 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> ActualizarEmpresa(int id, [FromBody] clsEmpresa empresa)
+        public async Task<IActionResult> ActualizarProducto(int id, [FromBody] clsProducto producto)
         {
             IActionResult salida;
             try
             {
-                if (id != empresa.IdEmpresa)
+                if (id != producto.IdProducto)
                     salida = BadRequest("El ID de la URL no coincide con el del objeto");
 
-                var empresaExistente = await _empresasDAL.ObtenerEmpresaPorId(id);
-                if (empresaExistente == null)
-                    salida = NotFound("Empresa no encontrada");
+                var productoExistente = await _productoDAL.ObtenerProductoPorId(id);
+                if (productoExistente == null)
+                    salida = NotFound("Producto no encontrado");
 
-                var resultado = await _empresasDAL.ActualizarEmpresa(empresa);
-                salida = resultado ? Ok("Empresa actualizada correctamente") : BadRequest("No se pudo actualizar la empresa");
+                var resultado = await _productoDAL.ActualizarProducto(producto);
+                salida = resultado ? Ok("Producto actualizado correctamente") : BadRequest("No se pudo actualizar el producto");
             }
             catch (Exception e)
             {
@@ -106,13 +106,13 @@ namespace TicketsApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> EliminarEmpresa(int id)
+        public async Task<IActionResult> EliminarProducto(int id)
         {
             IActionResult salida;
             try
             {
-                var resultado = await _empresasDAL.EliminarEmpresa(id);
-                salida = resultado ? Ok("Empresa eliminada correctamente") : NotFound("No se encontró la empresa para eliminar");
+                var resultado = await _productoDAL.EliminarProducto(id);
+                salida = resultado ? Ok("Producto eliminado correctamente") : NotFound("No se encontró el producto para eliminar");
             }
             catch (Exception e)
             {
