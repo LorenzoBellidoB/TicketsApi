@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TicketsApi.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class DetalleTicketController : Controller
     {
         private readonly clsDetalleTicketsDAL _dTicketDAL;

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TicketsApi.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class AlbaranController : Controller
     {
         private readonly clsAlbaranesDAL _albaranDAL;
