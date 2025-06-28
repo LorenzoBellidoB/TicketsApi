@@ -19,12 +19,6 @@ namespace ENT
 
         [ForeignKey("IdEmpresa")]
         public virtual clsEmpresa Empresa { get; set; }
-
-        public virtual ICollection<clsTicket> Tickets { get; set; }
-        public virtual ICollection<clsAlbaran> Albaranes { get; set; }
-
-
-
         #endregion
 
         #region Constructores

@@ -1,0 +1,46 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ENT
+{
+    [Table("albaranes_detalles")]
+    public class clsAlbaranDetalle
+    {
+        #region Propiedades
+        [Key]
+        [Column("id")]
+        public int IdAlbaranDetalle { get; set; }
+        [Column("albaran_id")]
+        public int IdAlbaran { get; set; }
+        [Column("producto_unidad_id")]
+        public int IdProductoUnidad { get; set; }
+
+        [ForeignKey("IdAlbaran")]
+        public virtual clsAlbaran Albaran { get; set; }
+
+        [ForeignKey("IdProductoUnidad")]
+        public virtual clsProductoUnidad ProductoUnidad { get; set; }
+        #endregion
+        #region Constructores
+        public clsAlbaranDetalle()
+        {
+        }
+        public clsAlbaranDetalle(int idAlbaranDetalle)
+        {
+            IdAlbaranDetalle = idAlbaranDetalle;
+        }
+
+        public clsAlbaranDetalle(int idAlbaran, int idProductoUnidad, decimal cantidad)
+        {
+            IdAlbaran = idAlbaran;
+            IdProductoUnidad = idProductoUnidad;
+        }
+        public clsAlbaranDetalle(int idAlbaranDetalle, int idAlbaran, int idProductoUnidad, decimal cantidad)
+        {
+            IdAlbaranDetalle = idAlbaranDetalle;
+            IdAlbaran = idAlbaran;
+            IdProductoUnidad = idProductoUnidad;
+        }
+        #endregion
+    }
+}

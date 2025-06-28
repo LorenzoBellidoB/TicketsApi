@@ -13,6 +13,8 @@ namespace DAL
         public DbSet<clsCliente> Clientes { get; set; }
         public DbSet<clsEmpresa> Empresas { get; set; }
         public DbSet<clsProveedor> Proveedores { get; set; }
+        public DbSet<clsAlbaranDetalle> AlbaranesDetalles { get; set; }
+        public DbSet<clsProductoUnidad> ProductosUnidades { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

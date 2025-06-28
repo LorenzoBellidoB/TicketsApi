@@ -18,11 +18,11 @@ namespace ENT
         [ForeignKey("IdTicket")]
         public virtual clsTicket Ticket { get; set; }
 
-        [Column("producto_id")]
-        public int IdProducto { get; set; }
+        [Column("producto_unidad_id")]
+        public int IdProductoUnidad { get; set; }
 
         [ForeignKey("IdProducto")]
-        public virtual clsProducto Producto { get; set; }
+        public virtual clsProductoUnidad ProductoUnidad { get; set; }
 
         [Column("cantidad")]
         public decimal Cantidad { get; set; }
