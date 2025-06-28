@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class clsProductoUnidadDAL
+    public class clsProductosUnidadesDAL
     {
         private readonly AppDbContext _context;
 
-        public clsProductoUnidadDAL(AppDbContext context)
+        public clsProductosUnidadesDAL(AppDbContext context)
         {
             _context = context;
         }

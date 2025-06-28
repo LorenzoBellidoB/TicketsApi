@@ -14,7 +14,7 @@ public class clsTicketsDAL
         _context = context;
     }
 
-    public async Task<List<clsTicket>> obtenerTickets()
+    public async Task<List<clsTicket>> ObtenerTickets()
     {
         return await _context.Tickets
             .Include(t => t.Cliente)
@@ -24,7 +24,7 @@ public class clsTicketsDAL
             .ToListAsync();
     }
 
-    public async Task<clsTicket> obtenerTicketPorId(int id)
+    public async Task<clsTicket> ObtenerTicketPorId(int id)
     {
         return await _context.Tickets
             .Include(t => t.Cliente)
@@ -35,5 +35,33 @@ public class clsTicketsDAL
                 .ThenInclude(d => d.ProductoUnidad)
                     .ThenInclude(pu => pu.Producto)
             .FirstOrDefaultAsync(t => t.IdTicket == id);
+    }
+
+    public async Task<bool> InsertarTicket(clsTicket ticket)
+    {
+        bool res = false;
+        _context.Tickets.Add(ticket);
+        res = await _context.SaveChangesAsync() > 0;
+        return res;
+    }
+
+    public async Task<bool> ActualizarTicket(clsTicket ticket)
+    {
+        bool res = false;
+        _context.Tickets.Update(ticket);
+        res = await _context.SaveChangesAsync() > 0;
+        return res;
+    }
+
+    public async Task<bool> EliminarTicket(int id)
+    {
+        bool res = false;
+        var ticket = await _context.Tickets.FindAsync(id);
+        if (ticket != null)
+        {
+            _context.Tickets.Remove(ticket);
+            res = await _context.SaveChangesAsync() > 0;
+        }
+        return res;
     }
 }
