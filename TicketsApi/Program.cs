@@ -72,10 +72,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("1.0", new Microsoft.OpenApi.Models.OpenApiInfo
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Title = "Tickets API",
-        Version = "1.0",
+        Version = "v1",
         Description = "API para la gestión de tickets, productos, albaranes y más.",
     });
 });
