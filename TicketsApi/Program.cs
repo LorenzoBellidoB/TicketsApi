@@ -81,15 +81,19 @@ builder.Services.AddSwaggerGen(options =>
 var app = builder.Build();
 
 // 6) Puerto dinámico (Render)
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}");
+//var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+//app.Urls.Add($"http://*:{port}");
 
 // 7) Middlewares
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tickets API v1");
+    // -> llamará a   GET https://…/swagger/v1/swagger.json
+    c.SwaggerEndpoint("v1/swagger.json", "Tickets API v1");
+    // (opcional) deja bien claro que sirves el UI en /swagger:
+    c.RoutePrefix = "swagger";
 });
+
 
 app.UseAuthorization();
 app.MapControllers();
