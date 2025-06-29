@@ -68,7 +68,15 @@ builder.Services.AddScoped<clsProductosUnidadesDAL, clsProductosUnidadesDAL>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Tickets API",
+        Version = "v1"
+    });
+});
+
 
 var app = builder.Build();
 
@@ -78,7 +86,11 @@ app.Urls.Add($"http://*:{port}");
 
 // 7) Middlewares
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tickets API v1");
+});
+
 app.UseAuthorization();
 app.MapControllers();
 
