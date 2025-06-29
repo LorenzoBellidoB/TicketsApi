@@ -1,10 +1,8 @@
 using DAL;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.Net;
 using System.Net.Sockets;
-using TicketsApi.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 

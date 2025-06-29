@@ -3355,7 +3355,6 @@
       "Microsoft.Extensions.Configuration.Json >= 9.0.6",
       "Npgsql >= 9.0.3",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4",
-      "Swashbuckle.AspNetCore.Swagger >= 9.0.1",
       "Swashbuckle.AspNetCore.SwaggerGen >= 9.0.1",
       "Swashbuckle.AspNetCore.SwaggerUI >= 9.0.1"
     ]
@@ -3435,10 +3434,6 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[9.0.4, )"
-          },
-          "Swashbuckle.AspNetCore.Swagger": {
-            "target": "Package",
-            "version": "[9.0.1, )"
           },
           "Swashbuckle.AspNetCore.SwaggerGen": {
             "target": "Package",
