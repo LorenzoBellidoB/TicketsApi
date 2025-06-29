@@ -1,7 +1,5 @@
 ﻿using ENT;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace TicketsApi.Controllers
 {
