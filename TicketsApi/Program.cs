@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.Net;
 using System.Net.Sockets;
+using Swashbuckle.AspNetCore.Annotations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -75,7 +76,11 @@ builder.Services.AddSwaggerGen(options =>
         Title = "Tickets API",
         Version = "v1"
     });
+
+    // Habilita anotaciones Swagger como [SwaggerOperation]
+    options.EnableAnnotations();
 });
+
 
 
 var app = builder.Build();
