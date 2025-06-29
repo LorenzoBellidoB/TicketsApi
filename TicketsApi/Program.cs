@@ -42,7 +42,6 @@ catch
 
 // 3) Seguridad: TLS y certificado
 csb.SslMode = SslMode.Require;
-csb.TrustServerCertificate = true;
 
 // DEBUG: Ver cadena final
 Console.WriteLine($"[DEBUG] ConnectionString final: {csb.ConnectionString}");
