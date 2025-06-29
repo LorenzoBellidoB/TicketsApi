@@ -14,14 +14,18 @@ namespace DAL
 
         public async Task<List<clsDependiente>> ObtenerDependientes()
         {
-            return await _context.Dependientes.ToListAsync();
+            return await _context.Dependientes
+                .Include(d => d.Empresa) 
+                .ToListAsync();
         }
 
         public async Task<clsDependiente> ObtenerDependientePorId(int id)
         {
             return await _context.Dependientes
+                .Include(d => d.Empresa) 
                 .FirstOrDefaultAsync(d => d.IdDependiente == id);
         }
+
 
         public async Task<bool> InsertarDependiente(clsDependiente dependiente)
         {
