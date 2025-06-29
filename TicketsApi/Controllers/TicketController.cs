@@ -1,6 +1,7 @@
 ﻿using DAL;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TicketsApi.Controllers
 {
@@ -16,11 +17,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene un listado con todos los tickets",
-        //    Description = "Este método obtiene todos los tickets y los devuelve como un listado.<br>" +
-        //    "Si no se encuentra ningún ticket devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene un listado con todos los tickets",
+            Description = "Este método obtiene todos los tickets y los devuelve como un listado.<br>" +
+            "Si no se encuentra ningún ticket devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetTickets()
         {
             IActionResult salida;
@@ -44,11 +45,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene un ticket según su id",
-        //    Description = "Este método obtiene el ticket que coincida con el id proporcionado.<br>" +
-        //    "Si no se encuentra ningún ticket devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene un ticket según su id",
+            Description = "Este método obtiene el ticket que coincida con el id proporcionado.<br>" +
+            "Si no se encuentra ningún ticket devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetTicket(int id)
         {
             IActionResult salida;
@@ -73,11 +74,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPost]
-        //[SwaggerOperation(
-        //    Summary = "Crea un nuevo ticket",
-        //    Description = "Este método crea un nuevo ticket con los datos proporcionados.<br>" +
-        //    "Si se crea correctamente devuelve un mensaje de éxito, de lo contrario un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Crea un nuevo ticket",
+            Description = "Este método crea un nuevo ticket con los datos proporcionados.<br>" +
+            "Si se crea correctamente devuelve un mensaje de éxito, de lo contrario un mensaje de error."
+        )]
         public async Task<IActionResult> CrearTicket([FromBody] clsTicket ticket)
         {
             IActionResult salida;
@@ -97,11 +98,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPut("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Actualiza un ticket existente",
-        //    Description = "Este método actualiza un ticket existente con los datos proporcionados.<br>" +
-        //    "Si la actualización es exitosa, devuelve un mensaje de éxito, de lo contrario un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Actualiza un ticket existente",
+            Description = "Este método actualiza un ticket existente con los datos proporcionados.<br>" +
+            "Si la actualización es exitosa, devuelve un mensaje de éxito, de lo contrario un mensaje de error."
+        )]
         public async Task<IActionResult> ActualizarTicket(int id, [FromBody] clsTicket ticket)
         {
             IActionResult salida;
@@ -125,11 +126,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Elimina un ticket existente",
-        //    Description = "Este método elimina un ticket existente según su id.<br>" +
-        //    "Si la eliminación es exitosa, devuelve un mensaje de éxito, de lo contrario un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Elimina un ticket existente",
+            Description = "Este método elimina un ticket existente según su id.<br>" +
+            "Si la eliminación es exitosa, devuelve un mensaje de éxito, de lo contrario un mensaje de error."
+        )]
         public async Task<IActionResult> EliminarTicket(int id)
         {
             IActionResult salida;

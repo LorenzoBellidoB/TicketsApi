@@ -1,6 +1,7 @@
 ﻿using DAL;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TicketsApi.Controllers
 {
@@ -16,11 +17,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene un listado con todas las empresas",
-        //    Description = "Este método obtiene todas las empresas y las devuelve como un listado.<br>" +
-        //    "Si no se encuentra ningún cliente devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene un listado con todas las empresas",
+            Description = "Este método obtiene todas las empresas y las devuelve como un listado.<br>" +
+            "Si no se encuentra ningún cliente devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetEmpresas()
         {
             IActionResult salida;
@@ -44,11 +45,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene una empresa según su id",
-        //    Description = "Este método obtiene la empresa que coincida con el id proporcionado.<br>" +
-        //    "Si no se encuentra ninguna empresa devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene una empresa según su id",
+            Description = "Este método obtiene la empresa que coincida con el id proporcionado.<br>" +
+            "Si no se encuentra ninguna empresa devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetEmpresa(int id)
         {
             IActionResult salida;
@@ -73,11 +74,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPost]
-        //[SwaggerOperation(
-        //    Summary = "Crea una nueva empresa",
-        //    Description = "Este método permite crear una nueva empresa en la base de datos.<br>" +
-        //    "Si la creación es exitosa, devuelve un mensaje de confirmación."
-        //)]
+        [SwaggerOperation(
+            Summary = "Crea una nueva empresa",
+            Description = "Este método permite crear una nueva empresa en la base de datos.<br>" +
+            "Si la creación es exitosa, devuelve un mensaje de confirmación."
+        )]
         public async Task<IActionResult> CrearEmpresa([FromBody] clsEmpresa empresa)
         {
             IActionResult salida;
@@ -97,11 +98,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPut("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Actualiza una empresa existente",
-        //    Description = "Este método actualiza los datos de una empresa existente en la base de datos.<br>" +
-        //    "Si la actualización es exitosa, devuelve un mensaje de confirmación."
-        //)]
+        [SwaggerOperation(
+            Summary = "Actualiza una empresa existente",
+            Description = "Este método actualiza los datos de una empresa existente en la base de datos.<br>" +
+            "Si la actualización es exitosa, devuelve un mensaje de confirmación."
+        )]
         public async Task<IActionResult> ActualizarEmpresa(int id, [FromBody] clsEmpresa empresa)
         {
             IActionResult salida;
@@ -125,11 +126,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Elimina una empresa según su id",
-        //    Description = "Este método elimina una empresa de la base de datos según el id proporcionado.<br>" +
-        //    "Si la eliminación es exitosa, devuelve un mensaje de confirmación."
-        //)]
+        [SwaggerOperation(
+            Summary = "Elimina una empresa según su id",
+            Description = "Este método elimina una empresa de la base de datos según el id proporcionado.<br>" +
+            "Si la eliminación es exitosa, devuelve un mensaje de confirmación."
+        )]
         public async Task<IActionResult> EliminarEmpresa(int id)
         {
             IActionResult salida;

@@ -1,6 +1,7 @@
 ﻿using DAL;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TicketsApi.Controllers
 {
@@ -16,11 +17,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene un listado con todos los clientes",
-        //    Description = "Este método obtiene todos los clientes y los devuelve como un listado.<br>" +
-        //    "Si no se encuentra ningún cliente devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene un listado con todos los clientes",
+            Description = "Este método obtiene todos los clientes y los devuelve como un listado.<br>" +
+            "Si no se encuentra ningún cliente devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetClientes()
         {
             IActionResult salida;
@@ -44,11 +45,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene un cliente según su id",
-        //    Description = "Este método obtiene el cliente que coincida con el id proporcionado.<br>" +
-        //    "Si no se encuentra ningún cliente devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene un cliente según su id",
+            Description = "Este método obtiene el cliente que coincida con el id proporcionado.<br>" +
+            "Si no se encuentra ningún cliente devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetCliente(int id)
         {
             IActionResult salida;
@@ -73,10 +74,10 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPost]
-        //[SwaggerOperation(
-        //    Summary = "Crea un nuevo cliente",
-        //    Description = "Este método permite crear un nuevo cliente. El cliente debe ser proporcionado en el cuerpo de la solicitud."
-        //)]
+        [SwaggerOperation(
+            Summary = "Crea un nuevo cliente",
+            Description = "Este método permite crear un nuevo cliente. El cliente debe ser proporcionado en el cuerpo de la solicitud."
+        )]
         public async Task<IActionResult> CrearCliente([FromBody] clsCliente cliente)
         {
             IActionResult salida;
@@ -96,10 +97,10 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPut("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Actualiza un cliente existente",
-        //    Description = "Este método actualiza un cliente existente. El cliente actualizado debe ser proporcionado en el cuerpo de la solicitud."
-        //)]
+        [SwaggerOperation(
+            Summary = "Actualiza un cliente existente",
+            Description = "Este método actualiza un cliente existente. El cliente actualizado debe ser proporcionado en el cuerpo de la solicitud."
+        )]
         public async Task<IActionResult> ActualizarCliente(int id, [FromBody] clsCliente cliente)
         {
             IActionResult salida;
@@ -123,10 +124,10 @@ namespace TicketsApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Elimina un cliente",
-        //    Description = "Este método elimina un cliente según su id. Si el cliente se elimina correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Elimina un cliente",
+            Description = "Este método elimina un cliente según su id. Si el cliente se elimina correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error."
+        )]
         public async Task<IActionResult> EliminarCliente(int id)
         {
             IActionResult salida;

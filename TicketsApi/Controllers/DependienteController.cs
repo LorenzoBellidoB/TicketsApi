@@ -1,6 +1,7 @@
 ﻿using DAL;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TicketsApi.Controllers
 {
@@ -16,11 +17,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene un listado con todos los dependientes",
-        //    Description = "Este método obtiene todos los dependientes y los devuelve como un listado.<br>" +
-        //    "Si no se encuentra ningún cliente devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene un listado con todos los dependientes",
+            Description = "Este método obtiene todos los dependientes y los devuelve como un listado.<br>" +
+            "Si no se encuentra ningún cliente devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetDependientes()
         {
             IActionResult salida;
@@ -44,11 +45,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene un dependiente según su id",
-        //    Description = "Este método obtiene el dependiente que coincida con el id proporcionado.<br>" +
-        //    "Si no se encuentra ningún dependiente devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene un dependiente según su id",
+            Description = "Este método obtiene el dependiente que coincida con el id proporcionado.<br>" +
+            "Si no se encuentra ningún dependiente devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetDependiente(int id)
         {
             IActionResult salida;
@@ -73,11 +74,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPost]
-        //[SwaggerOperation(
-        //    Summary = "Crea un nuevo dependiente",
-        //    Description = "Este método crea un nuevo dependiente con los datos proporcionados.<br>" +
-        //    "Si la creación es exitosa, devuelve un mensaje de éxito."
-        //)]
+        [SwaggerOperation(
+            Summary = "Crea un nuevo dependiente",
+            Description = "Este método crea un nuevo dependiente con los datos proporcionados.<br>" +
+            "Si la creación es exitosa, devuelve un mensaje de éxito."
+        )]
         public async Task<IActionResult> CrearDependiente([FromBody] clsDependiente dependiente)
         {
             IActionResult salida;
@@ -97,11 +98,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPut("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Actualiza un dependiente existente",
-        //    Description = "Este método actualiza un dependiente existente con los datos proporcionados en el cuerpo de la solicitud.<br>" +
-        //    "Si la actualización es exitosa, devuelve un mensaje de éxito."
-        //)]
+        [SwaggerOperation(
+            Summary = "Actualiza un dependiente existente",
+            Description = "Este método actualiza un dependiente existente con los datos proporcionados en el cuerpo de la solicitud.<br>" +
+            "Si la actualización es exitosa, devuelve un mensaje de éxito."
+        )]
         public async Task<IActionResult> ActualizarDependiente(int id, [FromBody] clsDependiente dependiente)
         {
             IActionResult salida;
@@ -125,11 +126,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Elimina un dependiente según su id",
-        //    Description = "Este método elimina el dependiente que coincida con el id proporcionado.<br>" +
-        //    "Si la eliminación es exitosa, devuelve un mensaje de éxito."
-        //)]
+        [SwaggerOperation(
+            Summary = "Elimina un dependiente según su id",
+            Description = "Este método elimina el dependiente que coincida con el id proporcionado.<br>" +
+            "Si la eliminación es exitosa, devuelve un mensaje de éxito."
+        )]
         public async Task<IActionResult> EliminarDependiente(int id)
         {
             IActionResult salida;

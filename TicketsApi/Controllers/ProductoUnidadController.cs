@@ -1,6 +1,7 @@
 ﻿using DAL;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TicketsApi.Controllers
 {
@@ -16,11 +17,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene un listado con todos las unidades de productos",
-        //    Description = "Este método obtiene todos las unidades de productos y los devuelve como un listado.<br>" +
-        //    "Si no se encuentra ninguna unidad de producto devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene un listado con todos las unidades de productos",
+            Description = "Este método obtiene todos las unidades de productos y los devuelve como un listado.<br>" +
+            "Si no se encuentra ninguna unidad de producto devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetProductosUnidades()
         {
             IActionResult salida;
@@ -44,11 +45,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene una unidad de producto según su id",
-        //    Description = "Este método obtiene la unidad de producto que coincida con el id proporcionado.<br>" +
-        //    "Si no se encuentra ninguna unidad de producto devuelve un mensaje de error."
-        //)]  
+        [SwaggerOperation(
+            Summary = "Obtiene una unidad de producto según su id",
+            Description = "Este método obtiene la unidad de producto que coincida con el id proporcionado.<br>" +
+            "Si no se encuentra ninguna unidad de producto devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetProductoUnidad(int id)
         {
             IActionResult salida;
@@ -73,11 +74,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpGet("producto/{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Obtiene las unidades de producto asociadas a un producto según su id",
-        //    Description = "Este método obtiene todas las unidades de producto asociadas al producto que coincida con el id proporcionado.<br>" +
-        //    "Si no se encuentra ninguna unidad de producto asociada al producto devuelve un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Obtiene las unidades de producto asociadas a un producto según su id",
+            Description = "Este método obtiene todas las unidades de producto asociadas al producto que coincida con el id proporcionado.<br>" +
+            "Si no se encuentra ninguna unidad de producto asociada al producto devuelve un mensaje de error."
+        )]
         public async Task<IActionResult> GetProductoUnidadesPorProductoId(int id)
         {
             IActionResult salida;
@@ -102,11 +103,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPost]
-        //[SwaggerOperation(
-        //    Summary = "Crea una nueva unidad de producto",
-        //    Description = "Este método crea una nueva unidad de producto y la inserta en la base de datos.<br>" +
-        //    "Si se crea correctamente devuelve un mensaje de éxito, si no, un mensaje de error."
-        //)]  
+        [SwaggerOperation(
+            Summary = "Crea una nueva unidad de producto",
+            Description = "Este método crea una nueva unidad de producto y la inserta en la base de datos.<br>" +
+            "Si se crea correctamente devuelve un mensaje de éxito, si no, un mensaje de error."
+        )]
         public async Task<IActionResult> CrearProductoUnidad([FromBody] clsProductoUnidad productoUnidad)
         {
             IActionResult salida;
@@ -126,11 +127,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPut("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Actualiza una unidad de producto",
-        //    Description = "Este método actualiza una unidad de producto existente en la base de datos.<br>" +
-        //    "Si se actualiza correctamente devuelve un mensaje de éxito, si no, un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Actualiza una unidad de producto",
+            Description = "Este método actualiza una unidad de producto existente en la base de datos.<br>" +
+            "Si se actualiza correctamente devuelve un mensaje de éxito, si no, un mensaje de error."
+        )]
         public async Task<IActionResult> ActualizarProductoUnidad(int id, [FromBody] clsProductoUnidad productoUnidad)
         {
             IActionResult salida;
@@ -154,11 +155,11 @@ namespace TicketsApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Elimina una unidad de producto",
-        //    Description = "Este método elimina una unidad de producto existente en la base de datos.<br>" +
-        //    "Si se elimina correctamente devuelve un mensaje de éxito, si no, un mensaje de error."
-        //)]
+        [SwaggerOperation(
+            Summary = "Elimina una unidad de producto",
+            Description = "Este método elimina una unidad de producto existente en la base de datos.<br>" +
+            "Si se elimina correctamente devuelve un mensaje de éxito, si no, un mensaje de error."
+        )]
         public async Task<IActionResult> EliminarProductoUnidad(int id)
         {
             IActionResult salida;
