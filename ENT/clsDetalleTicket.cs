@@ -23,10 +23,6 @@ namespace ENT
 
         [ForeignKey("IdProductoUnidad")]
         public virtual clsProductoUnidad ProductoUnidad { get; set; }
-
-        [Column("cantidad")]
-        public decimal Cantidad { get; set; }
-
         #endregion
 
         #region Constructores
@@ -38,12 +34,11 @@ namespace ENT
             IdDetalleTicket = idDetalleTicket;
         }
 
-        public clsDetalleTicket(int idDetalleTicket, int idTicket, int idProductoUnidad, decimal cantidad)
+        public clsDetalleTicket(int idDetalleTicket, int idTicket, int idProductoUnidad)
         {
             IdDetalleTicket = idDetalleTicket;
             IdTicket = idTicket;
             IdProductoUnidad = idProductoUnidad;
-            Cantidad = cantidad;
         }
 
         #endregion
