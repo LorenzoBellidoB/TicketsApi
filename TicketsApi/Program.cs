@@ -17,6 +17,18 @@ if (string.IsNullOrWhiteSpace(rawUrl))
 // 2) Creamos el connection string builder
 var csb = new NpgsqlConnectionStringBuilder();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .WithOrigins("http://localhost:4200") // <- tu frontend local
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+    );
+});
+
+// Otros servicios como AddControllers, etc.
+builder.Services.AddControllers();
 try
 {
     // Acepta postgres:// y postgresql://
@@ -98,6 +110,9 @@ app.UseSwaggerUI(c =>
     // (opcional) deja bien claro que sirves el UI en /swagger:
     c.RoutePrefix = "swagger";
 });
+app.UseCors("AllowFrontend");
+
+app.UseHttpsRedirection();
 
 
 app.UseAuthorization();
