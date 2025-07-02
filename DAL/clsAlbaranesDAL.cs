@@ -16,9 +16,6 @@ public class clsAlbaranesDAL
     public async Task<List<clsAlbaran>> ObtenerAlbaranes()
     {
         return await _context.Albaranes
-            .Include(a => a.Cliente)
-            .Include(a => a.Empresa)
-            .Include(a => a.Dependiente)
             .ToListAsync();
     }
 
