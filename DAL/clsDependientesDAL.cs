@@ -26,6 +26,14 @@ namespace DAL
                 .FirstOrDefaultAsync(d => d.IdDependiente == id);
         }
 
+        public async Task<List<clsDependiente>> ObtenerDependientesPorIdEmpresa(int idEmpresa)
+        {
+            return await _context.Dependientes
+                .Include(d => d.Empresa)
+                .Where(d => d.Empresa.IdEmpresa == idEmpresa)
+                .ToListAsync();
+        }
+
 
         public async Task<bool> InsertarDependiente(clsDependiente dependiente)
         {
