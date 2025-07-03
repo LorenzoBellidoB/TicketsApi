@@ -73,7 +73,7 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
-        [HttpGet("empresa/{id}")]
+        [HttpGet("empresa/{idEmpresa}")]
         [SwaggerOperation(
             Summary = "Obtiene un dependiente según su empresa",
             Description = "Este método obtiene los dependientes que coincida con el id de la empresa proporcionado.<br>" +
