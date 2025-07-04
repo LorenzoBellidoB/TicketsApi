@@ -23,6 +23,12 @@ namespace ENT
         [Column("impuesto")]
         public decimal Impuesto { get; set; }
 
+        [Column("empresa_id")]
+        public int IdEmpresa { get; set; }
+
+        [ForeignKey("IdEmpresa")]
+        public virtual clsEmpresa Empresa { get; set; }
+
         [Column("proveedor_id")]
         public int ProveedorId { get; set; }
 

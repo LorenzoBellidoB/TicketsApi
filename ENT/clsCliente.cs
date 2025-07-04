@@ -28,6 +28,12 @@ namespace ENT
         public string Provincia { get; set; }
         [Column("direccion")]
         public string Direccion { get; set; }
+
+        [Column("empresa_id")]
+        public int IdEmpresa { get; set; }
+
+        [ForeignKey("IdEmpresa")]
+        public virtual clsEmpresa Empresa { get; set; }
         #endregion
 
         #region Constructores
