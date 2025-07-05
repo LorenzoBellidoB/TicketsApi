@@ -39,6 +39,7 @@ public class clsAlbaranesDAL
     public async Task<clsAlbaran> ObtenerAlbaranCompletoPorId(int id)
     {
         return await _context.Albaranes
+            .Include(a => a.Empresa)
             .Include(a => a.Cliente)
             .Include(a => a.Dependiente)
             .Include(a => a.Detalles)
