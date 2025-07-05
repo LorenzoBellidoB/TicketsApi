@@ -27,7 +27,7 @@ namespace ENT
         [Column("descripcion")]
         public string Descripcion { get; set; }
 
-        [Cloumn("facturado")]
+        [Column("facturado")]
         public bool Facturado { get; set; }
 
         [Column("cliente_id")]
