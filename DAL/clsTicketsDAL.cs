@@ -31,9 +31,6 @@ public class clsTicketsDAL
             .Include(t => t.Dependiente)
             .Include(t => t.Empresa)
             .Include(t => t.Albaran)
-            .Include(t => t.Detalles)
-                .ThenInclude(d => d.ProductoUnidad)
-                    .ThenInclude(pu => pu.Producto)
             .FirstOrDefaultAsync(t => t.IdTicket == id);
     }
 
