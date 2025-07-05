@@ -52,6 +52,8 @@ namespace ENT
         public virtual clsDependiente Dependiente { get; set; }
 
         public virtual ICollection<clsTicket> Tickets { get; set; }
+
+        public virtual ICollection<clsAlbaranDetalle> Detalles { get; set; } = new List<clsAlbaranDetalle>();
         #endregion
 
         #region Constructores

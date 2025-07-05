@@ -72,11 +72,21 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpGet("detalle/{id}")]
+        public async Task<ActionResult<clsAlbaran>> GetAlbaranDetalle(int id)
+        {
+            var albaran = await _albaranDAL.ObtenerAlbaranCompletoPorId(id);
+            if (albaran == null)
+                return NotFound();
+
+            return Ok(albaran);
+        }
+
         [HttpGet("empresa/{idEmpresa}")]
         [SwaggerOperation(
-            Summary = "Obtiene un dependiente según su empresa",
+            Summary = "Obtiene un albaran según su empresa",
             Description = "Este método obtiene los albaranes que coincida con el id de la empresa proporcionado.<br>" +
-            "Si no se encuentra ningún dependiente devuelve un mensaje de error."
+            "Si no se encuentra ningún albaran devuelve un mensaje de error."
         )]
         public async Task<IActionResult> GetAlbaranesPorEmpresa(int idEmpresa)
         {

@@ -36,6 +36,19 @@ public class clsAlbaranesDAL
             .ToListAsync();
     }
 
+    public async Task<clsAlbaran> ObtenerAlbaranCompletoPorId(int id)
+    {
+        return await _context.Albaranes
+            .Include(a => a.Cliente)
+            .Include(a => a.Empresa)
+            .Include(a => a.Dependiente)
+            .Include(a => a.Detalles)
+                .ThenInclude(d => d.ProductoUnidad)
+                    .ThenInclude(pu => pu.Producto)
+            .FirstOrDefaultAsync(a => a.IdAlbaran == id);
+    }
+
+
     public async Task<bool> InsertarAlbaran(clsAlbaran albaran)
     {
         _context.Albaranes.Add(albaran);
