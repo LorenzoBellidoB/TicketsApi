@@ -27,6 +27,9 @@ namespace ENT
         [Column("descripcion")]
         public string Descripcion { get; set; }
 
+        [Cloumn("facturado")]
+        public bool Facturado { get; set; }
+
         [Column("cliente_id")]
         public int IdCliente { get; set; }
 
@@ -59,7 +62,7 @@ namespace ENT
         {
             IdAlbaran = idAlbaran;
         }
-        public clsAlbaran(int idAlbaran, string serie, string numero, DateTime fecha, decimal importe, string descripcion, int idCliente, decimal kilos, int idEmpresa, int idDependiente)
+        public clsAlbaran(int idAlbaran, string serie, string numero, DateTime fecha, decimal importe, string descripcion, bool facturado, int idCliente, decimal kilos, int idEmpresa, int idDependiente)
         {
             IdAlbaran = idAlbaran;
             Serie = serie;
@@ -67,6 +70,7 @@ namespace ENT
             Fecha = fecha;
             Importe = importe;
             Descripcion = descripcion;
+            Facturado = facturado;
             IdCliente = idCliente;
             Kilos = kilos;
             IdEmpresa = idEmpresa;
