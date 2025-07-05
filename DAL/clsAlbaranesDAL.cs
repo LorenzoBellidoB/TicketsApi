@@ -40,11 +40,11 @@ public class clsAlbaranesDAL
     {
         return await _context.Albaranes
             .Include(a => a.Cliente)
-            .Include(a => a.Empresa)
             .Include(a => a.Dependiente)
             .Include(a => a.Detalles)
                 .ThenInclude(d => d.ProductoUnidad)
                     .ThenInclude(pu => pu.Producto)
+                    .ThenInclude(p => p.Proveedor)
             .FirstOrDefaultAsync(a => a.IdAlbaran == id);
     }
 
