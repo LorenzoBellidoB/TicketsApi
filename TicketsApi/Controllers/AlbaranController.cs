@@ -72,6 +72,35 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpGet("empresa/{idEmpresa}")]
+        [SwaggerOperation(
+            Summary = "Obtiene un dependiente según su empresa",
+            Description = "Este método obtiene los albaranes que coincida con el id de la empresa proporcionado.<br>" +
+            "Si no se encuentra ningún dependiente devuelve un mensaje de error."
+        )]
+        public async Task<IActionResult> GetAlbaranesPorEmpresa(int idEmpresa)
+        {
+            IActionResult salida;
+            try
+            {
+                var albaranes = await _albaranDAL.ObtenerAlbaranesPorIdEmpresa(idEmpresa);
+                if (albaranes == null)
+                {
+                    salida = NotFound("No se ha encontrado un dependiente con ese id de empresa");
+                }
+                else
+                {
+                    salida = Ok(albaranes);
+                }
+            }
+            catch (Exception e)
+            {
+                salida = BadRequest("Error con el servidor " + e.Message);
+            }
+
+            return salida;
+        }
+
         [HttpPost]
         [SwaggerOperation(
             Summary = "Crea un nuevo albaran",

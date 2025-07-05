@@ -73,6 +73,35 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpGet("empresa/{idEmpresa}")]
+        [SwaggerOperation(
+            Summary = "Obtiene un ticket según su empresa",
+            Description = "Este método obtiene los tickets que coincida con el id de la empresa proporcionado.<br>" +
+            "Si no se encuentra ningún ticket devuelve un mensaje de error."
+        )]
+        public async Task<IActionResult> GetTicketsPorEmpresa(int idEmpresa)
+        {
+            IActionResult salida;
+            try
+            {
+                var tickets = await _ticketDAL.ObtenerTicketsPorIdEmpresa(idEmpresa);
+                if (tickets == null)
+                {
+                    salida = NotFound("No se ha encontrado un ticket con ese id de empresa");
+                }
+                else
+                {
+                    salida = Ok(tickets);
+                }
+            }
+            catch (Exception e)
+            {
+                salida = BadRequest("Error con el servidor " + e.Message);
+            }
+
+            return salida;
+        }
+
         [HttpPost]
         [SwaggerOperation(
             Summary = "Crea un nuevo ticket",
