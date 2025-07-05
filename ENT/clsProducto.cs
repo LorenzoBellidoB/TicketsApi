@@ -35,12 +35,6 @@ namespace ENT
         [ForeignKey("ProveedorId")]
         public virtual clsProveedor Proveedor { get; set; }
 
-        public virtual ICollection<clsDetalleTicket> Detalles { get; set; }
-
-        public virtual ICollection<clsProductoUnidad> ProductoUnidades { get; set; } = new List<clsProductoUnidad>();
-
-
-
         #endregion
         #region Constructores
         public clsProducto() { }
