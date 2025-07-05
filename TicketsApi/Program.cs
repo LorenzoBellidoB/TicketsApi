@@ -27,8 +27,14 @@ builder.Services.AddCors(options =>
     );
 });
 
-// Otros servicios como AddControllers, etc.
-builder.Services.AddControllers();
+// En tu Program.cs o Startup.cs (dependiendo de tu versión de .NET)
+builder.Services.AddControllers()
+    .AddJsonOptions(x =>
+{
+x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+x.JsonSerializerOptions.WriteIndented = true;
+});
+
 try
 {
     // Acepta postgres:// y postgresql://
