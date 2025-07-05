@@ -72,7 +72,7 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
-        [HttpGet("detalle/{id}")]
+        [HttpGet("{id}/detalles")]
         public async Task<ActionResult<clsAlbaran>> GetAlbaranDetalle(int id)
         {
             var albaran = await _albaranDAL.ObtenerAlbaranCompletoPorId(id);
