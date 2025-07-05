@@ -14,13 +14,21 @@ namespace DAL
 
         public async Task<List<clsCliente>> ObtenerClientes()
         {
-            return await _context.Clientes.ToListAsync();
+            return await _context.Clientes.Include(c => c.Empresa).ToListAsync();
         }
 
         public async Task<clsCliente> ObtenerClientePorId(int id)
         {
-            return await _context.Clientes
+            return await _context.Clientes.Include(c => c.Empresa)
                 .FirstOrDefaultAsync(c => c.IdCliente == id);
+        }
+
+        public async Task<List<clsCliente>> ObtenerClientesPorIdEmpresa(int idEmpresa)
+        {
+            return await _context.Clientes
+                .Include(c => c.Empresa)
+                .Where(c => c.Empresa.IdEmpresa == idEmpresa)
+                .ToListAsync();
         }
 
         public async Task<bool> InsertarCliente(clsCliente cliente)

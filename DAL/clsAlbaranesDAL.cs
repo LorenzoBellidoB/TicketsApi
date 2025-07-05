@@ -28,6 +28,14 @@ public class clsAlbaranesDAL
             .FirstOrDefaultAsync(a => a.IdAlbaran == id);
     }
 
+    public async Task<List<clsAlbaran>> ObtenerAlbaranesPorIdEmpresa(int idEmpresa)
+    {
+        return await _context.Albaranes
+            .Include(a => a.Empresa)
+            .Where(a => a.Empresa.IdEmpresa == idEmpresa)
+            .ToListAsync();
+    }
+
     public async Task<bool> InsertarAlbaran(clsAlbaran albaran)
     {
         _context.Albaranes.Add(albaran);

@@ -15,13 +15,21 @@ namespace DAL
 
         public async Task<List<clsProducto>> ObtenerProductos()
         {
-            return await _context.Productos.ToListAsync();
+            return await _context.Productos.Include(p => p.Empresa).Include(p => p.Proveedor).ToListAsync();
         }
 
         public async Task<clsProducto> ObtenerProductoPorId(int id)
         {
-            return await _context.Productos
+            return await _context.Productos.Include(p => p.Empresa).Include(p => p.Proveedor)
                 .FirstOrDefaultAsync(p => p.IdProducto == id);
+        }
+
+        public async Task<List<clsProducto>> ObtenerProductosPorIdEmpresa(int idEmpresa)
+        {
+            return await _context.Productos
+                .Include(p => p.Empresa)
+                .Where(p => p.Empresa.IdEmpresa == idEmpresa)
+                .ToListAsync();
         }
 
         public async Task<bool> InsertarProducto(clsProducto producto)

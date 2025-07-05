@@ -37,6 +37,14 @@ public class clsTicketsDAL
             .FirstOrDefaultAsync(t => t.IdTicket == id);
     }
 
+    public async Task<List<clsTicket>> ObtenerTicketsPorIdEmpresa(int idEmpresa)
+    {
+        return await _context.Tickets
+            .Include(t => t.Empresa)
+            .Where(t => t.Empresa.IdEmpresa == idEmpresa)
+            .ToListAsync();
+    }
+
     public async Task<bool> InsertarTicket(clsTicket ticket)
     {
         bool res = false;
