@@ -135,6 +135,18 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpPatch("{id}/facturar")]
+        public async Task<IActionResult> FacturarAlbaran(int id)
+        {
+            var success = await _albaranDAL.FacturarAsync(id);
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
         [HttpPut("{id}")]
         [SwaggerOperation(
             Summary = "Actualiza un albaran",

@@ -49,6 +49,17 @@ public class clsAlbaranesDAL
             .FirstOrDefaultAsync(a => a.IdAlbaran == id);
     }
 
+    public async Task<bool> FacturarAsync(int id)
+    {
+        var albaran = await _context.Albaranes.FindAsync(id);
+        if (albaran == null || albaran.Facturado)
+            return false;
+
+        albaran.Facturado = true;
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
 
     public async Task<bool> InsertarAlbaran(clsAlbaran albaran)
     {
