@@ -87,7 +87,6 @@ namespace TicketsApi.Controllers
             {
                 var albaranDetalle = new clsAlbaranDetalle
                 {
-                    IdAlbaranDetalle = dto.IdAlbaranDetalle,
                     IdAlbaran = dto.IdAlbaran,
                     IdProductoUnidad = dto.IdProductoUnidad
                 };

@@ -14,9 +14,8 @@ namespace TicketsApi.DTO
         {
             
         }
-        public AlbaranDetalleDTO(int idAlbaranDetalle, int idAlbaran, int idProductoUnidad)
+        public AlbaranDetalleDTO( int idAlbaran, int idProductoUnidad)
         {
-            IdAlbaranDetalle = idAlbaranDetalle;
             IdAlbaran = idAlbaran;
             IdProductoUnidad = idProductoUnidad;
         }
