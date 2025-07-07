@@ -20,7 +20,7 @@ namespace TicketsApi.DTO
         {
         }
 
-        public ProductoUnidadDTO(, decimal peso, string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto)
+        public ProductoUnidadDTO(decimal peso, string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto)
         {
             Peso = peso;
             Etiqueta = etiqueta;
