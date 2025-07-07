@@ -1,4 +1,5 @@
-﻿using ENT;
+﻿using DTO;
+using ENT;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -117,22 +118,29 @@ namespace TicketsApi.Controllers
             Description = "Este método crea un nuevo albaran con los datos proporcionados en el cuerpo de la solicitud.<br>" +
             "Si se crea correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error."
         )]
-        public async Task<IActionResult> CrearAlbaran([FromBody] clsAlbaran albaran)
+        public async Task<IActionResult> CrearAlbaran([FromBody] AlbaranDTO dto)
         {
-            IActionResult salida;
-            try
+            // Mapeo manual de DTO a entidad
+            var albaran = new clsAlbaran
             {
-                var resultado = await _albaranDAL.InsertarAlbaran(albaran);
-                if (resultado)
-                    salida = Ok("Albaran creada correctamente");
-                else
-                    salida = BadRequest("No se pudo crear el albaran");
-            }
-            catch (Exception e)
-            {
-                salida = BadRequest("Error con el servidor: " + e.Message);
-            }
-            return salida;
+                Serie = dto.Serie,
+                Numero = dto.Numero,
+                Fecha = dto.Fecha,
+                Importe = dto.Importe,
+                Descripcion = dto.Descripcion,
+                Facturado = dto.Facturado,
+                IdCliente = dto.IdCliente,
+                Kilos = dto.Kilos,
+                IdEmpresa = dto.IdEmpresa,
+                IdDependiente = dto.IdDependiente
+            };
+
+            var success = await _albaranDAL.InsertarAlbaran(albaran);
+            if (!success)
+                return BadRequest("No se pudo crear el albarán");
+
+            // Puedes devolver CreatedAtAction si quieres la URL del recurso creado
+            return Ok("Albarán creada correctamente");
         }
 
         [HttpPatch("{id}/facturar")]
@@ -153,26 +161,32 @@ namespace TicketsApi.Controllers
             Description = "Este método actualiza un albaran con los datos proporcionados en el cuerpo de la solicitud.<br>" +
             "Si se actualiza correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error."
             )]
-        public async Task<IActionResult> ActualizarAlbaran(int id, [FromBody] clsAlbaran albaran)
+        public async Task<IActionResult> ActualizarAlbaran(int id, [FromBody] AlbaranDTO dto)
         {
-            IActionResult salida;
-            try
-            {
-                if (id != albaran.IdAlbaran)
-                    salida = BadRequest("El ID de la URL no coincide con el del objeto");
+            if (id != dto.IdAlbaran)
+                return BadRequest("El ID de la URL no coincide con el del objeto");
 
-                var albaranExistente = await _albaranDAL.ObtenerAlbaranPorId(id);
-                if (albaranExistente == null)
-                    salida = NotFound("Albaran no encontrado");
+            var existente = await _albaranDAL.ObtenerAlbaranPorId(id);
+            if (existente == null)
+                return NotFound("Albarán no encontrado");
 
-                var resultado = await _albaranDAL.ActualizarAlbaran(albaran);
-                salida = resultado ? Ok("Albaran actualizado correctamente") : BadRequest("No se pudo actualizar el albaran");
-            }
-            catch (Exception e)
-            {
-                salida = BadRequest("Error con el servidor: " + e.Message);
-            }
-            return salida;
+            // Mapeo de campos editables
+            existente.Serie = dto.Serie;
+            existente.Numero = dto.Numero;
+            existente.Fecha = dto.Fecha;
+            existente.Importe = dto.Importe;
+            existente.Descripcion = dto.Descripcion;
+            existente.Facturado = dto.Facturado;
+            existente.IdCliente = dto.IdCliente;
+            existente.Kilos = dto.Kilos;
+            existente.IdEmpresa = dto.IdEmpresa;
+            existente.IdDependiente = dto.IdDependiente;
+
+            var result = await _albaranDAL.ActualizarAlbaran(existente);
+            if (!result)
+                return BadRequest("No se pudo actualizar el albarán");
+
+            return Ok("Albarán actualizado correctamente");
         }
 
         [HttpDelete("{id}")]
