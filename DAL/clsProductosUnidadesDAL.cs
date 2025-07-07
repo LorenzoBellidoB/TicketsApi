@@ -34,11 +34,11 @@ namespace DAL
                                  .ToListAsync();
         }
 
-        public async Task<int> InsertarProductoUnidad(clsProductoUnidad productoUnidad)
+        public async Task<clsProductoUnidad> InsertarProductoUnidad(clsProductoUnidad productoUnidad)
         {
             _context.ProductosUnidades.Add(productoUnidad);
             await _context.SaveChangesAsync();
-            return productoUnidad.IdProductoUnidad;
+            return productoUnidad;
         }
 
         public async Task<bool> ActualizarProductoUnidad(clsProductoUnidad productoUnidad)
