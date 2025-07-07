@@ -30,12 +30,12 @@ namespace ENT
             IdAlbaranDetalle = idAlbaranDetalle;
         }
 
-        public clsAlbaranDetalle(int idAlbaran, int idProductoUnidad, decimal cantidad)
+        public clsAlbaranDetalle(int idAlbaran, int idProductoUnidad)
         {
             IdAlbaran = idAlbaran;
             IdProductoUnidad = idProductoUnidad;
         }
-        public clsAlbaranDetalle(int idAlbaranDetalle, int idAlbaran, int idProductoUnidad, decimal cantidad)
+        public clsAlbaranDetalle(int idAlbaranDetalle, int idAlbaran, int idProductoUnidad)
         {
             IdAlbaranDetalle = idAlbaranDetalle;
             IdAlbaran = idAlbaran;
