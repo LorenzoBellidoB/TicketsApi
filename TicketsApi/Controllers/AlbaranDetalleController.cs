@@ -2,6 +2,7 @@
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using TicketsApi.DTO;
 
 namespace TicketsApi.Controllers
 {
@@ -79,11 +80,17 @@ namespace TicketsApi.Controllers
             Description = "Este método crea un nuevo detalle de albaran a partir de los datos proporcionados en el cuerpo de la solicitud.<br>" +
             "Si se crea correctamente, devuelve un mensaje de éxito."
         )]
-        public async Task<IActionResult> CrearAlbaranDetalle([FromBody] clsAlbaranDetalle albaranDetalle)
+        public async Task<IActionResult> CrearAlbaranDetalle([FromBody] AlbaranDetalleDTO dto)
         {
             IActionResult salida;
             try
             {
+                var albaranDetalle = new clsAlbaranDetalle
+                {
+                    IdAlbaranDetalle = dto.IdAlbaranDetalle,
+                    IdAlbaran = dto.IdAlbaran,
+                    IdProductoUnidad = dto.IdProductoUnidad
+                };
                 var resultado = await _albaranesDetallesDAL.InsertarAlbaranDetalle(albaranDetalle);
                 if (resultado)
                     salida = Ok("AlbaranDetalle creado correctamente");
