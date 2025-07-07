@@ -2,6 +2,7 @@
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using TicketsApi.DTO;
 
 namespace TicketsApi.Controllers
 {
@@ -108,11 +109,21 @@ namespace TicketsApi.Controllers
             Description = "Este método crea una nueva unidad de producto y la inserta en la base de datos.<br>" +
             "Si se crea correctamente devuelve un mensaje de éxito, si no, un mensaje de error."
         )]
-        public async Task<IActionResult> CrearProductoUnidad([FromBody] clsProductoUnidad productoUnidad)
+        public async Task<IActionResult> CrearProductoUnidad([FromBody] ProductoUnidadDTO dto)
         {
             IActionResult salida;
             try
             {
+                var productoUnidad = new clsProductoUnidad
+                {
+                    IdProducto = dto.IdProducto,
+                    Peso = dto.Peso,
+                    Etiqueta = dto.Etiqueta,
+                    FechaEntrada = dto.FechaEntrada,
+                    Disponible = dto.Disponible,
+                    IdProductoUnidad = dto.IdProductoUnidad
+
+                };
                 var resultado = await _productosUnidadesDAL.InsertarProductoUnidad(productoUnidad);
                 if (resultado)
                     salida = Ok("ProductoUnidad creado correctamente");
