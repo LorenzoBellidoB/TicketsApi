@@ -125,8 +125,8 @@ namespace TicketsApi.Controllers
 
                 };
                 var resultado = await _productosUnidadesDAL.InsertarProductoUnidad(productoUnidad);
-                if (resultado)
-                    salida = Ok("ProductoUnidad creado correctamente");
+                if (resultado > 0)
+                    salida = Ok(resultado);
                 else
                     salida = BadRequest("No se pudo crear el productoUnidad");
             }
