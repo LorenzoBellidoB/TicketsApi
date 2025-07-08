@@ -1,8 +1,9 @@
 ﻿using DAL;
+using DTO;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using TicketsApi.DTO;
+
 
 namespace TicketsApi.Controllers
 {
@@ -104,13 +105,13 @@ namespace TicketsApi.Controllers
         }
 
         [HttpPost("{idAlbaran}/unidades")]
-        public async Task<IActionResult> GuardarUnidadesEnAlbaran(int idAlbaran, [FromBody] UnidadesRequest request)
+        public async Task<IActionResult> GuardarUnidadesEnAlbaran(int idAlbaran, [FromBody] UnidadesDTO request)
         {
             object resultado;
 
             try
             {
-                bool exito = await _albaranesDetallesDAL.InsertarUnidadesEnAlbaran(idAlbaran, request.Unidades);
+                bool exito = await _albaranesDetallesDAL.InsertarUnidadesEnAlbaran(idAlbaran, request);
 
                 resultado = new
                 {
@@ -129,6 +130,7 @@ namespace TicketsApi.Controllers
 
             return Ok(resultado);
         }
+
 
         [HttpPut("{id}")]
         [SwaggerOperation(

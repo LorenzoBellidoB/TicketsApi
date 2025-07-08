@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TicketsApi.DTO
+namespace DTO
 {
     public class AlbaranDetalleDTO
     {

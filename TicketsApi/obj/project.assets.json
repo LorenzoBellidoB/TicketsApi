@@ -1191,6 +1191,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "DTO": "1.0.0",
           "ENT": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.1",
           "Microsoft.Extensions.Configuration.Json": "9.0.6",
@@ -1201,6 +1202,19 @@
         },
         "runtime": {
           "bin/placeholder/DAL.dll": {}
+        }
+      },
+      "DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "ENT": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTO.dll": {}
         }
       },
       "ENT/1.0.0": {
@@ -3476,6 +3490,11 @@
       "type": "project",
       "path": "../DAL/DAL.csproj",
       "msbuildProject": "../DAL/DAL.csproj"
+    },
+    "DTO/1.0.0": {
+      "type": "project",
+      "path": "../DTO/DTO.csproj",
+      "msbuildProject": "../DTO/DTO.csproj"
     },
     "ENT/1.0.0": {
       "type": "project",

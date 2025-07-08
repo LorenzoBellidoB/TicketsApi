@@ -1,4 +1,5 @@
-﻿using ENT;
+﻿using DTO;
+using ENT;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
@@ -36,35 +37,39 @@ namespace DAL
             return res;
         }
 
-        public async Task<bool> InsertarUnidadesEnAlbaran(int idAlbaran, List<int> unidades)
+        public async Task<bool> InsertarUnidadesEnAlbaran(int idAlbaran, UnidadesDTO unidadesDto)
         {
             bool res = false;
+
             try
             {
                 var albaran = await _context.Albaranes.FindAsync(idAlbaran);
-
                 if (albaran == null)
-                {
-                    res = false;
-                }
+                    return false;
 
-                foreach (var unidadId in unidades)
+                foreach (var unidadDto in unidadesDto.Unidades)
                 {
-                    var existe = await _context.AlbaranesDetalles
-                        .AnyAsync(a => a.IdAlbaran == idAlbaran && a.IdProductoUnidad == unidadId);
-                    if (existe) continue;
+                    var nuevaUnidad = new clsProductoUnidad
+                    {
+                        Peso = unidadDto.Peso,
+                        PrecioKilo = unidadDto.PrecioKilo,
+                        Etiqueta = unidadDto.Etiqueta,
+                        FechaEntrada = unidadDto.FechaEntrada,
+                        Disponible = false,
+                        IdProducto = unidadDto.IdProducto
+                    };
 
-                    _context.AlbaranesDetalles.Add(new clsAlbaranDetalle
+                    _context.ProductosUnidades.Add(nuevaUnidad);
+                    await _context.SaveChangesAsync(); // Guardar para obtener IdProductoUnidad generado
+
+                    // Asociar unidad al albarán
+                    var detalle = new clsAlbaranDetalle
                     {
                         IdAlbaran = idAlbaran,
-                        IdProductoUnidad = unidadId
-                    });
+                        IdProductoUnidad = nuevaUnidad.IdProductoUnidad
+                    };
 
-                    var unidad = await _context.ProductosUnidades.FindAsync(unidadId);
-                    if (unidad != null)
-                    {
-                        unidad.Disponible = false;
-                    }
+                    _context.AlbaranesDetalles.Add(detalle);
                 }
 
                 await _context.SaveChangesAsync();
@@ -72,10 +77,13 @@ namespace DAL
             }
             catch (Exception ex)
             {
+                // Log error
                 res = false;
             }
+
             return res;
         }
+
 
 
         public async Task<bool> ActualizarAlbaranDetalle(clsAlbaranDetalle albaranDetalle)

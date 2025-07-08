@@ -432,6 +432,19 @@
           "buildTransitive/net8.0/System.Text.Json.targets": {}
         }
       },
+      "DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "ENT": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTO.dll": {}
+        }
+      },
       "ENT/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -1162,6 +1175,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "DTO/1.0.0": {
+      "type": "project",
+      "path": "../DTO/DTO.csproj",
+      "msbuildProject": "../DTO/DTO.csproj"
+    },
     "ENT/1.0.0": {
       "type": "project",
       "path": "../ENT/ENT.csproj",
@@ -1170,6 +1188,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "DTO >= 1.0.0",
       "ENT >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.1",
       "Microsoft.Extensions.Configuration.Json >= 9.0.6",
@@ -1209,6 +1228,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "D:\\PerfilIberico\\TicketsApi\\DTO\\DTO.csproj": {
+              "projectPath": "D:\\PerfilIberico\\TicketsApi\\DTO\\DTO.csproj"
+            },
             "D:\\PerfilIberico\\TicketsApi\\ENT\\ENT.csproj": {
               "projectPath": "D:\\PerfilIberico\\TicketsApi\\ENT\\ENT.csproj"
             }
