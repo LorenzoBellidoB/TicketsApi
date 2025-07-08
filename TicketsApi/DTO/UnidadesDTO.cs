@@ -2,7 +2,7 @@
 {
     public class UnidadesRequest
     {
-        public List<long> Unidades { get; set; } = new();
+        public List<int> Unidades { get; set; } = new();
     }
 
 }

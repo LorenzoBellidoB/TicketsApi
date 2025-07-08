@@ -50,7 +50,6 @@ namespace DAL
 
                 foreach (var unidadId in unidades)
                 {
-                    // Evitar duplicados si es necesario
                     var existe = await _context.AlbaranesDetalles
                         .AnyAsync(a => a.IdAlbaran == idAlbaran && a.IdProductoUnidad == unidadId);
                     if (existe) continue;
