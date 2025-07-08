@@ -2,7 +2,6 @@
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using TicketsApi.DTO;
 
 namespace TicketsApi.Controllers
 {
