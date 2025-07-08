@@ -54,7 +54,7 @@ namespace DAL
                         Peso = unidadDto.Peso,
                         PrecioKilo = unidadDto.PrecioKilo,
                         Etiqueta = unidadDto.Etiqueta,
-                        FechaEntrada = unidadDto.FechaEntrada,
+                        FechaEntrada = DateTime.SpecifyKind(unidadDto.FechaEntrada, DateTimeKind.Utc),
                         Disponible = false,
                         IdProducto = unidadDto.IdProducto
                     };
