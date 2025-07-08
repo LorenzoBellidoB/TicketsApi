@@ -36,6 +36,49 @@ namespace DAL
             return res;
         }
 
+        public async Task<bool> InsertarUnidadesEnAlbaran(int idAlbaran, List<int> unidades)
+        {
+            bool res = false;
+            try
+            {
+                var albaran = await _context.Albaranes.FindAsync(idAlbaran);
+
+                if (albaran == null)
+                {
+                    res = false;
+                }
+
+                foreach (var unidadId in unidades)
+                {
+                    // Evitar duplicados si es necesario
+                    var existe = await _context.AlbaranesDetalles
+                        .AnyAsync(a => a.IdAlbaran == idAlbaran && a.IdProductoUnidad == unidadId);
+                    if (existe) continue;
+
+                    _context.AlbaranesDetalles.Add(new clsAlbaranDetalle
+                    {
+                        IdAlbaran = idAlbaran,
+                        IdProductoUnidad = unidadId
+                    });
+
+                    var unidad = await _context.ProductosUnidades.FindAsync(unidadId);
+                    if (unidad != null)
+                    {
+                        unidad.Disponible = false;
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                res = true;
+            }
+            catch (Exception ex)
+            {
+                res = false;
+            }
+            return res;
+        }
+
+
         public async Task<bool> ActualizarAlbaranDetalle(clsAlbaranDetalle albaranDetalle)
         {
             bool res = false;

@@ -103,6 +103,33 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpPost("{idAlbaran}/unidades")]
+        public async Task<IActionResult> GuardarUnidadesEnAlbaran(int idAlbaran, [FromBody] UnidadesRequest request)
+        {
+            object resultado;
+
+            try
+            {
+                bool exito = await _albaranesDetallesDAL.InsertarUnidadesEnAlbaran(idAlbaran, request.Unidades);
+
+                resultado = new
+                {
+                    success = exito,
+                    message = exito ? "Unidades guardadas correctamente." : "No se pudieron guardar las unidades."
+                };
+            }
+            catch (Exception ex)
+            {
+                resultado = new
+                {
+                    success = false,
+                    message = $"Error al guardar unidades: {ex.Message}"
+                };
+            }
+
+            return Ok(resultado);
+        }
+
         [HttpPut("{id}")]
         [SwaggerOperation(
             Summary = "Actualiza un detalle de albaran",
