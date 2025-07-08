@@ -13,6 +13,9 @@ namespace ENT
         public int IdProductoUnidad { get; set; }
         [Column("peso")]
         public decimal Peso { get; set; }
+
+        [Column("precio_kilo")]
+        public decimal PrecioKilo { get; set; }
         [Column("etiqueta")]
         public string Etiqueta { get; set; }
         [Column("fecha_entrada")]
@@ -33,19 +36,21 @@ namespace ENT
         {
             IdProductoUnidad = idProductoUnidad;
         }
-        public clsProductoUnidad(int idProducto, decimal peso,string etiqueta, DateTime fechaEntrada, bool disponible)
+        public clsProductoUnidad(int idProducto, decimal peso,decimal precio,string etiqueta, DateTime fechaEntrada, bool disponible)
         {
             IdProducto = idProducto;
             Peso = peso;
+            PrecioKilo = precio;
             Etiqueta = etiqueta;
             FechaEntrada = fechaEntrada;
             Disponible = disponible;
         }
-        public clsProductoUnidad(int idProductoUnidad, int idProducto, decimal peso, string etiqueta, DateTime fechaEntrada, bool disponible)
+        public clsProductoUnidad(int idProductoUnidad, int idProducto, decimal peso,decimal precio, string etiqueta, DateTime fechaEntrada, bool disponible)
         {
             IdProductoUnidad = idProductoUnidad;
             IdProducto = idProducto;
             Peso = peso;
+            PrecioKilo = precio;
             Etiqueta = etiqueta;
             FechaEntrada = fechaEntrada;
             Disponible = disponible;

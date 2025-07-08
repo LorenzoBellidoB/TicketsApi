@@ -8,6 +8,8 @@ namespace TicketsApi.DTO
 
         public decimal Peso { get; set; }
 
+        public decimal PrecioKilo { get; set; }
+
         public string Etiqueta { get; set; }
 
         public DateTime FechaEntrada { get; set; }
@@ -20,19 +22,21 @@ namespace TicketsApi.DTO
         {
         }
 
-        public ProductoUnidadDTO(decimal peso, string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto)
+        public ProductoUnidadDTO(decimal peso,decimal precio, string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto)
         {
             Peso = peso;
+            PrecioKilo = precio;
             Etiqueta = etiqueta;
             FechaEntrada = fechaEntrada;
             Disponible = disponible;
             IdProducto = idProducto;
         }
 
-        public ProductoUnidadDTO(int idProductoUnidad, decimal peso, string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto)
+        public ProductoUnidadDTO(int idProductoUnidad, decimal peso, decimal precio,string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto)
         {
             IdProductoUnidad = idProductoUnidad;
             Peso = peso;
+            PrecioKilo = precio;
             Etiqueta = etiqueta;
             FechaEntrada = fechaEntrada;
             Disponible = disponible;

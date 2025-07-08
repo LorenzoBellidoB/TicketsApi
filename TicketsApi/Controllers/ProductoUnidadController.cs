@@ -118,6 +118,7 @@ namespace TicketsApi.Controllers
                 {
                     IdProducto = dto.IdProducto,
                     Peso = dto.Peso,
+                    PrecioKilo = dto.PrecioKilo,
                     Etiqueta = dto.Etiqueta,
                     FechaEntrada = dto.FechaEntrada,
                     Disponible = dto.Disponible,
