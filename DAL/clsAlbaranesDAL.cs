@@ -64,8 +64,8 @@ public class clsAlbaranesDAL
     public async Task<int> InsertarAlbaran(clsAlbaran albaran)
     {
         _context.Albaranes.Add(albaran);
-        await _context.SaveChangesAsync();  // Aquí EF guarda y actualiza albaran.IdAlbaran
-        return albaran.IdAlbaran;            // Retornas el Id generado
+        await _context.SaveChangesAsync();  
+        return albaran.IdAlbaran;            
     }
 
     public async Task<bool> ActualizarAlbaran(clsAlbaran albaran)

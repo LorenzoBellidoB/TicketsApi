@@ -14,6 +14,15 @@ namespace ENT
         [Column("nombre")]
         public string Nombre { get; set; }
 
+        [Column("correo")]
+        public string Correo { get; set; }
+
+        [Column("telefono")]
+        public long Telefono { get; set; }
+
+        [Column("dni")]
+        public string Dni { get; set; }
+
         [Column("empresa_id")]
         public int IdEmpresa { get; set; }
 
@@ -29,10 +38,13 @@ namespace ENT
         {
             IdDependiente = idDependiente;
         }
-        public clsDependiente(int idDependiente, string nombre, int idEmpresa)
+        public clsDependiente(int idDependiente, string nombre, string correo, long telefono, string dni, int idEmpresa)
         {
             IdDependiente = idDependiente;
             Nombre = nombre;
+            Correo = correo;
+            Telefono = telefono;
+            Dni = dni;
             IdEmpresa = idEmpresa;
         }
         #endregion

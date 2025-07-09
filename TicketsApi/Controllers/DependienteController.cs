@@ -118,6 +118,9 @@ namespace TicketsApi.Controllers
                 {
                     IdDependiente = dto.IdDependiente,
                     Nombre = dto.Nombre,
+                    Correo = dto.Correo,
+                    Telefono = dto.Telefono,
+                    Dni = dto.Dni,
                     IdEmpresa = dto.IdEmpresa
                 };
                 var resultado = await _dependientesDAL.InsertarDependiente(dependiente);
@@ -148,6 +151,9 @@ namespace TicketsApi.Controllers
                 {
                     IdDependiente = dto.IdDependiente,
                     Nombre = dto.Nombre,
+                    Correo = dto.Correo,
+                    Telefono = dto.Telefono,
+                    Dni = dto.Dni,
                     IdEmpresa = dto.IdEmpresa
                 };
                 if (id != dependiente.IdDependiente)
