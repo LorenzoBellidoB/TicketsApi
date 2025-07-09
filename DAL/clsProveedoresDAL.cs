@@ -23,6 +23,14 @@ namespace DAL
                 .FirstOrDefaultAsync(c => c.IdProveedor == id);
         }
 
+        public async Task<List<clsProveedor>> ObtenerProveedoresPorIdEmpresa(int idEmpresa)
+        {
+            return await _context.Proveedores
+                .Include(a => a.Empresa)
+                .Where(a => a.Empresa.IdEmpresa == idEmpresa)
+                .ToListAsync();
+        }
+
         public async Task<bool> InsertarProveedor(clsProveedor proveedor)
         {
             bool res = false;

@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -73,17 +74,60 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpGet("empresa/{idEmpresa}")]
+        [SwaggerOperation(
+            Summary = "Obtiene un proveedor según su empresa",
+            Description = "Este método obtiene los proveedores que coincida con el id de la empresa proporcionado.<br>" +
+            "Si no se encuentra ningún proveedor devuelve un mensaje de error."
+        )]
+        public async Task<IActionResult> GetProveedoresPorEmpresa(int idEmpresa)
+        {
+            IActionResult salida;
+            try
+            {
+                var proveedores = await _proveedorDAL.ObtenerProveedoresPorIdEmpresa(idEmpresa);
+                if (proveedores == null)
+                {
+                    salida = NotFound("No se ha encontrado un dependiente con ese id de empresa");
+                }
+                else
+                {
+                    salida = Ok(proveedores);
+                }
+            }
+            catch (Exception e)
+            {
+                salida = BadRequest("Error con el servidor " + e.Message);
+            }
+
+            return salida;
+        }
+
         [HttpPost]
         [SwaggerOperation(
             Summary = "Crea un nuevo proveedor",
             Description = "Este método crea un nuevo proveedor con los datos proporcionados.<br>" +
             "Si la creación es exitosa, devuelve un mensaje de éxito."
         )]
-        public async Task<IActionResult> CrearProveedor([FromBody] clsProveedor proveedor)
+        public async Task<IActionResult> CrearProveedor([FromBody] ProveedorDTO dto)
         {
             IActionResult salida;
             try
             {
+                clsProveedor proveedor = new clsProveedor
+                {
+                    IdProveedor = dto.IdProveedor,
+                    Nombre = dto.Nombre,
+                    Correo = dto.Correo,
+                    Telefono = dto.Telefono,
+                    Cif = dto.Cif,
+                    Calle = dto.Calle,
+                    Codigo_postal = dto.Codigo_postal,
+                    Provincia = dto.Provincia,
+                    Localidad = dto.Localidad,
+                    Direccion = dto.Direccion,
+                    IdEmpresa = dto.IdEmpresa
+                };
                 var resultado = await _proveedorDAL.InsertarProveedor(proveedor);
                 if (resultado)
                     salida = Ok("Proveedor creado correctamente");

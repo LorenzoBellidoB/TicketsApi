@@ -1,50 +1,34 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ENT
+namespace DTO
 {
-    [Table("proveedores")]
-    public class clsProveedor
+    public class ProveedorDTO
     {
-        #region Propiedades
-        [Key]
-        [Column("id")]
         public int IdProveedor { get; set; }
-        [Column("nombre")]
         public string Nombre { get; set; }
-        [Column("cif")]
         public string Cif { get; set; }
-        [Column("direccion")]
         public string Direccion { get; set; }
-        [Column("telefono")]
         public string Telefono { get; set; }
-        [Column("correo")]
         public string Correo { get; set; }
-        [Column("calle")]
         public string Calle { get; set; }
-        [Column("codigo_postal")]
         public string Codigo_postal { get; set; }
-        [Column("localidad")]
         public string Localidad { get; set; }
-        [Column("provincia")]
         public string Provincia { get; set; }
-        [Column("empresa_id")]
         public int IdEmpresa { get; set; }
 
-        [ForeignKey("IdEmpresa")]
-        public virtual clsEmpresa Empresa { get; set; }
+        public ProveedorDTO() { }
 
-        #endregion
-
-        #region Constructores
-        public clsProveedor()
-        {
-        }
-        public clsProveedor(int idProveedor)
+        public ProveedorDTO(int idProveedor)
         {
             IdProveedor = idProveedor;
         }
-        public clsProveedor(int idProveedor, string nombre, string cif, string direccion, string telefono, string correo, string calle, string codigo_postal, string localidad, string provincia, int idEmpresa)
+
+        public ProveedorDTO(int idProveedor, string nombre, string cif, string direccion, string telefono, string correo, string calle, string codigo_postal, string localidad, string provincia, int idEmpresa)
         {
             IdProveedor = idProveedor;
             Nombre = nombre;
@@ -58,6 +42,5 @@ namespace ENT
             Provincia = provincia;
             IdEmpresa = idEmpresa;
         }
-        #endregion
     }
 }
