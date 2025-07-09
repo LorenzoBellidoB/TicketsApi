@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -108,11 +109,17 @@ namespace TicketsApi.Controllers
             Description = "Este método crea un nuevo dependiente con los datos proporcionados.<br>" +
             "Si la creación es exitosa, devuelve un mensaje de éxito."
         )]
-        public async Task<IActionResult> CrearDependiente([FromBody] clsDependiente dependiente)
+        public async Task<IActionResult> CrearDependiente([FromBody] DependienteDTO dto)
         {
             IActionResult salida;
             try
             {
+                clsDependiente dependiente = new clsDependiente
+                {
+                    IdDependiente = dto.IdDependiente,
+                    Nombre = dto.Nombre,
+                    IdEmpresa = dto.IdEmpresa
+                };
                 var resultado = await _dependientesDAL.InsertarDependiente(dependiente);
                 if (resultado)
                     salida = Ok("Dependiente creado correctamente");
@@ -132,11 +139,17 @@ namespace TicketsApi.Controllers
             Description = "Este método actualiza un dependiente existente con los datos proporcionados en el cuerpo de la solicitud.<br>" +
             "Si la actualización es exitosa, devuelve un mensaje de éxito."
         )]
-        public async Task<IActionResult> ActualizarDependiente(int id, [FromBody] clsDependiente dependiente)
+        public async Task<IActionResult> ActualizarDependiente(int id, [FromBody] DependienteDTO dto)
         {
             IActionResult salida;
             try
             {
+                clsDependiente dependiente = new clsDependiente
+                {
+                    IdDependiente = dto.IdDependiente,
+                    Nombre = dto.Nombre,
+                    IdEmpresa = dto.IdEmpresa
+                };
                 if (id != dependiente.IdDependiente)
                     salida = BadRequest("El ID de la URL no coincide con el del objeto");
 
