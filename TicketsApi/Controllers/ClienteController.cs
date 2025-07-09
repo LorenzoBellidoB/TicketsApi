@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -107,11 +108,26 @@ namespace TicketsApi.Controllers
             Summary = "Crea un nuevo cliente",
             Description = "Este método permite crear un nuevo cliente. El cliente debe ser proporcionado en el cuerpo de la solicitud."
         )]
-        public async Task<IActionResult> CrearCliente([FromBody] clsCliente cliente)
+        public async Task<IActionResult> CrearCliente([FromBody] ClienteDto dto)
         {
             IActionResult salida;
             try
             {
+                clsCliente cliente = new clsCliente
+                {
+                    IdCliente = dto.IdCliente,
+                    Nombre = dto.Nombre,
+                    Cif = dto.Cif,
+                    Telefono = dto.Telefono,
+                    Correo = dto.Correo,
+                    Calle = dto.Calle,
+                    Codigo_postal = dto.Codigo_postal,
+                    Provincia = dto.Provincia,
+                    Localidad = dto.Localidad,
+                    Direccion = dto.Direccion,
+                    IdEmpresa = dto.IdEmpresa
+                };
+
                 var resultado = await _clientesDAL.InsertarCliente(cliente);
                 if (resultado)
                     salida = Ok("Cliente creado correctamente");
@@ -130,11 +146,25 @@ namespace TicketsApi.Controllers
             Summary = "Actualiza un cliente existente",
             Description = "Este método actualiza un cliente existente. El cliente actualizado debe ser proporcionado en el cuerpo de la solicitud."
         )]
-        public async Task<IActionResult> ActualizarCliente(int id, [FromBody] clsCliente cliente)
+        public async Task<IActionResult> ActualizarCliente(int id, [FromBody] ClienteDto dto)
         {
             IActionResult salida;
             try
             {
+                clsCliente cliente = new clsCliente
+                {
+                    IdCliente = dto.IdCliente,
+                    Nombre = dto.Nombre,
+                    Cif = dto.Cif,
+                    Telefono = dto.Telefono,
+                    Correo = dto.Correo,
+                    Calle = dto.Calle,
+                    Codigo_postal = dto.Codigo_postal,
+                    Provincia = dto.Provincia,
+                    Localidad = dto.Localidad,
+                    Direccion = dto.Direccion,
+                    IdEmpresa = dto.IdEmpresa
+                };
                 if (id != cliente.IdCliente)
                     salida = BadRequest("El ID de la URL no coincide con el del objeto");
 
