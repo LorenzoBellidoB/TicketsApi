@@ -26,8 +26,8 @@ namespace DAL
         public async Task<List<clsProveedor>> ObtenerProveedoresPorIdEmpresa(int idEmpresa)
         {
             return await _context.Proveedores
-                .Include(a => a.Empresa)
-                .Where(a => a.Empresa.IdEmpresa == idEmpresa)
+                .Include(p => p.Empresa)
+                .Where(p => p.IdEmpresa == idEmpresa)
                 .ToListAsync();
         }
 
