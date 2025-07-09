@@ -1,13 +1,13 @@
+D:\PerfilIberico\TicketsApi\ENT\bin\Debug\net8.0\ENT.deps.json
+D:\PerfilIberico\TicketsApi\ENT\bin\Debug\net8.0\ENT.dll
+D:\PerfilIberico\TicketsApi\ENT\bin\Debug\net8.0\ENT.pdb
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.csproj.AssemblyReference.cache
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.GeneratedMSBuildEditorConfig.editorconfig
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.AssemblyInfoInputs.cache
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.AssemblyInfo.cs
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.csproj.CoreCompileInputs.cache
-D:\PerfilIberico\TicketsApi\ENT\bin\Debug\net8.0\ENT.deps.json
-D:\PerfilIberico\TicketsApi\ENT\bin\Debug\net8.0\ENT.dll
-D:\PerfilIberico\TicketsApi\ENT\bin\Debug\net8.0\ENT.pdb
+D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.sourcelink.json
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.dll
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\refint\ENT.dll
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.pdb
 D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ref\ENT.dll
-D:\PerfilIberico\TicketsApi\ENT\obj\Debug\net8.0\ENT.sourcelink.json

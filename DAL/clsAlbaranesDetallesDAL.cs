@@ -73,6 +73,7 @@ namespace DAL
                 }
 
                 await _context.SaveChangesAsync();
+                //await _context.Database.ExecuteSqlRawAsync($"SELECT actualizar_totales_albaran({idAlbaran})");
                 res = true;
             }
             catch (Exception ex)
