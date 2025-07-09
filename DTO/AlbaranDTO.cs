@@ -4,7 +4,6 @@
     {
         public int IdAlbaran { get; set; }
         public string Serie { get; set; }
-        public string Numero { get; set; }
         public DateTime Fecha { get; set; }
         public decimal Importe { get; set; }
         public string Descripcion { get; set; }
@@ -18,7 +17,6 @@
         public AlbaranDTO()
         {
             Serie = "";
-            Numero = "";
             Fecha = DateTime.Now;
             Importe = 0;
             Descripcion = "";

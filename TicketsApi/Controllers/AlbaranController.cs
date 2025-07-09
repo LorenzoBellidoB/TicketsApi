@@ -124,7 +124,6 @@ namespace TicketsApi.Controllers
             var albaran = new clsAlbaran
             {
                 Serie = dto.Serie,
-                Numero = dto.Numero,
                 Fecha = dto.Fecha,
                 Importe = dto.Importe,
                 Descripcion = dto.Descripcion,
@@ -172,7 +171,6 @@ namespace TicketsApi.Controllers
 
             // Mapeo de campos editables
             existente.Serie = dto.Serie;
-            existente.Numero = dto.Numero;
             existente.Fecha = dto.Fecha;
             existente.Importe = dto.Importe;
             existente.Descripcion = dto.Descripcion;
