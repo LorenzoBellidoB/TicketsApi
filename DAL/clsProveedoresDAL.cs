@@ -20,7 +20,7 @@ namespace DAL
         public async Task<clsProveedor> ObtenerProveedorPorId(int id)
         {
             return await _context.Proveedores
-                .Include(p => p.Empresa.IdEmpresa == p.IdEmpresa)
+                .Include(p => p.Empresa)
                 .FirstOrDefaultAsync(c => c.IdProveedor == id);
         }
 
