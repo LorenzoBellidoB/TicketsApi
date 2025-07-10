@@ -174,6 +174,7 @@ namespace TicketsApi.Controllers
                         Codigo_postal = dto.Codigo_postal,
                         Provincia = dto.Provincia,
                         Localidad = dto.Localidad,
+                        Direccion = null,
                         IdEmpresa = dto.IdEmpresa
                     };
                     var resultado = await _proveedorDAL.ActualizarProveedor(proveedor);
