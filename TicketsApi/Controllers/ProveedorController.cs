@@ -183,8 +183,10 @@ namespace TicketsApi.Controllers
             }
             catch (Exception e)
             {
-                salida = BadRequest("Error con el servidor: " + e.Message);
+                var mensaje = e.InnerException?.Message ?? e.Message;
+                salida = BadRequest("Error con el servidor: " + mensaje);
             }
+
             return salida;
         }
 
