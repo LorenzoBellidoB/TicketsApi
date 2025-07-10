@@ -147,20 +147,39 @@ namespace TicketsApi.Controllers
             Description = "Este método actualiza un proveedor existente con los datos proporcionados.<br>" +
             "Si la actualización es exitosa, devuelve un mensaje de éxito."
         )]
-        public async Task<IActionResult> ActualizarProveedor(int id, [FromBody] clsProveedor proveedor)
+        public async Task<IActionResult> ActualizarProveedor(int id, [FromBody] ProveedorDTO dto)
         {
             IActionResult salida;
             try
             {
-                if (id != proveedor.IdProveedor)
+                
+                if (id != dto.IdProveedor)
+                {
                     salida = BadRequest("El ID de la URL no coincide con el del objeto");
-
-                var proveedorExistente = await _proveedorDAL.ObtenerProveedorPorId(id);
-                if (proveedorExistente == null)
-                    salida = NotFound("Proveedor no encontrada");
-
-                var resultado = await _proveedorDAL.ActualizarProveedor(proveedor);
-                salida = resultado ? Ok("Proveedor actualizado correctamente") : BadRequest("No se pudo actualizar el proveedor");
+                    var proveedorExistente = await _proveedorDAL.ObtenerProveedorPorId(id);
+                                    if (proveedorExistente == null)
+                    {
+                                        salida = NotFound("Proveedor no encontrada");
+                    }
+                }else
+                {
+                    clsProveedor proveedor = new clsProveedor
+                    {
+                        IdProveedor = dto.IdProveedor,
+                        Nombre = dto.Nombre,
+                        Correo = dto.Correo,
+                        Telefono = dto.Telefono,
+                        Cif = dto.Cif,
+                        Calle = dto.Calle,
+                        Codigo_postal = dto.Codigo_postal,
+                        Provincia = dto.Provincia,
+                        Localidad = dto.Localidad,
+                        Direccion = dto.Direccion,
+                        IdEmpresa = dto.IdEmpresa
+                    };
+                    var resultado = await _proveedorDAL.ActualizarProveedor(proveedor);
+                    salida = resultado ? Ok("Proveedor actualizado correctamente") : BadRequest("No se pudo actualizar el proveedor");
+                }
             }
             catch (Exception e)
             {
