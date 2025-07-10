@@ -14,6 +14,8 @@ namespace ENT
         public string Nombre { get; set; }
         [Column("cif")]
         public string Cif { get; set; }
+        [Column("direccion")]
+        public string Direccion { get; set; }
         [Column("telefono")]
         public string Telefono { get; set; }
         [Column("correo")]
@@ -42,11 +44,12 @@ namespace ENT
         {
             IdProveedor = idProveedor;
         }
-        public clsProveedor(int idProveedor, string nombre, string cif, string telefono, string correo, string calle, string codigo_postal, string localidad, string provincia, int idEmpresa)
+        public clsProveedor(int idProveedor, string nombre, string cif, string direccion, string telefono, string correo, string calle, string codigo_postal, string localidad, string provincia, int idEmpresa)
         {
             IdProveedor = idProveedor;
             Nombre = nombre;
             Cif = cif;
+            Direccion = direccion;
             Telefono = telefono;
             Correo = correo;
             Calle = calle;
