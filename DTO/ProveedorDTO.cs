@@ -27,7 +27,7 @@ namespace DTO
             IdProveedor = idProveedor;
         }
 
-        public ProveedorDTO(int idProveedor, string nombre, string cif, string direccion, string telefono, string correo, string calle, string codigo_postal, string localidad, string provincia, int idEmpresa)
+        public ProveedorDTO(int idProveedor, string nombre, string cif, string telefono, string correo, string calle, string codigo_postal, string localidad, string provincia, int idEmpresa)
         {
             IdProveedor = idProveedor;
             Nombre = nombre;
