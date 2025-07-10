@@ -125,7 +125,6 @@ namespace TicketsApi.Controllers
                     Codigo_postal = dto.Codigo_postal,
                     Provincia = dto.Provincia,
                     Localidad = dto.Localidad,
-                    Direccion = dto.Direccion,
                     IdEmpresa = dto.IdEmpresa
                 };
                 var resultado = await _proveedorDAL.InsertarProveedor(proveedor);
@@ -174,7 +173,6 @@ namespace TicketsApi.Controllers
                         Codigo_postal = dto.Codigo_postal,
                         Provincia = dto.Provincia,
                         Localidad = dto.Localidad,
-                        Direccion = dto.Direccion,
                         IdEmpresa = dto.IdEmpresa
                     };
                     var resultado = await _proveedorDAL.ActualizarProveedor(proveedor);

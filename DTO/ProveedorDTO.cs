@@ -12,7 +12,6 @@ namespace DTO
         public int IdProveedor { get; set; }
         public string Nombre { get; set; }
         public string Cif { get; set; }
-        public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public string Calle { get; set; }
@@ -33,7 +32,6 @@ namespace DTO
             IdProveedor = idProveedor;
             Nombre = nombre;
             Cif = cif;
-            Direccion = direccion;
             Telefono = telefono;
             Correo = correo;
             Calle = calle;

@@ -1,14 +1,137 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.4",
   "info": {
-    "title": "TicketsApi",
-    "version": "1.0"
+    "title": "Tickets API",
+    "version": "v1"
   },
   "paths": {
-    "/Empresa/empresas": {
+    "/api/Albaran": {
       "get": {
         "tags": [
-          "Empresa"
+          "Albaran"
+        ],
+        "summary": "Obtiene un listado con todos los albaranes",
+        "description": "Este método obtiene todos los albaranes y los devuelve como un listado.<br>Si no se encuentra ningún albaran devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Albaran"
+        ],
+        "summary": "Crea un nuevo albaran",
+        "description": "Este método crea un nuevo albaran con los datos proporcionados en el cuerpo de la solicitud.<br>Si se crea correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbaranDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbaranDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbaranDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Albaran/{id}": {
+      "get": {
+        "tags": [
+          "Albaran"
+        ],
+        "summary": "Obtiene un albaran según su id",
+        "description": "Este método obtiene el albaran que coincida con el id proporcionado.<br>Si no se encuentra ningún albaran devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Albaran"
+        ],
+        "summary": "Actualiza un albaran",
+        "description": "Este método actualiza un albaran con los datos proporcionados en el cuerpo de la solicitud.<br>Si se actualiza correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbaranDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbaranDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbaranDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Albaran"
+        ],
+        "summary": "Elimina un albaran",
+        "description": "Este método elimina un albaran según su id.<br>Si se elimina correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -17,10 +140,75 @@
         }
       }
     },
-    "/Empresa/empresas/{id}": {
+    "/api/Albaran/{id}/detalles": {
       "get": {
         "tags": [
-          "Empresa"
+          "Albaran"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/clsAlbaran"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clsAlbaran"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clsAlbaran"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Albaran/empresa/{idEmpresa}": {
+      "get": {
+        "tags": [
+          "Albaran"
+        ],
+        "summary": "Obtiene un albaran según su empresa",
+        "description": "Este método obtiene los albaranes que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún albaran devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Albaran/{id}/facturar": {
+      "patch": {
+        "tags": [
+          "Albaran"
         ],
         "parameters": [
           {
@@ -40,21 +228,673 @@
         }
       }
     },
-    "/Empresa/create": {
+    "/api/AlbaranDetalle": {
+      "get": {
+        "tags": [
+          "AlbaranDetalle"
+        ],
+        "summary": "Obtiene un listado con todos los detalles del albaran",
+        "description": "Este método obtiene todos los detalles del albaran y los devuelve como un listado.<br>Si no se encuentra ningún albaran devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AlbaranDetalle"
+        ],
+        "summary": "Crea un nuevo detalle de albaran",
+        "description": "Este método crea un nuevo detalle de albaran a partir de los datos proporcionados en el cuerpo de la solicitud.<br>Si se crea correctamente, devuelve un mensaje de éxito.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbaranDetalleDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbaranDetalleDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbaranDetalleDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AlbaranDetalle/{id}": {
+      "get": {
+        "tags": [
+          "AlbaranDetalle"
+        ],
+        "summary": "Obtiene un detalle del albaran según su id",
+        "description": "Este método obtiene el detalle del albaran que coincida con el id proporcionado.<br>Si no se encuentra ningún albaran devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AlbaranDetalle"
+        ],
+        "summary": "Actualiza un detalle de albaran",
+        "description": "Este método actualiza un detalle de albaran según el id proporcionado en la URL y los datos del cuerpo de la solicitud.<br>Si se actualiza correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsAlbaranDetalle"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsAlbaranDetalle"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsAlbaranDetalle"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AlbaranDetalle"
+        ],
+        "summary": "Elimina un detalle de albaran",
+        "description": "Este método elimina un detalle de albaran según el id proporcionado en la URL.<br>Si se elimina correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AlbaranDetalle/{idAlbaran}/unidades": {
+      "post": {
+        "tags": [
+          "AlbaranDetalle"
+        ],
+        "parameters": [
+          {
+            "name": "idAlbaran",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnidadesDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnidadesDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnidadesDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cliente": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Obtiene un listado con todos los clientes",
+        "description": "Este método obtiene todos los clientes y los devuelve como un listado.<br>Si no se encuentra ningún cliente devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Crea un nuevo cliente",
+        "description": "Este método permite crear un nuevo cliente. El cliente debe ser proporcionado en el cuerpo de la solicitud.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cliente/{id}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Obtiene un cliente según su id",
+        "description": "Este método obtiene el cliente que coincida con el id proporcionado.<br>Si no se encuentra ningún cliente devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Actualiza un cliente existente",
+        "description": "Este método actualiza un cliente existente. El cliente actualizado debe ser proporcionado en el cuerpo de la solicitud.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Elimina un cliente",
+        "description": "Este método elimina un cliente según su id. Si el cliente se elimina correctamente, devuelve un mensaje de éxito, de lo contrario, un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cliente/empresa/{idEmpresa}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Obtiene un cliente según su empresa",
+        "description": "Este método obtiene los clientes que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún dependiente devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dependiente": {
+      "get": {
+        "tags": [
+          "Dependiente"
+        ],
+        "summary": "Obtiene un listado con todos los dependientes",
+        "description": "Este método obtiene todos los dependientes y los devuelve como un listado.<br>Si no se encuentra ningún cliente devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Dependiente"
+        ],
+        "summary": "Crea un nuevo dependiente",
+        "description": "Este método crea un nuevo dependiente con los datos proporcionados.<br>Si la creación es exitosa, devuelve un mensaje de éxito.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DependienteDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DependienteDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DependienteDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dependiente/{id}": {
+      "get": {
+        "tags": [
+          "Dependiente"
+        ],
+        "summary": "Obtiene un dependiente según su id",
+        "description": "Este método obtiene el dependiente que coincida con el id proporcionado.<br>Si no se encuentra ningún dependiente devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Dependiente"
+        ],
+        "summary": "Actualiza un dependiente existente",
+        "description": "Este método actualiza un dependiente existente con los datos proporcionados en el cuerpo de la solicitud.<br>Si la actualización es exitosa, devuelve un mensaje de éxito.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DependienteDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DependienteDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DependienteDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Dependiente"
+        ],
+        "summary": "Elimina un dependiente según su id",
+        "description": "Este método elimina el dependiente que coincida con el id proporcionado.<br>Si la eliminación es exitosa, devuelve un mensaje de éxito.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dependiente/empresa/{idEmpresa}": {
+      "get": {
+        "tags": [
+          "Dependiente"
+        ],
+        "summary": "Obtiene un dependiente según su empresa",
+        "description": "Este método obtiene los dependientes que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún dependiente devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DetalleTicket": {
+      "get": {
+        "tags": [
+          "DetalleTicket"
+        ],
+        "summary": "Obtiene un listado con todos los detalles de un ticket",
+        "description": "Este método obtiene todos los detalles de un ticket y los devuelve como un listado.<br>Si no se encuentra ningún cliente devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DetalleTicket"
+        ],
+        "summary": "Crea un nuevo detalle de ticket",
+        "description": "Este método crea un nuevo detalle de ticket y lo inserta en la base de datos.<br>Si se crea correctamente devuelve un mensaje de éxito, si no, devuelve un mensaje de error.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsDetalleTicket"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsDetalleTicket"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsDetalleTicket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DetalleTicket/{id}": {
+      "get": {
+        "tags": [
+          "DetalleTicket"
+        ],
+        "summary": "Obtiene un detalle de un ticket",
+        "description": "Este método obtiene el detalle de un ticket que coincida con el id proporcionado.<br>Si no se encuentra ningún dTicket devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "DetalleTicket"
+        ],
+        "summary": "Actualiza un detalle de ticket",
+        "description": "Este método actualiza un detalle de ticket existente con los datos proporcionados en el cuerpo de la solicitud.<br>Si se actualiza correctamente, devuelve un mensaje de éxito, si no, devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsDetalleTicket"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsDetalleTicket"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsDetalleTicket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DetalleTicket"
+        ],
+        "summary": "Elimina un detalle de ticket",
+        "description": "Este método elimina un detalle de ticket según el id proporcionado en la URL.<br>Si se elimina correctamente, devuelve un mensaje de éxito, si no, devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Empresa": {
+      "get": {
+        "tags": [
+          "Empresa"
+        ],
+        "summary": "Obtiene un listado con todas las empresas",
+        "description": "Este método obtiene todas las empresas y las devuelve como un listado.<br>Si no se encuentra ningún cliente devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "post": {
         "tags": [
           "Empresa"
         ],
+        "summary": "Crea una nueva empresa",
+        "description": "Este método permite crear una nueva empresa en la base de datos.<br>Si la creación es exitosa, devuelve un mensaje de confirmación.",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { }
+              "schema": {
+                "$ref": "#/components/schemas/clsEmpresa"
+              }
             },
             "text/json": {
-              "schema": { }
+              "schema": {
+                "$ref": "#/components/schemas/clsEmpresa"
+              }
             },
             "application/*+json": {
-              "schema": { }
+              "schema": {
+                "$ref": "#/components/schemas/clsEmpresa"
+              }
             }
           }
         },
@@ -65,11 +905,36 @@
         }
       }
     },
-    "/Empresa/edit/{id}": {
+    "/api/Empresa/{id}": {
+      "get": {
+        "tags": [
+          "Empresa"
+        ],
+        "summary": "Obtiene una empresa según su id",
+        "description": "Este método obtiene la empresa que coincida con el id proporcionado.<br>Si no se encuentra ninguna empresa devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "put": {
         "tags": [
           "Empresa"
         ],
+        "summary": "Actualiza una empresa existente",
+        "description": "Este método actualiza los datos de una empresa existente en la base de datos.<br>Si la actualización es exitosa, devuelve un mensaje de confirmación.",
         "parameters": [
           {
             "name": "id",
@@ -84,13 +949,87 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { }
+              "schema": {
+                "$ref": "#/components/schemas/clsEmpresa"
+              }
             },
             "text/json": {
-              "schema": { }
+              "schema": {
+                "$ref": "#/components/schemas/clsEmpresa"
+              }
             },
             "application/*+json": {
-              "schema": { }
+              "schema": {
+                "$ref": "#/components/schemas/clsEmpresa"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Empresa"
+        ],
+        "summary": "Elimina una empresa según su id",
+        "description": "Este método elimina una empresa de la base de datos según el id proporcionado.<br>Si la eliminación es exitosa, devuelve un mensaje de confirmación.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Producto": {
+      "get": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "Obtiene un listado con todos los productos",
+        "description": "Este método obtiene todos los productos y los devuelve como un listado.<br>Si no se encuentra ningún producto devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "Crea un nuevo producto",
+        "description": "Este método crea un nuevo producto en la base de datos.<br>Si la creación es exitosa, devuelve un mensaje de éxito.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsProducto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsProducto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsProducto"
+              }
             }
           }
         },
@@ -101,14 +1040,586 @@
         }
       }
     },
-    "/Empresa/delete/{id}": {
-      "delete": {
+    "/api/Producto/{id}": {
+      "get": {
         "tags": [
-          "Empresa"
+          "Producto"
         ],
+        "summary": "Obtiene un producto según su id",
+        "description": "Este método obtiene el producto que coincida con el id proporcionado.<br>Si no se encuentra ningún producto devuelve un mensaje de error.",
         "parameters": [
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "Actualiza un producto existente",
+        "description": "Este método actualiza un producto existente con los datos proporcionados.<br>Si la actualización es exitosa, devuelve un mensaje de éxito.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsProducto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsProducto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsProducto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "Elimina un producto existente",
+        "description": "Este método elimina un producto existente según su id.<br>Si la eliminación es exitosa, devuelve un mensaje de éxito.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Producto/empresa/{idEmpresa}": {
+      "get": {
+        "tags": [
+          "Producto"
+        ],
+        "summary": "Obtiene un dependiente según su empresa",
+        "description": "Este método obtiene los productos que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún dependiente devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProductoUnidad": {
+      "get": {
+        "tags": [
+          "ProductoUnidad"
+        ],
+        "summary": "Obtiene un listado con todos las unidades de productos",
+        "description": "Este método obtiene todos las unidades de productos y los devuelve como un listado.<br>Si no se encuentra ninguna unidad de producto devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductoUnidad"
+        ],
+        "summary": "Crea una nueva unidad de producto",
+        "description": "Este método crea una nueva unidad de producto y la inserta en la base de datos.<br>Si se crea correctamente devuelve un mensaje de éxito, si no, un mensaje de error.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoUnidadDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoUnidadDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoUnidadDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProductoUnidad/{id}": {
+      "get": {
+        "tags": [
+          "ProductoUnidad"
+        ],
+        "summary": "Obtiene una unidad de producto según su id",
+        "description": "Este método obtiene la unidad de producto que coincida con el id proporcionado.<br>Si no se encuentra ninguna unidad de producto devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ProductoUnidad"
+        ],
+        "summary": "Actualiza una unidad de producto",
+        "description": "Este método actualiza una unidad de producto existente en la base de datos.<br>Si se actualiza correctamente devuelve un mensaje de éxito, si no, un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsProductoUnidad"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsProductoUnidad"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsProductoUnidad"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProductoUnidad"
+        ],
+        "summary": "Elimina una unidad de producto",
+        "description": "Este método elimina una unidad de producto existente en la base de datos.<br>Si se elimina correctamente devuelve un mensaje de éxito, si no, un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProductoUnidad/producto/{id}": {
+      "get": {
+        "tags": [
+          "ProductoUnidad"
+        ],
+        "summary": "Obtiene las unidades de producto asociadas a un producto según su id",
+        "description": "Este método obtiene todas las unidades de producto asociadas al producto que coincida con el id proporcionado.<br>Si no se encuentra ninguna unidad de producto asociada al producto devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Proveedor": {
+      "get": {
+        "tags": [
+          "Proveedor"
+        ],
+        "summary": "Obtiene un listado con todos los proveedores",
+        "description": "Este método obtiene todos los proveedores y los devuelve como un listado.<br>Si no se encuentra ningún proveedor devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Proveedor"
+        ],
+        "summary": "Crea un nuevo proveedor",
+        "description": "Este método crea un nuevo proveedor con los datos proporcionados.<br>Si la creación es exitosa, devuelve un mensaje de éxito.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProveedorDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProveedorDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProveedorDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Proveedor/{id}": {
+      "get": {
+        "tags": [
+          "Proveedor"
+        ],
+        "summary": "Obtiene un proveedor según su id",
+        "description": "Este método obtiene el proveedor que coincida con el id proporcionado.<br>Si no se encuentra ningún proveedor devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Proveedor"
+        ],
+        "summary": "Actualiza un proveedor existente",
+        "description": "Este método actualiza un proveedor existente con los datos proporcionados.<br>Si la actualización es exitosa, devuelve un mensaje de éxito.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProveedorDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProveedorDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProveedorDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Proveedor"
+        ],
+        "summary": "Elimina un proveedor existente",
+        "description": "Este método elimina un proveedor existente según su ID.<br>Si la eliminación es exitosa, devuelve un mensaje de éxito.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Proveedor/empresa/{idEmpresa}": {
+      "get": {
+        "tags": [
+          "Proveedor"
+        ],
+        "summary": "Obtiene un proveedor según su empresa",
+        "description": "Este método obtiene los proveedores que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún proveedor devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ticket": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Obtiene un listado con todos los tickets",
+        "description": "Este método obtiene todos los tickets y los devuelve como un listado.<br>Si no se encuentra ningún ticket devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Crea un nuevo ticket",
+        "description": "Este método crea un nuevo ticket con los datos proporcionados.<br>Si se crea correctamente devuelve un mensaje de éxito, de lo contrario un mensaje de error.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsTicket"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsTicket"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsTicket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ticket/{id}": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Obtiene un ticket según su id",
+        "description": "Este método obtiene el ticket que coincida con el id proporcionado.<br>Si no se encuentra ningún ticket devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Actualiza un ticket existente",
+        "description": "Este método actualiza un ticket existente con los datos proporcionados.<br>Si la actualización es exitosa, devuelve un mensaje de éxito, de lo contrario un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsTicket"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsTicket"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/clsTicket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Elimina un ticket existente",
+        "description": "Este método elimina un ticket existente según su id.<br>Si la eliminación es exitosa, devuelve un mensaje de éxito, de lo contrario un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ticket/empresa/{idEmpresa}": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Obtiene un ticket según su empresa",
+        "description": "Este método obtiene los tickets que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún ticket devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
             "in": "path",
             "required": true,
             "schema": {
@@ -125,5 +1636,658 @@
       }
     }
   },
-  "components": { }
+  "components": {
+    "schemas": {
+      "AlbaranDTO": {
+        "type": "object",
+        "properties": {
+          "idAlbaran": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "serie": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "importe": {
+            "type": "number",
+            "format": "double"
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "facturado": {
+            "type": "boolean"
+          },
+          "idCliente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kilos": {
+            "type": "number",
+            "format": "double"
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idDependiente": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlbaranDetalleDTO": {
+        "type": "object",
+        "properties": {
+          "idAlbaranDetalle": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idAlbaran": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idProductoUnidad": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClienteDto": {
+        "type": "object",
+        "properties": {
+          "idCliente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "cif": {
+            "type": "string",
+            "nullable": true
+          },
+          "calle": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo_postal": {
+            "type": "string",
+            "nullable": true
+          },
+          "localidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "provincia": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DependienteDTO": {
+        "type": "object",
+        "properties": {
+          "idDependiente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dni": {
+            "type": "string",
+            "nullable": true
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductoUnidadDTO": {
+        "type": "object",
+        "properties": {
+          "idProductoUnidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "peso": {
+            "type": "number",
+            "format": "double"
+          },
+          "precioKilo": {
+            "type": "number",
+            "format": "double"
+          },
+          "etiqueta": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaEntrada": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "disponible": {
+            "type": "boolean"
+          },
+          "idProducto": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProveedorDTO": {
+        "type": "object",
+        "properties": {
+          "idProveedor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "cif": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "calle": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo_postal": {
+            "type": "string",
+            "nullable": true
+          },
+          "localidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "provincia": {
+            "type": "string",
+            "nullable": true
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnidadesDTO": {
+        "type": "object",
+        "properties": {
+          "unidades": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductoUnidadDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsAlbaran": {
+        "type": "object",
+        "properties": {
+          "idAlbaran": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "serie": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "importe": {
+            "type": "number",
+            "format": "double"
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "facturado": {
+            "type": "boolean"
+          },
+          "idCliente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cliente": {
+            "$ref": "#/components/schemas/clsCliente"
+          },
+          "kilos": {
+            "type": "number",
+            "format": "double"
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "empresa": {
+            "$ref": "#/components/schemas/clsEmpresa"
+          },
+          "idDependiente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dependiente": {
+            "$ref": "#/components/schemas/clsDependiente"
+          },
+          "tickets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/clsTicket"
+            },
+            "nullable": true
+          },
+          "detalles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/clsAlbaranDetalle"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsAlbaranDetalle": {
+        "type": "object",
+        "properties": {
+          "idAlbaranDetalle": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idAlbaran": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idProductoUnidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "albaran": {
+            "$ref": "#/components/schemas/clsAlbaran"
+          },
+          "productoUnidad": {
+            "$ref": "#/components/schemas/clsProductoUnidad"
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsCliente": {
+        "type": "object",
+        "properties": {
+          "idCliente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "cif": {
+            "type": "string",
+            "nullable": true
+          },
+          "calle": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo_postal": {
+            "type": "string",
+            "nullable": true
+          },
+          "localidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "provincia": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "empresa": {
+            "$ref": "#/components/schemas/clsEmpresa"
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsDependiente": {
+        "type": "object",
+        "properties": {
+          "idDependiente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dni": {
+            "type": "string",
+            "nullable": true
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "empresa": {
+            "$ref": "#/components/schemas/clsEmpresa"
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsDetalleTicket": {
+        "type": "object",
+        "properties": {
+          "idDetalleTicket": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idTicket": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ticket": {
+            "$ref": "#/components/schemas/clsTicket"
+          },
+          "idProductoUnidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productoUnidad": {
+            "$ref": "#/components/schemas/clsProductoUnidad"
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsEmpresa": {
+        "type": "object",
+        "properties": {
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "cif": {
+            "type": "string",
+            "nullable": true
+          },
+          "calle": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo_postal": {
+            "type": "string",
+            "nullable": true
+          },
+          "localidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "provincia": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsProducto": {
+        "type": "object",
+        "properties": {
+          "idProducto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "precio_kilo": {
+            "type": "number",
+            "format": "double"
+          },
+          "cantidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "impuesto": {
+            "type": "number",
+            "format": "double"
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "empresa": {
+            "$ref": "#/components/schemas/clsEmpresa"
+          },
+          "proveedorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "proveedor": {
+            "$ref": "#/components/schemas/clsProveedor"
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsProductoUnidad": {
+        "type": "object",
+        "properties": {
+          "idProductoUnidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "peso": {
+            "type": "number",
+            "format": "double"
+          },
+          "precioKilo": {
+            "type": "number",
+            "format": "double"
+          },
+          "etiqueta": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaEntrada": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "disponible": {
+            "type": "boolean"
+          },
+          "idProducto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "producto": {
+            "$ref": "#/components/schemas/clsProducto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsProveedor": {
+        "type": "object",
+        "properties": {
+          "idProveedor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "cif": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "calle": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo_postal": {
+            "type": "string",
+            "nullable": true
+          },
+          "localidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "provincia": {
+            "type": "string",
+            "nullable": true
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "empresa": {
+            "$ref": "#/components/schemas/clsEmpresa"
+          }
+        },
+        "additionalProperties": false
+      },
+      "clsTicket": {
+        "type": "object",
+        "properties": {
+          "idTicket": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "idCliente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cliente": {
+            "$ref": "#/components/schemas/clsCliente"
+          },
+          "idDependiente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dependiente": {
+            "$ref": "#/components/schemas/clsDependiente"
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "empresa": {
+            "$ref": "#/components/schemas/clsEmpresa"
+          },
+          "idAlbaran": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "albaran": {
+            "$ref": "#/components/schemas/clsAlbaran"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
 }
