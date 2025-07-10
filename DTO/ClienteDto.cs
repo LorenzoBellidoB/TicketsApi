@@ -18,7 +18,6 @@ namespace DTO
         public string Codigo_postal { get; set; }
         public string Localidad { get; set; }
         public string Provincia { get; set; }
-        public string Direccion { get; set; }
         public int IdEmpresa { get; set; }
 
         public ClienteDto() { }
@@ -28,7 +27,7 @@ namespace DTO
             IdCliente = idCliente;
         }
 
-        public ClienteDto(int idCliente, string nombre, string correo, string telefono, string calle, string codigo_postal, string localidad, string provincia, string direccion)
+        public ClienteDto(int idCliente, string nombre, string correo, string telefono, string calle, string codigo_postal, string localidad, string provincia)
         {
             IdCliente = idCliente;
             Nombre = nombre;
@@ -38,7 +37,6 @@ namespace DTO
             Codigo_postal = codigo_postal;
             Localidad = localidad;
             Provincia = provincia;
-            Direccion = direccion;
         }
 
     }

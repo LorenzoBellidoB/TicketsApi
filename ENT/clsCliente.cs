@@ -45,6 +45,18 @@ namespace ENT
             IdCliente = idCliente;
         }
 
+        public clsCliente(int idCliente, string nombre, string correo, string telefono, string calle, string codigo_postal, string localidad, string provincia)
+        {
+            IdCliente = idCliente;
+            Nombre = nombre;
+            Correo = correo;
+            Telefono = telefono;
+            Calle = calle;
+            Codigo_postal = codigo_postal;
+            Localidad = localidad;
+            Provincia = provincia;
+        }
+
         public clsCliente(int idCliente, string nombre, string correo, string telefono, string calle, string codigo_postal, string localidad, string provincia, string direccion)
         {
             IdCliente = idCliente;

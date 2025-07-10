@@ -50,6 +50,17 @@ namespace ENT
             Direccion = direccion;
         }
 
+        public clsEmpresa(int idEmpresa, string nombre, string cif, string calle, string codigo_postal, string localidad, string provincia)
+        {
+            IdEmpresa = idEmpresa;
+            Nombre = nombre;
+            Cif = cif;
+            Calle = calle;
+            Codigo_postal = codigo_postal;
+            Localidad = localidad;
+            Provincia = provincia;
+        }
+
         public clsEmpresa(int idEmpresa, string nombre, string cif, string calle, string codigo_postal, string localidad, string provincia, string direccion)
         {
             IdEmpresa = idEmpresa;
