@@ -23,6 +23,7 @@ namespace ENT
         [Column("provincia")]
         public string Provincia { get; set; }
         [Column("direccion")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Direccion { get; set; }
 
 

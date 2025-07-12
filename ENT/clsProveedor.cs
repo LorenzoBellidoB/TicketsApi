@@ -15,6 +15,7 @@ namespace ENT
         [Column("cif")]
         public string Cif { get; set; }
         [Column("direccion")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Direccion { get; set; }
         [Column("telefono")]
         public string Telefono { get; set; }

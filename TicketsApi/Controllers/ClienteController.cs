@@ -124,7 +124,6 @@ namespace TicketsApi.Controllers
                     Codigo_postal = dto.Codigo_postal,
                     Provincia = dto.Provincia,
                     Localidad = dto.Localidad,
-                    Direccion = null,
                     IdEmpresa = dto.IdEmpresa
                 };
 
@@ -162,7 +161,6 @@ namespace TicketsApi.Controllers
                     Codigo_postal = dto.Codigo_postal,
                     Provincia = dto.Provincia,
                     Localidad = dto.Localidad,
-                    Direccion = null,
                     IdEmpresa = dto.IdEmpresa
                 };
                 if (id != cliente.IdCliente)
