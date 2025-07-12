@@ -45,7 +45,6 @@ public class clsAlbaranesDAL
             .Include(a => a.Detalles)
                 .ThenInclude(d => d.ProductoUnidad)
                     .ThenInclude(pu => pu.Producto)
-                    .ThenInclude(p => p.Proveedor)
             .FirstOrDefaultAsync(a => a.IdAlbaran == id);
     }
 
