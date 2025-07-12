@@ -28,13 +28,6 @@ namespace ENT
 
         [ForeignKey("IdEmpresa")]
         public virtual clsEmpresa Empresa { get; set; }
-
-        [Column("proveedor_id")]
-        public int ProveedorId { get; set; }
-
-        [ForeignKey("ProveedorId")]
-        public virtual clsProveedor Proveedor { get; set; }
-
         #endregion
         #region Constructores
         public clsProducto() { }

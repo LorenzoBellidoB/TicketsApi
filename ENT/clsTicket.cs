@@ -15,6 +15,16 @@ namespace ENT
         [Column("fecha")]
         public DateTime Fecha { get; set; }
 
+        [Column("importe")]
+        public decimal Importe { get; set; }
+
+        [Column("base_imponible")]
+        public decimal BaseImponible { get; set; }
+
+        [Column("importe_iva")]
+        public decimal ImporteIVA { get; set; }
+
+
         [Column("cliente_id")]
         public int IdCliente { get; set; }
 
@@ -47,10 +57,13 @@ namespace ENT
         {
             IdTicket = idTicket;
         }
-        public clsTicket(int idTicket, DateTime fecha, int idCliente, int idDependiente, int idEmpresa)
+        public clsTicket(int idTicket, DateTime fecha,decimal importe,decimal baseImponible,decimal importeIVA, int idCliente, int idDependiente, int idEmpresa)
         {
             IdTicket = idTicket;
             Fecha = fecha;
+            Importe = importe;
+            BaseImponible = baseImponible;
+            ImporteIVA = importeIVA;
             IdCliente = idCliente;
             IdDependiente = idDependiente;
             IdEmpresa = idEmpresa;

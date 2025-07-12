@@ -18,6 +18,12 @@ namespace ENT
         [Column("fecha")]
         public DateTime Fecha { get; set; }
 
+        [Column("base_imponible")]
+        public decimal BaseImponible { get; set; }
+
+        [Column("importe_iva")]
+        public decimal ImporteIVA { get; set; }
+
         [Column("importe")]
         public decimal Importe { get; set; }
 
@@ -61,12 +67,14 @@ namespace ENT
         {
             IdAlbaran = idAlbaran;
         }
-        public clsAlbaran(int idAlbaran, string serie, DateTime fecha, decimal importe, string descripcion, bool facturado, int idCliente, decimal kilos, int idEmpresa, int idDependiente)
+        public clsAlbaran(int idAlbaran, string serie, DateTime fecha,decimal baseImponible,decimal importeIVA, decimal importe, string descripcion, bool facturado, int idCliente, decimal kilos, int idEmpresa, int idDependiente)
         {
             IdAlbaran = idAlbaran;
             Serie = serie;
             Fecha = fecha;
             Importe = importe;
+            ImporteIVA = importeIVA;
+            BaseImponible = baseImponible;
             Descripcion = descripcion;
             Facturado = facturado;
             IdCliente = idCliente;
