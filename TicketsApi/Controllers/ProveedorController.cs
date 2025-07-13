@@ -128,8 +128,8 @@ namespace TicketsApi.Controllers
                     IdEmpresa = dto.IdEmpresa
                 };
                 var resultado = await _proveedorDAL.InsertarProveedor(proveedor);
-                if (resultado)
-                    salida = Ok("Proveedor creado correctamente");
+                if (resultado > 0)
+                    salida = Ok(resultado);
                 else
                     salida = BadRequest("No se pudo crear el proveedor");
             }

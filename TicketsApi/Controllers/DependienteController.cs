@@ -124,8 +124,8 @@ namespace TicketsApi.Controllers
                     IdEmpresa = dto.IdEmpresa
                 };
                 var resultado = await _dependientesDAL.InsertarDependiente(dependiente);
-                if (resultado)
-                    salida = Ok("Dependiente creado correctamente");
+                if (resultado > 0)
+                    salida = Ok(resultado);
                 else
                     salida = BadRequest("No se pudo crear el dependiente");
             }

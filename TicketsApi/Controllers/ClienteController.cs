@@ -128,14 +128,15 @@ namespace TicketsApi.Controllers
                 };
 
                 var resultado = await _clientesDAL.InsertarCliente(cliente);
-                if (resultado)
-                    salida = Ok("Cliente creado correctamente");
+                if (resultado > 0)
+                    salida = Ok(resultado);
                 else
                     salida = BadRequest("No se pudo crear el cliente");
             }
             catch (Exception e)
             {
-                salida = BadRequest("Error con el servidor: " + e.InnerException.Message + " " + e.Message);
+                salida = BadRequest("Error con el servidor: " + e.InnerException.Message + " " + e.Message
+                    );
             }
             return salida;
         }

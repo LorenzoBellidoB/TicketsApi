@@ -31,11 +31,12 @@ namespace DAL
                 .ToListAsync();
         }
 
-        public async Task<bool> InsertarCliente(clsCliente cliente)
+        public async Task<int> InsertarCliente(clsCliente cliente)
         {
-            bool res = false;
+            int res = 0;
             _context.Clientes.Add(cliente);
-            res = await _context.SaveChangesAsync() > 0;
+            await _context.SaveChangesAsync();
+            res = cliente.IdCliente;
             return res;
         }
 

@@ -35,11 +35,12 @@ namespace DAL
         }
 
 
-        public async Task<bool> InsertarDependiente(clsDependiente dependiente)
+        public async Task<int> InsertarDependiente(clsDependiente dependiente)
         {
-            bool res = false;
+            int res = 0;
             _context.Dependientes.Add(dependiente);
-            res = await _context.SaveChangesAsync() > 0;
+            await _context.SaveChangesAsync();
+            res = dependiente.IdDependiente;
             return res;
         }
 

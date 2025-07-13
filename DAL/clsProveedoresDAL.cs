@@ -32,11 +32,12 @@ namespace DAL
                 .ToListAsync();
         }
 
-        public async Task<bool> InsertarProveedor(clsProveedor proveedor)
+        public async Task<int> InsertarProveedor(clsProveedor proveedor)
         {
-            bool res = false;
+            int res = 0;
             _context.Proveedores.Add(proveedor);
-            res = await _context.SaveChangesAsync() > 0;
+            await _context.SaveChangesAsync();
+            res = proveedor.IdProveedor;
             return res;
         }
 

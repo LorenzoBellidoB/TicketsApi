@@ -85,8 +85,8 @@ namespace TicketsApi.Controllers
             try
             {
                 var resultado = await _empresasDAL.InsertarEmpresa(empresa);
-                if (resultado)
-                    salida = Ok("Empresa creada correctamente");
+                if (resultado > 0)
+                    salida = Ok(resultado);
                 else
                     salida = BadRequest("No se pudo crear la empresa");
             }

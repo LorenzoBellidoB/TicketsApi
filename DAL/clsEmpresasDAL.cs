@@ -23,11 +23,12 @@ namespace DAL
                 .FirstOrDefaultAsync(e => e.IdEmpresa == id);
         }
 
-        public async Task<bool> InsertarEmpresa(clsEmpresa empresa)
+        public async Task<int> InsertarEmpresa(clsEmpresa empresa)
         {
-            bool res = false;
+            int res = 0;
             _context.Empresas.Add(empresa);
-            res = await _context.SaveChangesAsync() > 0;
+            await _context.SaveChangesAsync();
+            res = empresa.IdEmpresa;
             return res;
         }
 

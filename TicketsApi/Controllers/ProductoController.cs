@@ -123,7 +123,7 @@ namespace TicketsApi.Controllers
                     IdEmpresa = dto.IdEmpresa
                 };
                 var resultado = await _productoDAL.InsertarProducto(producto);
-                if (resultado)
+                if (resultado > 0)
                     salida = Ok(resultado);
                 else
                     salida = BadRequest(resultado);
