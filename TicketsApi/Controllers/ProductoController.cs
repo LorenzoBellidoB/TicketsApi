@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -108,11 +109,19 @@ namespace TicketsApi.Controllers
             Description = "Este método crea un nuevo producto en la base de datos.<br>" +
             "Si la creación es exitosa, devuelve un mensaje de éxito."
         )]
-        public async Task<IActionResult> CrearProducto([FromBody] clsProducto producto)
+        public async Task<IActionResult> CrearProducto([FromBody] ProductoDTO dto)
         {
             IActionResult salida;
             try
             {
+                clsProducto producto = new clsProducto()
+                {
+                    Nombre = dto.Nombre,
+                    Precio_kilo = dto.Precio_kilo,
+                    Cantidad = dto.Cantidad,
+                    Impuesto = dto.Impuesto,
+                    IdEmpresa = dto.IdEmpresa
+                };
                 var resultado = await _productoDAL.InsertarProducto(producto);
                 if (resultado)
                     salida = Ok("Producto creada correctamente");
@@ -132,11 +141,20 @@ namespace TicketsApi.Controllers
             Description = "Este método actualiza un producto existente con los datos proporcionados.<br>" +
             "Si la actualización es exitosa, devuelve un mensaje de éxito."
         )]
-        public async Task<IActionResult> ActualizarProducto(int id, [FromBody] clsProducto producto)
+        public async Task<IActionResult> ActualizarProducto(int id, [FromBody] ProductoDTO dto)
         {
             IActionResult salida;
             try
             {
+                clsProducto producto = new clsProducto()
+                {
+                    IdProducto = id,
+                    Nombre = dto.Nombre,
+                    Precio_kilo = dto.Precio_kilo,
+                    Cantidad = dto.Cantidad,
+                    Impuesto = dto.Impuesto,
+                    IdEmpresa = dto.IdEmpresa
+                };
                 if (id != producto.IdProducto)
                     salida = BadRequest("El ID de la URL no coincide con el del objeto");
 
