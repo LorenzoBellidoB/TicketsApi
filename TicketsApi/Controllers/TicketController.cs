@@ -72,6 +72,15 @@ namespace TicketsApi.Controllers
 
             return salida;
         }
+        [HttpGet("{id}/detalles")]
+        public async Task<ActionResult<clsTicket>> GetTicketDetalle(int id)
+        {
+            var ticket = await _ticketDAL.ObtenerTicketCompletoPorId(id);
+            if (ticket == null)
+                return NotFound();
+
+            return Ok(ticket);
+        }
 
         [HttpGet("empresa/{idEmpresa}")]
         [SwaggerOperation(

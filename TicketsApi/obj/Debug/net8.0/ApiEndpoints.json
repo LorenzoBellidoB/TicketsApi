@@ -950,6 +950,32 @@
   },
   {
     "ContainingType": "TicketsApi.Controllers.TicketController",
+    "Method": "GetTicketDetalle",
+    "RelativePath": "api/Ticket/{id}/detalles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ENT.clsTicket",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.TicketController",
     "Method": "GetTicketsPorEmpresa",
     "RelativePath": "api/Ticket/empresa/{idEmpresa}",
     "HttpMethod": "GET",

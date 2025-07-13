@@ -1610,6 +1610,46 @@
         }
       }
     },
+    "/api/Ticket/{id}/detalles": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/clsTicket"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clsTicket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clsTicket"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Ticket/empresa/{idEmpresa}": {
       "get": {
         "tags": [
@@ -2266,6 +2306,13 @@
           },
           "albaran": {
             "$ref": "#/components/schemas/clsAlbaran"
+          },
+          "detalles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/clsDetalleTicket"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

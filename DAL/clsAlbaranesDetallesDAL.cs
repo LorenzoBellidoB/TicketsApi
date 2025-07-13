@@ -39,13 +39,11 @@ namespace DAL
 
         public async Task<bool> InsertarUnidadesEnAlbaran(int idAlbaran, UnidadesDTO unidadesDto)
         {
-            bool res = false;
-
             try
             {
                 var albaran = await _context.Albaranes.FindAsync(idAlbaran);
                 if (albaran == null)
-                    return false;
+                    throw new Exception($"No se encontró el albarán con ID {idAlbaran}");
 
                 foreach (var unidadDto in unidadesDto.Unidades)
                 {
@@ -55,14 +53,13 @@ namespace DAL
                         PrecioKilo = unidadDto.PrecioKilo,
                         Etiqueta = unidadDto.Etiqueta,
                         FechaEntrada = DateTime.SpecifyKind(unidadDto.FechaEntrada, DateTimeKind.Utc),
-                        Disponible = false,
+                        Disponible = unidadDto.Disponible,
                         IdProducto = unidadDto.IdProducto
                     };
 
                     _context.ProductosUnidades.Add(nuevaUnidad);
-                    await _context.SaveChangesAsync(); // Guardar para obtener IdProductoUnidad generado
+                    await _context.SaveChangesAsync(); // Genera el ID
 
-                    // Asociar unidad al albarán
                     var detalle = new clsAlbaranDetalle
                     {
                         IdAlbaran = idAlbaran,
@@ -74,16 +71,17 @@ namespace DAL
 
                 await _context.SaveChangesAsync();
                 await _context.Database.ExecuteSqlRawAsync($"SELECT actualizar_totales_albaran({idAlbaran})");
-                res = true;
+
+                return true;
             }
             catch (Exception ex)
             {
-                // Log error
-                res = false;
+                var innerMessage = ex.InnerException?.Message ?? "No hay inner exception";
+                throw new Exception($"Error al insertar unidades en el albarán {idAlbaran}: {ex.Message} - Inner: {innerMessage}", ex);
             }
 
-            return res;
         }
+
 
 
 

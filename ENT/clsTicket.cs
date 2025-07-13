@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace ENT
 {
     [Table("tickets")]
     public class clsTicket
     {
         #region Propiedades
+
         [Key]
         [Column("id")]
         public int IdTicket { get; set; }
@@ -23,7 +23,6 @@ namespace ENT
 
         [Column("importe_iva")]
         public decimal ImporteIVA { get; set; }
-
 
         [Column("cliente_id")]
         public int IdCliente { get; set; }
@@ -48,16 +47,21 @@ namespace ENT
 
         [ForeignKey("IdAlbaran")]
         public virtual clsAlbaran Albaran { get; set; }
+
+        public virtual ICollection<clsDetalleTicket> Detalles { get; set; } = new List<clsDetalleTicket>();
+
         #endregion
+
         #region Constructores
-        public clsTicket()
-        {
-        }
+
+        public clsTicket() { }
+
         public clsTicket(int idTicket)
         {
             IdTicket = idTicket;
         }
-        public clsTicket(int idTicket, DateTime fecha,decimal importe,decimal baseImponible,decimal importeIVA, int idCliente, int idDependiente, int idEmpresa)
+
+        public clsTicket(int idTicket, DateTime fecha, decimal importe, decimal baseImponible, decimal importeIVA, int idCliente, int idDependiente, int idEmpresa, int idAlbaran)
         {
             IdTicket = idTicket;
             Fecha = fecha;
@@ -67,7 +71,9 @@ namespace ENT
             IdCliente = idCliente;
             IdDependiente = idDependiente;
             IdEmpresa = idEmpresa;
+            IdAlbaran = idAlbaran;
         }
+
         #endregion
     }
 }

@@ -34,6 +34,31 @@ public class clsTicketsDAL
             .FirstOrDefaultAsync(t => t.IdTicket == id);
     }
 
+    public async Task<clsTicket> ObtenerTicketCompletoPorId(int id)
+    {
+        return await _context.Tickets
+            .Include(t => t.Empresa)
+            .Include(t => t.Cliente)
+            .Include(t => t.Dependiente)
+            .Include(t => t.Albaran)
+                .ThenInclude(a => a.Empresa)
+            .Include(t => t.Albaran)
+                .ThenInclude(a => a.Cliente)
+            .Include(t => t.Albaran)
+                .ThenInclude(a => a.Dependiente)
+            .Include(t => t.Albaran)
+                .ThenInclude(a => a.Tickets)
+            .Include(t => t.Albaran)
+                .ThenInclude(a => a.Detalles)
+                    .ThenInclude(d => d.ProductoUnidad)
+                        .ThenInclude(pu => pu.Producto)
+            .Include(t => t.Detalles)
+                .ThenInclude(d => d.ProductoUnidad)
+                    .ThenInclude(pu => pu.Producto)
+            .FirstOrDefaultAsync(t => t.IdTicket == id);
+    }
+
+
     public async Task<List<clsTicket>> ObtenerTicketsPorIdEmpresa(int idEmpresa)
     {
         return await _context.Tickets
