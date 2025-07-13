@@ -1018,17 +1018,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/clsProducto"
+                "$ref": "#/components/schemas/ProductoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/clsProducto"
+                "$ref": "#/components/schemas/ProductoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/clsProducto"
+                "$ref": "#/components/schemas/ProductoDTO"
               }
             }
           }
@@ -1085,17 +1085,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/clsProducto"
+                "$ref": "#/components/schemas/ProductoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/clsProducto"
+                "$ref": "#/components/schemas/ProductoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/clsProducto"
+                "$ref": "#/components/schemas/ProductoDTO"
               }
             }
           }
@@ -1740,10 +1740,6 @@
             "type": "string",
             "nullable": true
           },
-          "direccion": {
-            "type": "string",
-            "nullable": true
-          },
           "idEmpresa": {
             "type": "integer",
             "format": "int32"
@@ -1773,6 +1769,36 @@
           "dni": {
             "type": "string",
             "nullable": true
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductoDTO": {
+        "type": "object",
+        "properties": {
+          "idProducto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "precio_kilo": {
+            "type": "number",
+            "format": "double"
+          },
+          "cantidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "impuesto": {
+            "type": "number",
+            "format": "double"
           },
           "idEmpresa": {
             "type": "integer",
@@ -1887,6 +1913,14 @@
           "fecha": {
             "type": "string",
             "format": "date-time"
+          },
+          "baseImponible": {
+            "type": "number",
+            "format": "double"
+          },
+          "importeIVA": {
+            "type": "number",
+            "format": "double"
           },
           "importe": {
             "type": "number",
@@ -2142,13 +2176,6 @@
           },
           "empresa": {
             "$ref": "#/components/schemas/clsEmpresa"
-          },
-          "proveedorId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "proveedor": {
-            "$ref": "#/components/schemas/clsProveedor"
           }
         },
         "additionalProperties": false
@@ -2189,59 +2216,6 @@
         },
         "additionalProperties": false
       },
-      "clsProveedor": {
-        "type": "object",
-        "properties": {
-          "idProveedor": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nombre": {
-            "type": "string",
-            "nullable": true
-          },
-          "cif": {
-            "type": "string",
-            "nullable": true
-          },
-          "direccion": {
-            "type": "string",
-            "nullable": true
-          },
-          "telefono": {
-            "type": "string",
-            "nullable": true
-          },
-          "correo": {
-            "type": "string",
-            "nullable": true
-          },
-          "calle": {
-            "type": "string",
-            "nullable": true
-          },
-          "codigo_postal": {
-            "type": "string",
-            "nullable": true
-          },
-          "localidad": {
-            "type": "string",
-            "nullable": true
-          },
-          "provincia": {
-            "type": "string",
-            "nullable": true
-          },
-          "idEmpresa": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "empresa": {
-            "$ref": "#/components/schemas/clsEmpresa"
-          }
-        },
-        "additionalProperties": false
-      },
       "clsTicket": {
         "type": "object",
         "properties": {
@@ -2252,6 +2226,18 @@
           "fecha": {
             "type": "string",
             "format": "date-time"
+          },
+          "importe": {
+            "type": "number",
+            "format": "double"
+          },
+          "baseImponible": {
+            "type": "number",
+            "format": "double"
+          },
+          "importeIVA": {
+            "type": "number",
+            "format": "double"
           },
           "idCliente": {
             "type": "integer",

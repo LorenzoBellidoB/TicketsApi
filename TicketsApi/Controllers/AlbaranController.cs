@@ -138,7 +138,6 @@ namespace TicketsApi.Controllers
             if (success < 0)
                 return BadRequest("No se pudo crear el albarán");
 
-            // Puedes devolver CreatedAtAction si quieres la URL del recurso creado
             return Ok(success);
         }
 

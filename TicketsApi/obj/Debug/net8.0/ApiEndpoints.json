@@ -603,8 +603,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "producto",
-        "Type": "ENT.clsProducto",
+        "Name": "dto",
+        "Type": "DTO.ProductoDTO",
         "IsRequired": true
       }
     ],
@@ -640,8 +640,8 @@
         "IsRequired": true
       },
       {
-        "Name": "producto",
-        "Type": "ENT.clsProducto",
+        "Name": "dto",
+        "Type": "DTO.ProductoDTO",
         "IsRequired": true
       }
     ],

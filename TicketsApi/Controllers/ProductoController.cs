@@ -124,9 +124,9 @@ namespace TicketsApi.Controllers
                 };
                 var resultado = await _productoDAL.InsertarProducto(producto);
                 if (resultado)
-                    salida = Ok("Producto creada correctamente");
+                    salida = Ok(resultado);
                 else
-                    salida = BadRequest("No se pudo crear el producto");
+                    salida = BadRequest(resultado);
             }
             catch (Exception e)
             {
@@ -163,7 +163,7 @@ namespace TicketsApi.Controllers
                     salida = NotFound("Producto no encontrado");
 
                 var resultado = await _productoDAL.ActualizarProducto(producto);
-                salida = resultado ? Ok("Producto actualizado correctamente") : BadRequest("No se pudo actualizar el producto");
+                salida = resultado ? Ok(resultado) : BadRequest("No se pudo actualizar el producto");
             }
             catch (Exception e)
             {
