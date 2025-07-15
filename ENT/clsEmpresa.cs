@@ -22,6 +22,10 @@ namespace ENT
         public string Localidad { get; set; }
         [Column("provincia")]
         public string Provincia { get; set; }
+        [Column("telefono")]
+        public string Telefono { get; set; }
+        [Column("correo")]
+        public string Correo { get; set; }
         [Column("direccion")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Direccion { get; set; }
@@ -40,7 +44,7 @@ namespace ENT
             IdEmpresa = idEmpresa;
         }
 
-        public clsEmpresa( string nombre, string cif, string calle, string codigo_postal, string localidad, string provincia, string direccion)
+        public clsEmpresa( string nombre, string cif, string calle, string codigo_postal, string localidad, string provincia, string direccion, string telefono, string correo)
         {
             Nombre = nombre;
             Cif = cif;
@@ -49,9 +53,11 @@ namespace ENT
             Localidad = localidad;
             Provincia = provincia;
             Direccion = direccion;
+            Telefono = telefono;
+            Correo = correo;
         }
 
-        public clsEmpresa(int idEmpresa, string nombre, string cif, string calle, string codigo_postal, string localidad, string provincia)
+        public clsEmpresa(int idEmpresa, string nombre, string cif, string calle, string codigo_postal, string localidad, string provincia, string telefono, string correo)
         {
             IdEmpresa = idEmpresa;
             Nombre = nombre;
@@ -60,9 +66,11 @@ namespace ENT
             Codigo_postal = codigo_postal;
             Localidad = localidad;
             Provincia = provincia;
+            Telefono = telefono;
+            Correo = correo;
         }
 
-        public clsEmpresa(int idEmpresa, string nombre, string cif, string calle, string codigo_postal, string localidad, string provincia, string direccion)
+        public clsEmpresa(int idEmpresa, string nombre, string cif, string calle, string codigo_postal, string localidad, string provincia, string direccion, string telefono, string correo)
         {
             IdEmpresa = idEmpresa;
             Nombre = nombre;
@@ -72,6 +80,8 @@ namespace ENT
             Localidad = localidad;
             Provincia = provincia;
             Direccion = direccion;
+            Telefono = telefono;
+            Correo = correo;
         }
 
         #endregion
