@@ -24,6 +24,12 @@ namespace ENT
         [Column("importe_iva")]
         public decimal ImporteIVA { get; set; }
 
+        [Column("descuento")]
+        public decimal Descuento { get; set; }
+
+        [Column("descuento_p_pago")]
+        public decimal DescuentoPPago { get; set; }
+
         [Column("cliente_id")]
         public int IdCliente { get; set; }
 
@@ -61,13 +67,15 @@ namespace ENT
             IdTicket = idTicket;
         }
 
-        public clsTicket(int idTicket, DateTime fecha, decimal importe, decimal baseImponible, decimal importeIVA, int idCliente, int idDependiente, int idEmpresa, int idAlbaran)
+        public clsTicket(int idTicket, DateTime fecha, decimal importe, decimal baseImponible, decimal importeIVA, decimal descuento, decimal descuentoPPago,int idCliente, int idDependiente, int idEmpresa, int idAlbaran)
         {
             IdTicket = idTicket;
             Fecha = fecha;
             Importe = importe;
             BaseImponible = baseImponible;
             ImporteIVA = importeIVA;
+            Descuento = descuento;
+            DescuentoPPago = descuentoPPago;
             IdCliente = idCliente;
             IdDependiente = idDependiente;
             IdEmpresa = idEmpresa;

@@ -1,4 +1,6 @@
-﻿namespace DTO
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DTO
 {
     public class AlbaranDTO
     {
@@ -6,6 +8,8 @@
         public string Serie { get; set; }
         public DateTime Fecha { get; set; }
         public decimal Importe { get; set; }
+        public decimal Descuento { get; set; }
+        public decimal DescuentoPPago { get; set; }
         public string Descripcion { get; set; }
         public bool Facturado { get; set; }
         public int IdCliente { get; set; }
@@ -16,15 +20,23 @@
 
         public AlbaranDTO()
         {
-            Serie = "";
-            Fecha = DateTime.Now;
-            Importe = 0;
-            Descripcion = "";
-            Facturado = false;
-            IdCliente = 0;
-            Kilos = 0;
-            IdEmpresa = 0;
-            IdDependiente = 0;
+            
+        }
+
+        public AlbaranDTO(int idAlbaran, string serie, DateTime fecha, decimal importe, decimal descuento, decimal descuentoPPago, string descripcion, bool facturado, int idCliente, decimal kilos, int idEmpresa, int idDependiente)
+        {
+            IdAlbaran = idAlbaran;
+            Serie = serie;
+            Fecha = fecha;
+            Importe = importe;
+            Descuento = descuento;
+            DescuentoPPago = descuentoPPago;
+            Descripcion = descripcion;
+            Facturado = facturado;
+            IdCliente = idCliente;
+            Kilos = kilos;
+            IdEmpresa = idEmpresa;
+            IdDependiente = idDependiente;
         }
     }
 }
