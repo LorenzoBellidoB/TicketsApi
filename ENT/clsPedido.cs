@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace ENT
     public class clsPedido
     {
         #region Propiedades
+        [Key]
         [Column("id")]
         public int IdPedido { get; set; }
         [Column("cliente_id")]
