@@ -16,6 +16,8 @@ namespace DAL
         public DbSet<clsAlbaranDetalle> AlbaranesDetalles { get; set; }
         public DbSet<clsProductoUnidad> ProductosUnidades { get; set; }
 
+        public DbSet<clsPedido> Pedidos { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
