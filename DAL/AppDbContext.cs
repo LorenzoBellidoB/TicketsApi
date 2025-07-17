@@ -1,5 +1,6 @@
 ﻿using ENT;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DAL
 {
@@ -22,6 +23,28 @@ namespace DAL
             : base(options)
         {
         }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Aplica filtro global para todas las entidades que heredan de SoftDeletableEntity
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                if (typeof(SoftDeletableEntity).IsAssignableFrom(entityType.ClrType))
+                {
+                    var parameter = Expression.Parameter(entityType.ClrType, "e");
+                    var deletedAtProperty = Expression.Property(parameter, nameof(SoftDeletableEntity.DeletedAt));
+                    var defaultDate = Expression.Constant(DateTime.Parse("1111-01-01T00:00:00Z"));
+                    var body = Expression.Equal(deletedAtProperty, defaultDate);
+                    var lambda = Expression.Lambda(body, parameter);
+
+                    modelBuilder.Entity(entityType.ClrType).HasQueryFilter(lambda);
+                }
+            }
+        }
+
     }
 
 }

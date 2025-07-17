@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ENT
 {
     [Table("productos")]
-    public class clsProducto
+    public class clsProducto : SoftDeletableEntity
     {
         #region Propiedades
         [Key]

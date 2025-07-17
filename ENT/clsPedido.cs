@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ENT
 {
     [Table("pedidos")]
-    public class clsPedido
+    public class clsPedido : SoftDeletableEntity
     {
         #region Propiedades
         [Key]
