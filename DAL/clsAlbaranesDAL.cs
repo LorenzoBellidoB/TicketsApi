@@ -76,14 +76,43 @@ public class clsAlbaranesDAL
     public async Task<bool> EliminarAlbaran(int id)
     {
         var albaran = await _context.Albaranes.FindAsync(id);
-
         if (albaran == null || albaran.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
             return false;
 
-        albaran.DeletedAt = DateTime.UtcNow;
-        _context.Albaranes.Update(albaran);
+        var utcNow = DateTime.UtcNow;
 
+        // Marcar el albarán como eliminado
+        albaran.DeletedAt = utcNow;
+
+        // Obtener y marcar como eliminados los detalles del albarán
+        var albaranDetalles = await _context.AlbaranesDetalles
+            .Where(da => da.IdAlbaran == id && da.DeletedAt == DateTime.Parse("1111-01-01T00:00:00Z"))
+            .ToListAsync();
+
+        foreach (var detalle in albaranDetalles)
+            detalle.DeletedAt = utcNow;
+
+        // Obtener y marcar como eliminados los tickets asociados
+        var tickets = await _context.Tickets
+            .Where(t => t.IdAlbaran == id && t.DeletedAt == DateTime.Parse("1111-01-01T00:00:00Z"))
+            .ToListAsync();
+
+        foreach (var ticket in tickets)
+            ticket.DeletedAt = utcNow;
+
+        // Obtener y marcar como eliminados los detalles de los tickets
+        var ticketIds = tickets.Select(t => t.IdTicket).ToList();
+
+        var ticketsDetalles = await _context.DetallesTicket
+            .Where(td => ticketIds.Contains(td.IdTicket) && td.DeletedAt == DateTime.Parse("1111-01-01T00:00:00Z"))
+            .ToListAsync();
+
+        foreach (var detalle in ticketsDetalles)
+            detalle.DeletedAt = utcNow;
+
+        // Guardar cambios
         return await _context.SaveChangesAsync() > 0;
     }
+
 
 }
