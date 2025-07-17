@@ -14,7 +14,9 @@ namespace DAL
 
         public async Task<List<clsPedido>> ObtenerPedidos()
         {
-            return await _context.Pedidos
+            return await _context.Pedidos.Include(p => p.Cliente)
+                .Include(p => p.Empresa)
+                .Include(p => p.Dependiente)
                 .ToListAsync();
         }
 
