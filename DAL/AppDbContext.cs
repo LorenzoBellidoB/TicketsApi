@@ -29,16 +29,20 @@ namespace DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            // Aplica filtro global para todas las entidades que heredan de SoftDeletableEntity
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 if (typeof(SoftDeletableEntity).IsAssignableFrom(entityType.ClrType))
                 {
                     var parameter = Expression.Parameter(entityType.ClrType, "e");
                     var deletedAtProperty = Expression.Property(parameter, nameof(SoftDeletableEntity.DeletedAt));
-                    var defaultDate = Expression.Constant(DateTime.Parse("1111-01-01T00:00:00Z"));
-                    var body = Expression.Equal(deletedAtProperty, defaultDate);
-                    var lambda = Expression.Lambda(body, parameter);
+
+                    var notDeletedValue = Expression.Constant(
+                        new DateTime(1111, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+                        typeof(DateTime)
+                    );
+
+                    var filter = Expression.Equal(deletedAtProperty, notDeletedValue);
+                    var lambda = Expression.Lambda(filter, parameter);
 
                     modelBuilder.Entity(entityType.ClrType).HasQueryFilter(lambda);
                 }

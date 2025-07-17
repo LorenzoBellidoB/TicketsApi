@@ -38,6 +38,8 @@ namespace ENT
         [Column("facturado")]
         public bool Facturado { get; set; }
 
+
+
         [Column("cliente_id")]
         public int IdCliente { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,11 @@ namespace ENT
 {
     public abstract class SoftDeletableEntity
     {
-        public DateTime DeletedAt { get; set; } = DateTime.Parse("1111-01-01T00:00:00Z");
+        public static readonly DateTime NotDeleted = DateTime.SpecifyKind(
+            new DateTime(1111, 1, 1, 0, 0, 0), DateTimeKind.Utc
+        );
+        [Column("deleted_at")]
+        public DateTime DeletedAt { get; set; } = NotDeleted;
     }
 
 }
