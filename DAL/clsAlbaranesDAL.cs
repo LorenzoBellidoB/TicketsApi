@@ -69,9 +69,27 @@ public class clsAlbaranesDAL
 
     public async Task<bool> ActualizarAlbaran(clsAlbaran albaran)
     {
-        _context.Albaranes.Update(albaran);
+        var albaranOriginal = await _context.Albaranes
+            .FirstOrDefaultAsync(a => a.IdAlbaran == albaran.IdAlbaran);
+
+        if (albaranOriginal == null)
+            return false;
+
+        albaranOriginal.Serie = albaran.Serie;
+        albaranOriginal.Fecha = albaran.Fecha;
+        albaranOriginal.Importe = albaran.Importe;
+        albaranOriginal.Descuento = albaran.Descuento;
+        albaranOriginal.DescuentoPPago = albaran.DescuentoPPago;
+        albaranOriginal.Descripcion = albaran.Descripcion;
+        albaranOriginal.Facturado = albaran.Facturado;
+        albaranOriginal.IdCliente = albaran.IdCliente;
+        albaranOriginal.Kilos = albaran.Kilos;
+        albaranOriginal.IdEmpresa = albaran.IdEmpresa;
+        albaranOriginal.IdDependiente = albaran.IdDependiente;
+
         return await _context.SaveChangesAsync() > 0;
     }
+
 
     public async Task<bool> EliminarAlbaran(int id)
     {

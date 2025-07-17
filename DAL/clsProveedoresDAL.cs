@@ -43,11 +43,24 @@ namespace DAL
 
         public async Task<bool> ActualizarProveedor(clsProveedor proveedor)
         {
-            bool res = false;
-            _context.Proveedores.Update(proveedor);
-            res = await _context.SaveChangesAsync() > 0;
-            return res;
+            var original = await _context.Proveedores
+                .FirstOrDefaultAsync(p => p.IdProveedor == proveedor.IdProveedor);
+
+            if (original == null) return false;
+
+            original.Nombre = proveedor.Nombre;
+            original.Cif = proveedor.Cif;
+            original.Telefono = proveedor.Telefono;
+            original.Correo = proveedor.Correo;
+            original.Calle = proveedor.Calle;
+            original.Codigo_postal = proveedor.Codigo_postal;
+            original.Localidad = proveedor.Localidad;
+            original.Provincia = proveedor.Provincia;
+            original.IdEmpresa = proveedor.IdEmpresa;
+
+            return await _context.SaveChangesAsync() > 0;
         }
+
 
         public async Task<bool> EliminarProveedor(int id)
         {

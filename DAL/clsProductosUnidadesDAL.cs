@@ -41,9 +41,20 @@ namespace DAL
             return productoUnidad;
         }
 
-        public async Task<bool> ActualizarProductoUnidad(clsProductoUnidad productoUnidad)
+        public async Task<bool> ActualizarProductoUnidad(clsProductoUnidad unidad)
         {
-            _context.ProductosUnidades.Update(productoUnidad);
+            var original = await _context.ProductosUnidades
+                .FirstOrDefaultAsync(pu => pu.IdProductoUnidad == unidad.IdProductoUnidad);
+
+            if (original == null) return false;
+
+            original.Peso = unidad.Peso;
+            original.PrecioKilo = unidad.PrecioKilo;
+            original.Etiqueta = unidad.Etiqueta;
+            original.FechaEntrada = unidad.FechaEntrada;
+            original.Disponible = unidad.Disponible;
+            original.IdProducto = unidad.IdProducto;
+
             return await _context.SaveChangesAsync() > 0;
         }
 

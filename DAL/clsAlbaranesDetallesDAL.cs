@@ -85,13 +85,19 @@ namespace DAL
 
 
 
-        public async Task<bool> ActualizarAlbaranDetalle(clsAlbaranDetalle albaranDetalle)
+        public async Task<bool> ActualizarAlbaranDetalle(clsAlbaranDetalle detalle)
         {
-            bool res = false;
-            _context.AlbaranesDetalles.Update(albaranDetalle);
-            res = await _context.SaveChangesAsync() > 0;
-            return res;
+            var original = await _context.AlbaranesDetalles
+                .FirstOrDefaultAsync(d => d.IdAlbaranDetalle == detalle.IdAlbaranDetalle);
+
+            if (original == null) return false;
+
+            original.IdAlbaran = detalle.IdAlbaran;
+            original.IdProductoUnidad = detalle.IdProductoUnidad;
+
+            return await _context.SaveChangesAsync() > 0;
         }
+
 
         public async Task<bool> EliminarAlbaranDetalle(int id)
         {

@@ -42,11 +42,24 @@ namespace DAL
 
         public async Task<bool> ActualizarCliente(clsCliente cliente)
         {
-            bool res = false;
-            _context.Clientes.Update(cliente);
-            res = await _context.SaveChangesAsync() > 0;
-            return res;
+            var original = await _context.Clientes
+                .FirstOrDefaultAsync(c => c.IdCliente == cliente.IdCliente);
+
+            if (original == null) return false;
+
+            original.Nombre = cliente.Nombre;
+            original.Correo = cliente.Correo;
+            original.Telefono = cliente.Telefono;
+            original.Cif = cliente.Cif;
+            original.Calle = cliente.Calle;
+            original.Codigo_postal = cliente.Codigo_postal;
+            original.Localidad = cliente.Localidad;
+            original.Provincia = cliente.Provincia;
+            original.IdEmpresa = cliente.IdEmpresa;
+
+            return await _context.SaveChangesAsync() > 0;
         }
+
 
         public async Task<bool> EliminarCliente(int id)
         {

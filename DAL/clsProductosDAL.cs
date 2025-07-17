@@ -43,11 +43,21 @@ namespace DAL
 
         public async Task<bool> ActualizarProducto(clsProducto producto)
         {
-            bool res = false;
-            _context.Productos.Update(producto);
-            res = await _context.SaveChangesAsync() > 0;
-            return res;
+            var productoOriginal = await _context.Productos
+                .FirstOrDefaultAsync(p => p.IdProducto == producto.IdProducto);
+
+            if (productoOriginal == null)
+                return false;
+
+            productoOriginal.Nombre = producto.Nombre;
+            productoOriginal.Precio_kilo = producto.Precio_kilo;
+            productoOriginal.Cantidad = producto.Cantidad;
+            productoOriginal.Impuesto = producto.Impuesto;
+            productoOriginal.IdEmpresa = producto.IdEmpresa;
+
+            return await _context.SaveChangesAsync() > 0;
         }
+
 
         public async Task<bool> EliminarProducto(int id)
         {

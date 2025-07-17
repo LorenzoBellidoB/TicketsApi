@@ -46,10 +46,18 @@ namespace DAL
 
         public async Task<bool> ActualizarDependiente(clsDependiente dependiente)
         {
-            bool res = false;
-            _context.Dependientes.Update(dependiente);
-            res = await _context.SaveChangesAsync() > 0;
-            return res;
+            var original = await _context.Dependientes
+                .FirstOrDefaultAsync(d => d.IdDependiente == dependiente.IdDependiente);
+
+            if (original == null) return false;
+
+            original.Nombre = dependiente.Nombre;
+            original.Correo = dependiente.Correo;
+            original.Telefono = dependiente.Telefono;
+            original.Dni = dependiente.Dni;
+            original.IdEmpresa = dependiente.IdEmpresa;
+
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<bool> EliminarDependiente(int id)

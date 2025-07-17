@@ -76,9 +76,22 @@ namespace DAL
 
         public async Task<bool> ActualizarPedido(clsPedido pedido)
         {
-            _context.Pedidos.Update(pedido);
+            var original = await _context.Pedidos
+                .FirstOrDefaultAsync(p => p.IdPedido == pedido.IdPedido);
+
+            if (original == null) return false;
+
+            original.IdCliente = pedido.IdCliente;
+            original.IdDependiente = pedido.IdDependiente;
+            original.FechaCreado = pedido.FechaCreado;
+            original.FechaEntrega = pedido.FechaEntrega;
+            original.IdEmpresa = pedido.IdEmpresa;
+            original.Descripcion = pedido.Descripcion;
+            original.Entregado = pedido.Entregado;
+
             return await _context.SaveChangesAsync() > 0;
         }
+
 
         public async Task<bool> EliminarPedido(int id)
         {
