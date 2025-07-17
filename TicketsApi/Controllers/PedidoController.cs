@@ -79,6 +79,46 @@ namespace TicketsApi.Controllers
                 return BadRequest("Error con el servidor: " + e.Message);
             }
         }
+        [HttpGet("empresa/{idEmpresa}/entregados")]
+        [SwaggerOperation(
+            Summary = "Obtiene pedidos según el id de empresa",
+            Description = "Este método obtiene los pedidos que coincidan con el id de la empresa proporcionado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error."
+        )]
+        public async Task<IActionResult> GetPedidosPorEmpresaEntregados(int idEmpresa)
+        {
+            try
+            {
+                var pedidos = await _pedidoDAL.ObtenerPedidosPorIdEmpresaEntregados(idEmpresa);
+                if (pedidos == null || pedidos.Count == 0)
+                    return NotFound("No se han encontrado pedidos para esa empresa");
+
+                return Ok(pedidos);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error con el servidor: " + e.Message);
+            }
+        }
+        [HttpGet("empresa/{idEmpresa}/noentregados")]
+        [SwaggerOperation(
+            Summary = "Obtiene pedidos según el id de empresa",
+            Description = "Este método obtiene los pedidos que coincidan con el id de la empresa proporcionado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error."
+        )]
+        public async Task<IActionResult> GetPedidosPorEmpresaNoEntregados(int idEmpresa)
+        {
+            try
+            {
+                var pedidos = await _pedidoDAL.ObtenerPedidosPorIdEmpresaNoEntregados(idEmpresa);
+                if (pedidos == null || pedidos.Count == 0)
+                    return NotFound("No se han encontrado pedidos para esa empresa");
+
+                return Ok(pedidos);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error con el servidor: " + e.Message);
+            }
+        }
 
         [HttpPost]
         [SwaggerOperation(

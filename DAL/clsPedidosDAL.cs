@@ -20,6 +20,24 @@ namespace DAL
                 .ToListAsync();
         }
 
+        public async Task<List<clsPedido>> ObtenerPedidosPorIdEmpresaEntregados(int idEmpresa)
+        {
+            return await _context.Pedidos.Include(p => p.Cliente)
+                .Include(p => p.Empresa)
+                .Include(p => p.Dependiente)
+                .Where(p => p.Entregado && p.IdEmpresa == idEmpresa)
+                .ToListAsync();
+        }
+
+        public async Task<List<clsPedido>> ObtenerPedidosPorIdEmpresaNoEntregados(int idEmpresa)
+        {
+            return await _context.Pedidos.Include(p => p.Cliente)
+                .Include(p => p.Empresa)
+                .Include(p => p.Dependiente)
+                .Where(p => !p.Entregado && p.IdEmpresa == idEmpresa)
+                .ToListAsync();
+        }
+
         public async Task<clsPedido> ObtenerPedidoPorId(int id)
         {
             return await _context.Pedidos
