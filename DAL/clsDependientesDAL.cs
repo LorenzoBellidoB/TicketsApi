@@ -52,7 +52,7 @@ namespace DAL
             return res;
         }
 
-        public async Task<bool> EliminarDepandiente(int id)
+        public async Task<bool> EliminarDependiente(int id)
         {
             var cliente = await _context.Clientes.FindAsync(id);
 
