@@ -51,14 +51,15 @@ namespace DAL
 
         public async Task<bool> EliminarProveedor(int id)
         {
-            bool res = false;
             var proveedor = await _context.Proveedores.FindAsync(id);
-            if (proveedor != null)
-            {
-                _context.Proveedores.Remove(proveedor);
-                res = await _context.SaveChangesAsync() > 0;
-            }
-            return res;
+
+            if (proveedor == null || proveedor.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+                return false;
+
+            proveedor.DeletedAt = DateTime.UtcNow;
+            _context.Proveedores.Update(proveedor);
+
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }
