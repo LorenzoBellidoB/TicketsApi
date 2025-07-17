@@ -52,16 +52,19 @@ namespace DAL
             return res;
         }
 
-        public async Task<bool> EliminarDependiente(int id)
+        public async Task<bool> EliminarCliente(int id)
         {
-            bool res = false;
-            var dependiente = await _context.Dependientes.FindAsync(id);
-            if (dependiente != null)
-            {
-                _context.Dependientes.Remove(dependiente);
-                res = await _context.SaveChangesAsync() > 0;
-            }
-            return res;
+            var cliente = await _context.Clientes.FindAsync(id);
+
+            if (cliente == null || cliente.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+                return false;
+
+            cliente.DeletedAt = DateTime.UtcNow;
+            _context.Clientes.Update(cliente);
+
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }
+
+

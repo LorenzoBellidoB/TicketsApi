@@ -95,14 +95,17 @@ namespace DAL
 
         public async Task<bool> EliminarAlbaranDetalle(int id)
         {
-            bool res = false;
             var albaranDetalle = await _context.AlbaranesDetalles.FindAsync(id);
-            if (albaranDetalle != null)
-            {
-                _context.AlbaranesDetalles.Remove(albaranDetalle);
-                res = await _context.SaveChangesAsync() > 0;
-            }
-            return res;
+
+            // Ya está eliminado o no existe
+            if (albaranDetalle == null || albaranDetalle.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+                return false;
+
+            albaranDetalle.DeletedAt = DateTime.UtcNow;
+            _context.AlbaranesDetalles.Update(albaranDetalle);
+
+            return await _context.SaveChangesAsync() > 0;
         }
+
     }
 }

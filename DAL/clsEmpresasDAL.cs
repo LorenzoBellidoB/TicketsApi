@@ -42,14 +42,15 @@ namespace DAL
 
         public async Task<bool> EliminarEmpresa(int id)
         {
-            bool res = false;
             var empresa = await _context.Empresas.FindAsync(id);
-            if (empresa != null)
-            {
-                _context.Empresas.Remove(empresa);
-                res = await _context.SaveChangesAsync() > 0;
-            }
-            return res;
+
+            if (empresa == null || empresa.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+                return false;
+
+            empresa.DeletedAt = DateTime.UtcNow;
+            _context.Empresas.Update(empresa);
+
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

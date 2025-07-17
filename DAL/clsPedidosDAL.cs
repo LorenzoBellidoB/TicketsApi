@@ -83,12 +83,14 @@ namespace DAL
         public async Task<bool> EliminarPedido(int id)
         {
             var pedido = await _context.Pedidos.FindAsync(id);
-            if (pedido != null)
-            {
-                _context.Pedidos.Remove(pedido);
-                return await _context.SaveChangesAsync() > 0;
-            }
-            return false;
+
+            if (pedido == null || pedido.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+                return false;
+
+            pedido.DeletedAt = DateTime.UtcNow;
+            _context.Pedidos.Update(pedido);
+
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

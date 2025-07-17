@@ -42,14 +42,15 @@ public class clsDetalleTicketsDAL
 
     public async Task<bool> EliminarDetalleTicket(int id)
     {
-        bool res = false;
-        var dTicket = await _context.DetallesTicket.FindAsync(id);
-        if (dTicket != null)
-        {
-            _context.DetallesTicket.Remove(dTicket);
-            res = await _context.SaveChangesAsync() > 0;
-        }
-        return res;
+        var detalleTicket = await _context.DetallesTicket.FindAsync(id);
+
+        if (detalleTicket == null || detalleTicket.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+            return false;
+
+        detalleTicket.DeletedAt = DateTime.UtcNow;
+        _context.DetallesTicket.Update(detalleTicket);
+
+        return await _context.SaveChangesAsync() > 0;
     }
 
 }

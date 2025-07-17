@@ -50,12 +50,14 @@ namespace DAL
         public async Task<bool> EliminarProductoUnidad(int id)
         {
             var productoUnidad = await _context.ProductosUnidades.FindAsync(id);
-            if (productoUnidad != null)
-            {
-                _context.ProductosUnidades.Remove(productoUnidad);
-                return await _context.SaveChangesAsync() > 0;
-            }
-            return false;
+
+            if (productoUnidad == null || productoUnidad.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+                return false;
+
+            productoUnidad.DeletedAt = DateTime.UtcNow;
+            _context.ProductosUnidades.Update(productoUnidad);
+
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

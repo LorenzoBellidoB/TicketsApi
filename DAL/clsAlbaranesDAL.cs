@@ -76,11 +76,14 @@ public class clsAlbaranesDAL
     public async Task<bool> EliminarAlbaran(int id)
     {
         var albaran = await _context.Albaranes.FindAsync(id);
-        if (albaran != null)
-        {
-            _context.Albaranes.Remove(albaran);
-            return await _context.SaveChangesAsync() > 0;
-        }
-        return false;
+
+        if (albaran == null || albaran.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+            return false;
+
+        albaran.DeletedAt = DateTime.UtcNow;
+        _context.Albaranes.Update(albaran);
+
+        return await _context.SaveChangesAsync() > 0;
     }
+
 }

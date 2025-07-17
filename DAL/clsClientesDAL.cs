@@ -50,14 +50,15 @@ namespace DAL
 
         public async Task<bool> EliminarCliente(int id)
         {
-            bool res = false;
             var cliente = await _context.Clientes.FindAsync(id);
-            if (cliente != null)
-            {
-                _context.Clientes.Remove(cliente);
-                res = await _context.SaveChangesAsync() > 0;
-            }
-            return res;
+
+            if (cliente == null || cliente.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+                return false;
+
+            cliente.DeletedAt = DateTime.UtcNow;
+            _context.Clientes.Update(cliente);
+
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

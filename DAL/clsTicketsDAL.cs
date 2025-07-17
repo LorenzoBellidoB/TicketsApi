@@ -85,13 +85,14 @@ public class clsTicketsDAL
 
     public async Task<bool> EliminarTicket(int id)
     {
-        bool res = false;
         var ticket = await _context.Tickets.FindAsync(id);
-        if (ticket != null)
-        {
-            _context.Tickets.Remove(ticket);
-            res = await _context.SaveChangesAsync() > 0;
-        }
-        return res;
+
+        if (ticket == null || ticket.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+            return false;
+
+        ticket.DeletedAt = DateTime.UtcNow;
+        _context.Tickets.Update(ticket);
+
+        return await _context.SaveChangesAsync() > 0;
     }
 }
