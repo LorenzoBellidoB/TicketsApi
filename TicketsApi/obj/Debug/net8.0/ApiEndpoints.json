@@ -585,6 +585,149 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TicketsApi.Controllers.PedidoController",
+    "Method": "GetPedidos",
+    "RelativePath": "api/Pedido",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.PedidoController",
+    "Method": "CrearPedido",
+    "RelativePath": "api/Pedido",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTO.PedidoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.PedidoController",
+    "Method": "GetPedido",
+    "RelativePath": "api/Pedido/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.PedidoController",
+    "Method": "ActualizarPedido",
+    "RelativePath": "api/Pedido/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "DTO.PedidoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.PedidoController",
+    "Method": "EliminarPedido",
+    "RelativePath": "api/Pedido/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.PedidoController",
+    "Method": "EntregarPedido",
+    "RelativePath": "api/Pedido/{id}/entregar",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.PedidoController",
+    "Method": "GetPedidosPorEmpresa",
+    "RelativePath": "api/Pedido/empresa/{idEmpresa}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idEmpresa",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.PedidoController",
+    "Method": "GetPedidosPorEmpresaEntregados",
+    "RelativePath": "api/Pedido/empresa/{idEmpresa}/entregados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idEmpresa",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.PedidoController",
+    "Method": "GetPedidosPorEmpresaNoEntregados",
+    "RelativePath": "api/Pedido/empresa/{idEmpresa}/noentregados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idEmpresa",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TicketsApi.Controllers.ProductoController",
     "Method": "GetProductos",
     "RelativePath": "api/Producto",

@@ -995,6 +995,241 @@
         }
       }
     },
+    "/api/Pedido": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Obtiene un listado con todos los pedidos",
+        "description": "Este método obtiene todos los pedidos y los devuelve como un listado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Crea un nuevo pedido",
+        "description": "Este método crea un nuevo pedido con los datos proporcionados en el cuerpo de la solicitud.<br>Si se crea correctamente, devuelve el ID del nuevo pedido.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PedidoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PedidoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PedidoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pedido/{id}": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Obtiene un pedido según su id",
+        "description": "Este método obtiene el pedido que coincida con el id proporcionado.<br>Si no se encuentra, devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Actualiza un pedido",
+        "description": "Este método actualiza un pedido con los datos proporcionados.<br>Debe coincidir el ID del objeto con el de la URL.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PedidoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PedidoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PedidoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Elimina un pedido",
+        "description": "Este método elimina un pedido según su id.<br>Si se elimina correctamente, devuelve un mensaje de éxito.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pedido/empresa/{idEmpresa}": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Obtiene pedidos según el id de empresa",
+        "description": "Este método obtiene los pedidos que coincidan con el id de la empresa proporcionado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pedido/empresa/{idEmpresa}/entregados": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Obtiene pedidos según el id de empresa",
+        "description": "Este método obtiene los pedidos que coincidan con el id de la empresa proporcionado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pedido/empresa/{idEmpresa}/noentregados": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Obtiene pedidos según el id de empresa",
+        "description": "Este método obtiene los pedidos que coincidan con el id de la empresa proporcionado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pedido/{id}/entregar": {
+      "patch": {
+        "tags": [
+          "Pedido"
+        ],
+        "summary": "Marca un pedido como entregado",
+        "description": "Este método marca como entregado el pedido especificado por su id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Producto": {
       "get": {
         "tags": [
@@ -1697,6 +1932,14 @@
             "type": "number",
             "format": "double"
           },
+          "descuento": {
+            "type": "number",
+            "format": "double"
+          },
+          "descuentoPPago": {
+            "type": "number",
+            "format": "double"
+          },
           "descripcion": {
             "type": "string",
             "nullable": true
@@ -1813,6 +2056,43 @@
           "idEmpresa": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PedidoDTO": {
+        "type": "object",
+        "properties": {
+          "idPedido": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idCliente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idDependiente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fechaCreado": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fechaEntrega": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "entregado": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -1942,6 +2222,10 @@
       "clsAlbaran": {
         "type": "object",
         "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "idAlbaran": {
             "type": "integer",
             "format": "int32"
@@ -1963,6 +2247,14 @@
             "format": "double"
           },
           "importe": {
+            "type": "number",
+            "format": "double"
+          },
+          "descuento": {
+            "type": "number",
+            "format": "double"
+          },
+          "descuentoPPago": {
             "type": "number",
             "format": "double"
           },
@@ -2018,6 +2310,10 @@
       "clsAlbaranDetalle": {
         "type": "object",
         "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "idAlbaranDetalle": {
             "type": "integer",
             "format": "int32"
@@ -2042,6 +2338,10 @@
       "clsCliente": {
         "type": "object",
         "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "idCliente": {
             "type": "integer",
             "format": "int32"
@@ -2095,6 +2395,10 @@
       "clsDependiente": {
         "type": "object",
         "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "idDependiente": {
             "type": "integer",
             "format": "int32"
@@ -2128,6 +2432,10 @@
       "clsDetalleTicket": {
         "type": "object",
         "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "idDetalleTicket": {
             "type": "integer",
             "format": "int32"
@@ -2152,6 +2460,10 @@
       "clsEmpresa": {
         "type": "object",
         "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "idEmpresa": {
             "type": "integer",
             "format": "int32"
@@ -2180,6 +2492,14 @@
             "type": "string",
             "nullable": true
           },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
           "direccion": {
             "type": "string",
             "nullable": true
@@ -2190,6 +2510,10 @@
       "clsProducto": {
         "type": "object",
         "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "idProducto": {
             "type": "integer",
             "format": "int32"
@@ -2223,6 +2547,10 @@
       "clsProductoUnidad": {
         "type": "object",
         "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "idProductoUnidad": {
             "type": "integer",
             "format": "int32"
@@ -2259,6 +2587,10 @@
       "clsTicket": {
         "type": "object",
         "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "idTicket": {
             "type": "integer",
             "format": "int32"
@@ -2276,6 +2608,14 @@
             "format": "double"
           },
           "importeIVA": {
+            "type": "number",
+            "format": "double"
+          },
+          "descuento": {
+            "type": "number",
+            "format": "double"
+          },
+          "descuentoPPago": {
             "type": "number",
             "format": "double"
           },
