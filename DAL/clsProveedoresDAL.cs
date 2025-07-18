@@ -66,7 +66,7 @@ namespace DAL
         {
             var proveedor = await _context.Proveedores.FindAsync(id);
 
-            if (proveedor == null || proveedor.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+            if (proveedor == null || proveedor.DeletedAt != DateTime.SpecifyKind(DateTime.Parse("1111-01-01T00:00:00Z"), DateTimeKind.Utc))
                 return false;
 
             proveedor.DeletedAt = DateTime.UtcNow;
