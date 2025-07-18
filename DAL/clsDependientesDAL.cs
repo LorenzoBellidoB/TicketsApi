@@ -64,7 +64,7 @@ namespace DAL
         {
             var cliente = await _context.Clientes.FindAsync(id);
 
-            if (cliente == null || cliente.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+            if (cliente == null || cliente.DeletedAt != DateTime.SpecifyKind(DateTime.Parse("1111-01-01T00:00:00Z"), DateTimeKind.Utc))
                 return false;
 
             cliente.DeletedAt = DateTime.UtcNow;

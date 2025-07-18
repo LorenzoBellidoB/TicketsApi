@@ -44,7 +44,7 @@ namespace DAL
         {
             var empresa = await _context.Empresas.FindAsync(id);
 
-            if (empresa == null || empresa.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+            if (empresa == null || empresa.DeletedAt != DateTime.SpecifyKind(DateTime.Parse("1111-01-01T00:00:00Z"), DateTimeKind.Utc))
                 return false;
 
             empresa.DeletedAt = DateTime.UtcNow;

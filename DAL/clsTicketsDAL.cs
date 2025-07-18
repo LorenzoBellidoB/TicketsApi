@@ -87,7 +87,7 @@ public class clsTicketsDAL
     {
         var ticket = await _context.Tickets.FindAsync(id);
 
-        if (ticket == null || ticket.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+        if (ticket == null || ticket.DeletedAt != DateTime.SpecifyKind(DateTime.Parse("1111-01-01T00:00:00Z"), DateTimeKind.Utc))
             return false;
 
         ticket.DeletedAt = DateTime.UtcNow;

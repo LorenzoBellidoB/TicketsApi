@@ -44,7 +44,7 @@ public class clsDetalleTicketsDAL
     {
         var detalleTicket = await _context.DetallesTicket.FindAsync(id);
 
-        if (detalleTicket == null || detalleTicket.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+        if (detalleTicket == null || detalleTicket.DeletedAt != DateTime.SpecifyKind(DateTime.Parse("1111-01-01T00:00:00Z"), DateTimeKind.Utc))
             return false;
 
         detalleTicket.DeletedAt = DateTime.UtcNow;

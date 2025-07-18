@@ -63,7 +63,7 @@ namespace DAL
         {
             var producto = await _context.Productos.FindAsync(id);
 
-            if (producto == null || producto.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+            if (producto == null || producto.DeletedAt != DateTime.SpecifyKind(DateTime.Parse("1111-01-01T00:00:00Z"), DateTimeKind.Utc))
                 return false;
 
             producto.DeletedAt = DateTime.UtcNow;

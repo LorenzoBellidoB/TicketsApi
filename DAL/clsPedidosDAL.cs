@@ -97,7 +97,7 @@ namespace DAL
         {
             var pedido = await _context.Pedidos.FindAsync(id);
 
-            if (pedido == null || pedido.DeletedAt != DateTime.Parse("1111-01-01T00:00:00Z"))
+            if (pedido == null || pedido.DeletedAt != DateTime.SpecifyKind(DateTime.Parse("1111-01-01T00:00:00Z"), DateTimeKind.Utc))
                 return false;
 
             pedido.DeletedAt = DateTime.UtcNow;
