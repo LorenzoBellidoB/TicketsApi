@@ -28,6 +28,24 @@ public class clsAlbaranesDAL
             .FirstOrDefaultAsync(a => a.IdAlbaran == id);
     }
 
+    public async Task<List<clsAlbaran>> ObtenerAlbaranesPorIdEmpresaFacturados(int idEmpresa)
+    {
+        return await _context.Albaranes.Include(a => a.Cliente)
+            .Include(a => a.Empresa)
+            .Include(a => a.Dependiente)
+            .Where(a => a.Facturado && a.IdEmpresa == idEmpresa)
+            .ToListAsync();
+    }
+
+    public async Task<List<clsAlbaran>> ObtenerAlbaranesPorIdEmpresaNoFacturados(int idEmpresa)
+    {
+        return await _context.Albaranes.Include(a => a.Cliente)
+            .Include(a => a.Empresa)
+            .Include(a => a.Dependiente)
+            .Where(a => !a.Facturado && a.IdEmpresa == idEmpresa)
+            .ToListAsync();
+    }
+
     public async Task<List<clsAlbaran>> ObtenerAlbaranesPorIdEmpresa(int idEmpresa)
     {
         return await _context.Albaranes

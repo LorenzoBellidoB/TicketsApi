@@ -73,6 +73,47 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpGet("empresa/{idEmpresa}/facturados")]
+        [SwaggerOperation(
+            Summary = "Obtiene albaranes según el id de empresa",
+            Description = "Este método obtiene los albaranes que coincidan con el id de la empresa proporcionado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error."
+        )]
+        public async Task<IActionResult> GetPedidosPorEmpresaEntregados(int idEmpresa)
+        {
+            try
+            {
+                var albaranes = await _albaranDAL.ObtenerAlbaranesPorIdEmpresaFacturados(idEmpresa);
+                if (albaranes == null || albaranes.Count == 0)
+                    return NotFound("No se han encontrado albaranes para esa empresa");
+
+                return Ok(albaranes);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error con el servidor: " + e.Message);
+            }
+        }
+        [HttpGet("empresa/{idEmpresa}/nofacturados")]
+        [SwaggerOperation(
+            Summary = "Obtiene albaranes según el id de empresa",
+            Description = "Este método obtiene los albaranes que coincidan con el id de la empresa proporcionado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error."
+        )]
+        public async Task<IActionResult> GetPedidosPorEmpresaNoEntregados(int idEmpresa)
+        {
+            try
+            {
+                var albaranes = await _albaranDAL.ObtenerAlbaranesPorIdEmpresaNoFacturados(idEmpresa);
+                if (albaranes == null || albaranes.Count == 0)
+                    return NotFound("No se han encontrado albaranes para esa empresa");
+
+                return Ok(albaranes);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error con el servidor: " + e.Message);
+            }
+        }
+
         [HttpGet("{id}/detalles")]
         public async Task<ActionResult<clsAlbaran>> GetAlbaranDetalle(int id)
         {

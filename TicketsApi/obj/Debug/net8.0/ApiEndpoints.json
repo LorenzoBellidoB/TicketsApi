@@ -137,6 +137,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TicketsApi.Controllers.AlbaranController",
+    "Method": "GetPedidosPorEmpresaEntregados",
+    "RelativePath": "api/Albaran/empresa/{idEmpresa}/facturados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idEmpresa",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.AlbaranController",
+    "Method": "GetPedidosPorEmpresaNoEntregados",
+    "RelativePath": "api/Albaran/empresa/{idEmpresa}/nofacturados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idEmpresa",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TicketsApi.Controllers.AlbaranDetalleController",
     "Method": "GetAlbaranesDetalles",
     "RelativePath": "api/AlbaranDetalle",

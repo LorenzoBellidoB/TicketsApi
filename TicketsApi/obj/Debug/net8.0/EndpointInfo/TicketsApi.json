@@ -140,6 +140,56 @@
         }
       }
     },
+    "/api/Albaran/empresa/{idEmpresa}/facturados": {
+      "get": {
+        "tags": [
+          "Albaran"
+        ],
+        "summary": "Obtiene albaranes según el id de empresa",
+        "description": "Este método obtiene los albaranes que coincidan con el id de la empresa proporcionado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Albaran/empresa/{idEmpresa}/nofacturados": {
+      "get": {
+        "tags": [
+          "Albaran"
+        ],
+        "summary": "Obtiene albaranes según el id de empresa",
+        "description": "Este método obtiene los albaranes que coincidan con el id de la empresa proporcionado.<br>Si no se encuentra ningún pedido, devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Albaran/{id}/detalles": {
       "get": {
         "tags": [
