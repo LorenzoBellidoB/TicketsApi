@@ -167,7 +167,7 @@ namespace TicketsApi.Controllers
                 Serie = dto.Serie,
                 Fecha = dto.Fecha,
                 Importe = dto.Importe,
-                ImporteIVA = dto.ImporteIVA,
+                ImporteIVA = dto.ImporteIVA, 
                 Descripcion = dto.Descripcion,
                 Facturado = dto.Facturado,
                 IdCliente = dto.IdCliente,
