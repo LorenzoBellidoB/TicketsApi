@@ -18,7 +18,7 @@ namespace ENT
         public string Correo { get; set; }
 
         [Column("telefono")]
-        public long Telefono { get; set; }
+        public string Telefono { get; set; }
 
         [Column("dni")]
         public string Dni { get; set; }
@@ -38,7 +38,7 @@ namespace ENT
         {
             IdDependiente = idDependiente;
         }
-        public clsDependiente(int idDependiente, string nombre, string correo, long telefono, string dni, int idEmpresa)
+        public clsDependiente(int idDependiente, string nombre, string correo, string telefono, string dni, int idEmpresa)
         {
             IdDependiente = idDependiente;
             Nombre = nombre;

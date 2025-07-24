@@ -13,13 +13,13 @@ namespace DTO
 
         public string Nombre { get; set; }
         public string Correo { get; set; }
-        public long Telefono { get; set; }
+        public string Telefono { get; set; }
         public string Dni { get; set; }
         public int IdEmpresa { get; set; }
 
         public DependienteDTO() { }
 
-        public DependienteDTO(int idDependiente, string nombre,string correo, long telefono, string dni, int idEmpresa)
+        public DependienteDTO(int idDependiente, string nombre,string correo, string telefono, string dni, int idEmpresa)
         {
             IdDependiente = idDependiente;
             Nombre = nombre;
