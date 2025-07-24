@@ -167,6 +167,7 @@ namespace TicketsApi.Controllers
                 Serie = dto.Serie,
                 Fecha = dto.Fecha,
                 Importe = dto.Importe,
+                ImporteIVA = dto.ImporteIVA,
                 Descripcion = dto.Descripcion,
                 Facturado = dto.Facturado,
                 IdCliente = dto.IdCliente,
@@ -213,6 +214,7 @@ namespace TicketsApi.Controllers
             existente.Serie = dto.Serie;
             existente.Fecha = dto.Fecha;
             existente.Importe = dto.Importe;
+            existente.ImporteIVA = dto.ImporteIVA;
             existente.Descripcion = dto.Descripcion;
             existente.Facturado = dto.Facturado;
             existente.IdCliente = dto.IdCliente;
