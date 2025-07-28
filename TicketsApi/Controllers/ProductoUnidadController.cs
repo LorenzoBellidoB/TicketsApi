@@ -103,6 +103,35 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpGet("empresa/{id}")]
+        [SwaggerOperation(
+         Summary = "Obtiene las unidades de producto asociadas a una empresa según su id",
+         Description = "Este método obtiene todas las unidades de producto asociadas a la empresa que coincida con el id proporcionado.<br>" +
+         "Si no se encuentra ninguna unidad de producto asociada a la empresa devuelve un mensaje de error."
+     )]
+        public async Task<IActionResult> GetProductoUnidadesPorEmpresaId(int id)
+        {
+            IActionResult salida;
+            try
+            {
+                var productosUnidades = await _productosUnidadesDAL.ObtenerProductoUnidadesPorEmpresaId(id);
+                if (productosUnidades == null)
+                {
+                    salida = NotFound("No se ha encontrado producto unidad asociado a esa empresa con ese id");
+                }
+                else
+                {
+                    salida = Ok(productosUnidades);
+                }
+            }
+            catch (Exception e)
+            {
+                salida = BadRequest("Error con el servidor " + e.Message);
+            }
+
+            return salida;
+        }
+
         [HttpPost]
         [SwaggerOperation(
             Summary = "Crea una nueva unidad de producto",
@@ -122,7 +151,9 @@ namespace TicketsApi.Controllers
                     Etiqueta = dto.Etiqueta,
                     FechaEntrada = dto.FechaEntrada,
                     Disponible = dto.Disponible,
-                    IdProductoUnidad = dto.IdProductoUnidad
+                    IdProductoUnidad = dto.IdProductoUnidad,
+                    IdEmpresa = dto.IdEmpresa
+                    
 
                 };
                 var resultado = await _productosUnidadesDAL.InsertarProductoUnidad(productoUnidad);

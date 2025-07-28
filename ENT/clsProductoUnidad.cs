@@ -27,6 +27,11 @@ namespace ENT
 
         [ForeignKey("IdProducto")]
         public virtual clsProducto Producto { get; set; }
+
+        [Column("empresa_id")]
+        public int IdEmpresa { get; set; }
+        [ForeignKey("IdEmpresa")]
+        public virtual clsEmpresa Empresa { get; set; } 
         #endregion
         #region Constructores
         public clsProductoUnidad()
@@ -36,7 +41,7 @@ namespace ENT
         {
             IdProductoUnidad = idProductoUnidad;
         }
-        public clsProductoUnidad(int idProducto, decimal peso,decimal precio,string etiqueta, DateTime fechaEntrada, bool disponible)
+        public clsProductoUnidad(int idProducto, decimal peso,decimal precio,string etiqueta, DateTime fechaEntrada, bool disponible, int idEmpresa)
         {
             IdProducto = idProducto;
             Peso = peso;
@@ -44,8 +49,9 @@ namespace ENT
             Etiqueta = etiqueta;
             FechaEntrada = fechaEntrada;
             Disponible = disponible;
+            IdEmpresa = idEmpresa;
         }
-        public clsProductoUnidad(int idProductoUnidad, int idProducto, decimal peso,decimal precio, string etiqueta, DateTime fechaEntrada, bool disponible)
+        public clsProductoUnidad(int idProductoUnidad, int idProducto, decimal peso,decimal precio, string etiqueta, DateTime fechaEntrada, bool disponible, int idEmpresa)
         {
             IdProductoUnidad = idProductoUnidad;
             IdProducto = idProducto;
@@ -54,6 +60,7 @@ namespace ENT
             Etiqueta = etiqueta;
             FechaEntrada = fechaEntrada;
             Disponible = disponible;
+            IdEmpresa = idEmpresa;
         }
         #endregion
     }
