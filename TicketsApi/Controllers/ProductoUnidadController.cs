@@ -152,7 +152,7 @@ namespace TicketsApi.Controllers
                     FechaEntrada = dto.FechaEntrada,
                     Disponible = dto.Disponible,
                     IdProductoUnidad = dto.IdProductoUnidad,
-                    IdEmpresa = dto.IdEmpresa
+                    //IdEmpresa = dto.IdEmpresa
                     
 
                 };
