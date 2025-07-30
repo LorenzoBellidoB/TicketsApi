@@ -23,6 +23,7 @@ namespace DAL
         {
             return await _context.ProductosUnidades
                                  .Include(pu => pu.Producto)
+                                 .Include(pu => pu.Empresa)
                                  .FirstOrDefaultAsync(pu => pu.IdProductoUnidad == id);
         }
 
@@ -34,13 +35,13 @@ namespace DAL
                                  .ToListAsync();
         }
 
-        //public async Task<List<clsProductoUnidad>> ObtenerProductoUnidadesPorEmpresaId(int empresaId)
-        //{
-        //    return await _context.ProductosUnidades
-        //                         .Include(pu => pu.Producto)
-        //                         .Where(pu => pu.IdEmpresa == empresaId)
-        //                         .ToListAsync();
-        //}
+        public async Task<List<clsProductoUnidad>> ObtenerProductoUnidadesPorEmpresaId(int empresaId)
+        {
+            return await _context.ProductosUnidades
+                                 .Include(pu => pu.Producto)
+                                 .Where(pu => pu.IdEmpresa == empresaId)
+                                 .ToListAsync();
+        }
 
         public async Task<clsProductoUnidad> InsertarProductoUnidad(clsProductoUnidad productoUnidad)
         {

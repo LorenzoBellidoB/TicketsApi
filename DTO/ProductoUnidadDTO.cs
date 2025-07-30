@@ -18,13 +18,13 @@ namespace DTO
 
         public int IdProducto { get; set; }
 
-        //public int IdEmpresa { get; set; }
+        public int IdEmpresa { get; set; }
 
         public ProductoUnidadDTO()
         {
         }
 
-        public ProductoUnidadDTO(decimal peso,decimal precio, string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto)
+        public ProductoUnidadDTO(decimal peso,decimal precio, string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto, int idEmpresa)
         {
             Peso = peso;
             PrecioKilo = precio;
@@ -32,10 +32,10 @@ namespace DTO
             FechaEntrada = fechaEntrada;
             Disponible = disponible;
             IdProducto = idProducto;
-            //IdEmpresa = idEmpresa;
+            IdEmpresa = idEmpresa;
         }
 
-        public ProductoUnidadDTO(int idProductoUnidad, decimal peso, decimal precio,string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto)
+        public ProductoUnidadDTO(int idProductoUnidad, decimal peso, decimal precio,string etiqueta, DateTime fechaEntrada, bool disponible, int idProducto, int idEmpresa)
         {
             IdProductoUnidad = idProductoUnidad;
             Peso = peso;
@@ -44,7 +44,7 @@ namespace DTO
             FechaEntrada = fechaEntrada;
             Disponible = disponible;
             IdProducto = idProducto;
-            //IdEmpresa = idEmpresa;
+            IdEmpresa = idEmpresa;
         }
     }
 }
