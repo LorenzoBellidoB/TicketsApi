@@ -82,7 +82,7 @@ namespace DAL
         {
             var productoUnidad = await _context.ProductosUnidades.FindAsync(id);
 
-            if (productoUnidad == null || productoUnidad.DeletedAt != DateTime.SpecifyKind(DateTime.Parse("1111-01-01T00:00:00Z"), DateTimeKind.Utc))
+            if (productoUnidad == null || productoUnidad.DeletedAt != SoftDeletableEntity.NotDeleted)
                 return false;
 
             productoUnidad.DeletedAt = DateTime.UtcNow;

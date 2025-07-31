@@ -15,14 +15,14 @@ namespace DAL
         public async Task<List<clsDependiente>> ObtenerDependientes()
         {
             return await _context.Dependientes
-                .Include(d => d.Empresa) 
+                .Include(d => d.Empresa)
                 .ToListAsync();
         }
 
         public async Task<clsDependiente> ObtenerDependientePorId(int id)
         {
             return await _context.Dependientes
-                .Include(d => d.Empresa) 
+                .Include(d => d.Empresa)
                 .FirstOrDefaultAsync(d => d.IdDependiente == id);
         }
 
@@ -62,13 +62,13 @@ namespace DAL
 
         public async Task<bool> EliminarDependiente(int id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
+            var dependiente = await _context.Dependientes.FindAsync(id);
 
-            if (cliente == null || cliente.DeletedAt != DateTime.SpecifyKind(DateTime.Parse("1111-01-01T00:00:00Z"), DateTimeKind.Utc))
+            if (dependiente == null)
                 return false;
 
-            cliente.DeletedAt = DateTime.UtcNow;
-            _context.Clientes.Update(cliente);
+            dependiente.DeletedAt = DateTime.UtcNow;
+            _context.Dependientes.Update(dependiente);
 
             return await _context.SaveChangesAsync() > 0;
         }

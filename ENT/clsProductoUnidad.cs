@@ -18,8 +18,13 @@ namespace ENT
         public decimal PrecioKilo { get; set; }
         [Column("etiqueta")]
         public string Etiqueta { get; set; }
+        private DateTime _fechaEntrada;
         [Column("fecha_entrada")]
-        public DateTime FechaEntrada { get; set; }
+        public DateTime FechaEntrada
+        {
+            get => _fechaEntrada;
+            set => _fechaEntrada = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+        }
         [Column("disponible")]
         public bool Disponible { get; set; }
         [Column("producto_id")]
@@ -41,7 +46,7 @@ namespace ENT
         {
             IdProductoUnidad = idProductoUnidad;
         }
-        public clsProductoUnidad(int idProducto, decimal peso,decimal precio,string etiqueta, DateTime fechaEntrada, bool disponible, int idEmpresa)
+        public clsProductoUnidad(int idProducto, decimal peso, decimal precio, string etiqueta, DateTime fechaEntrada, bool disponible, int idEmpresa)
         {
             IdProducto = idProducto;
             Peso = peso;
@@ -51,7 +56,7 @@ namespace ENT
             Disponible = disponible;
             IdEmpresa = idEmpresa;
         }
-        public clsProductoUnidad(int idProductoUnidad, int idProducto, decimal peso,decimal precio, string etiqueta, DateTime fechaEntrada, bool disponible, int idEmpresa)
+        public clsProductoUnidad(int idProductoUnidad, int idProducto, decimal peso, decimal precio, string etiqueta, DateTime fechaEntrada, bool disponible, int idEmpresa)
         {
             IdProductoUnidad = idProductoUnidad;
             IdProducto = idProducto;
