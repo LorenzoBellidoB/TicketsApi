@@ -12,8 +12,15 @@ namespace ENT
         public static readonly DateTime NotDeleted = DateTime.SpecifyKind(
             new DateTime(1111, 1, 1, 0, 0, 0), DateTimeKind.Utc
         );
+        private DateTime _deletedAt = NotDeleted;
+
         [Column("deleted_at")]
-        public DateTime DeletedAt { get; set; } = NotDeleted;
+        public DateTime DeletedAt
+        {
+            get => _deletedAt;
+            set => _deletedAt = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+        }
+
     }
 
 }

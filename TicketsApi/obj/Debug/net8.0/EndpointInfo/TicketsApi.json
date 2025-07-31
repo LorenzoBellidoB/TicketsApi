@@ -1530,17 +1530,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/clsProductoUnidad"
+                "$ref": "#/components/schemas/ProductoUnidadDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/clsProductoUnidad"
+                "$ref": "#/components/schemas/ProductoUnidadDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/clsProductoUnidad"
+                "$ref": "#/components/schemas/ProductoUnidadDTO"
               }
             }
           }
@@ -1582,6 +1582,54 @@
         ],
         "summary": "Obtiene las unidades de producto asociadas a un producto según su id",
         "description": "Este método obtiene todas las unidades de producto asociadas al producto que coincida con el id proporcionado.<br>Si no se encuentra ninguna unidad de producto asociada al producto devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProductoUnidad/empresa/{id}": {
+      "get": {
+        "tags": [
+          "ProductoUnidad"
+        ],
+        "summary": "Obtiene las unidades de producto asociadas a una empresa según su id",
+        "description": "Este método obtiene todas las unidades de producto asociadas a la empresa que coincida con el id proporcionado.<br>Si no se encuentra ninguna unidad de producto asociada a la empresa devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProductoUnidad/{id}/disponible": {
+      "patch": {
+        "tags": [
+          "ProductoUnidad"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -1982,6 +2030,10 @@
             "type": "number",
             "format": "double"
           },
+          "importeIVA": {
+            "type": "number",
+            "format": "double"
+          },
           "descuento": {
             "type": "number",
             "format": "double"
@@ -2096,8 +2148,8 @@
             "nullable": true
           },
           "telefono": {
-            "type": "integer",
-            "format": "int64"
+            "type": "string",
+            "nullable": true
           },
           "dni": {
             "type": "string",
@@ -2204,6 +2256,10 @@
             "type": "boolean"
           },
           "idProducto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEmpresa": {
             "type": "integer",
             "format": "int32"
           }
@@ -2462,8 +2518,8 @@
             "nullable": true
           },
           "telefono": {
-            "type": "integer",
-            "format": "int64"
+            "type": "string",
+            "nullable": true
           },
           "dni": {
             "type": "string",
@@ -2630,6 +2686,13 @@
           },
           "producto": {
             "$ref": "#/components/schemas/clsProducto"
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "empresa": {
+            "$ref": "#/components/schemas/clsEmpresa"
           }
         },
         "additionalProperties": false
