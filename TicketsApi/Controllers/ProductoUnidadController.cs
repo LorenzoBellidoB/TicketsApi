@@ -187,11 +187,24 @@ namespace TicketsApi.Controllers
             Description = "Este método actualiza una unidad de producto existente en la base de datos.<br>" +
             "Si se actualiza correctamente devuelve un mensaje de éxito, si no, un mensaje de error."
         )]
-        public async Task<IActionResult> ActualizarProductoUnidad(int id, [FromBody] clsProductoUnidad productoUnidad)
+        public async Task<IActionResult> ActualizarProductoUnidad(int id, [FromBody] ProductoUnidadDTO dto)
         {
             IActionResult salida;
             try
             {
+                var productoUnidad = new clsProductoUnidad
+                {
+                    IdProducto = dto.IdProducto,
+                    Peso = dto.Peso,
+                    PrecioKilo = dto.PrecioKilo,
+                    Etiqueta = dto.Etiqueta,
+                    FechaEntrada = dto.FechaEntrada,
+                    Disponible = dto.Disponible,
+                    IdProductoUnidad = dto.IdProductoUnidad,
+                    IdEmpresa = dto.IdEmpresa
+
+
+                };
                 if (id != productoUnidad.IdProductoUnidad)
                     salida = BadRequest("El ID de la URL no coincide con el del objeto");
 
