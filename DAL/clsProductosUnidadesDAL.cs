@@ -43,6 +43,17 @@ namespace DAL
                                  .ToListAsync();
         }
 
+        public async Task<bool> MarcarDisponible(int id)
+        {
+            var productoUnidad = await _context.ProductosUnidades.FindAsync(id);
+            if (productoUnidad == null || !productoUnidad.Disponible)
+                return false;
+
+            productoUnidad.Disponible = false;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<clsProductoUnidad> InsertarProductoUnidad(clsProductoUnidad productoUnidad)
         {
             _context.ProductosUnidades.Add(productoUnidad);

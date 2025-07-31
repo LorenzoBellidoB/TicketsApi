@@ -169,6 +169,18 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpPatch("{id}/disponible")]
+        public async Task<IActionResult> FacturarAlbaran(int id)
+        {
+            var success = await _productosUnidadesDAL.MarcarDisponible(id);
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
         [HttpPut("{id}")]
         [SwaggerOperation(
             Summary = "Actualiza una unidad de producto",
