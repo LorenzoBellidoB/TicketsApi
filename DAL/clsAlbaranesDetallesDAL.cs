@@ -47,23 +47,18 @@ namespace DAL
 
                 foreach (var unidadDto in unidadesDto.Unidades)
                 {
-                    var nuevaUnidad = new clsProductoUnidad
-                    {
-                        Peso = unidadDto.Peso,
-                        PrecioKilo = unidadDto.PrecioKilo,
-                        Etiqueta = unidadDto.Etiqueta,
-                        FechaEntrada = DateTime.SpecifyKind(unidadDto.FechaEntrada, DateTimeKind.Utc),
-                        Disponible = unidadDto.Disponible,
-                        IdProducto = unidadDto.IdProducto
-                    };
+                    // Buscar la unidad ya existente
+                    var unidadExistente = await _context.ProductosUnidades
+                        .FirstOrDefaultAsync(u => u.IdProductoUnidad == unidadDto.IdProductoUnidad);
 
-                    _context.ProductosUnidades.Add(nuevaUnidad);
-                    await _context.SaveChangesAsync(); // Genera el ID
+                    if (unidadExistente == null)
+                        throw new Exception($"No se encontró la unidad con ID {unidadDto.IdProductoUnidad}");
 
+                    // Crear el detalle usando la unidad existente
                     var detalle = new clsAlbaranDetalle
                     {
                         IdAlbaran = idAlbaran,
-                        IdProductoUnidad = nuevaUnidad.IdProductoUnidad
+                        IdProductoUnidad = unidadExistente.IdProductoUnidad
                     };
 
                     _context.AlbaranesDetalles.Add(detalle);
@@ -79,8 +74,8 @@ namespace DAL
                 var innerMessage = ex.InnerException?.Message ?? "No hay inner exception";
                 throw new Exception($"Error al insertar unidades en el albarán {idAlbaran}: {ex.Message} - Inner: {innerMessage}", ex);
             }
-
         }
+
 
 
 
