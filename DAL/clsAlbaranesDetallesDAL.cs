@@ -54,6 +54,9 @@ namespace DAL
                     if (unidadExistente == null)
                         throw new Exception($"No se encontró la unidad con ID {unidadDto.IdProductoUnidad}");
 
+                    // Marcar la unidad como no disponible en la entidad
+                    unidadExistente.Disponible = false;
+
                     // Crear el detalle usando la unidad existente
                     var detalle = new clsAlbaranDetalle
                     {
@@ -65,6 +68,7 @@ namespace DAL
                 }
 
                 await _context.SaveChangesAsync();
+
                 await _context.Database.ExecuteSqlRawAsync($"SELECT actualizar_totales_albaran({idAlbaran})");
 
                 return true;
