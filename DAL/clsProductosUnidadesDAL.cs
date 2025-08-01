@@ -19,6 +19,14 @@ namespace DAL
                                  .ToListAsync();
         }
 
+        public async Task<List<clsProductoUnidad>> ObtenerProductoUnidadesDisponibles()
+        {
+            return await _context.ProductosUnidades
+                                 .Include(pu => pu.Producto)
+                                 .Where(pu => pu.Disponible)
+                                 .ToListAsync();
+        }
+
         public async Task<clsProductoUnidad> ObtenerProductoUnidadPorId(int id)
         {
             return await _context.ProductosUnidades

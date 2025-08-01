@@ -45,6 +45,34 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
+        [HttpGet("disponibles")]
+        [SwaggerOperation(
+           Summary = "Obtiene un listado con todos las unidades de productos disponibles",
+           Description = "Este método obtiene todos las unidades de productos y los devuelve como un listado.<br>" +
+           "Si no se encuentra ninguna unidad de producto devuelve un mensaje de error."
+       )]
+        public async Task<IActionResult> GetProductosUnidadesDisponibles()
+        {
+            IActionResult salida;
+            try
+            {
+                var productosUnidades = await _productosUnidadesDAL.ObtenerProductoUnidadesDisponibles();
+                if (productosUnidades.Count == 0)
+                {
+                    salida = NotFound("No se han encontrado productosUnidades");
+                }
+                else
+                {
+                    salida = Ok(productosUnidades);
+                }
+            }
+            catch (Exception e)
+            {
+                salida = BadRequest("Error con el servidor " + e.Message);
+            }
+            return salida;
+        }
+
         [HttpGet("{id}")]
         [SwaggerOperation(
             Summary = "Obtiene una unidad de producto según su id",

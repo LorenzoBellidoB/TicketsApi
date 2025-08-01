@@ -951,6 +951,16 @@
   },
   {
     "ContainingType": "TicketsApi.Controllers.ProductoUnidadController",
+    "Method": "GetProductosUnidadesDisponibles",
+    "RelativePath": "api/ProductoUnidad/disponibles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.ProductoUnidadController",
     "Method": "GetProductoUnidadesPorEmpresaId",
     "RelativePath": "api/ProductoUnidad/empresa/{id}",
     "HttpMethod": "GET",
