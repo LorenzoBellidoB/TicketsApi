@@ -1485,13 +1485,24 @@
         }
       }
     },
-    "/api/ProductoUnidad/disponibles": {
+    "/api/ProductoUnidad/disponibles/{id}/empresa": {
       "get": {
         "tags": [
           "ProductoUnidad"
         ],
         "summary": "Obtiene un listado con todos las unidades de productos disponibles",
         "description": "Este método obtiene todos las unidades de productos y los devuelve como un listado.<br>Si no se encuentra ninguna unidad de producto devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

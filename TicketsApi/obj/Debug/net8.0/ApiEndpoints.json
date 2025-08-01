@@ -952,11 +952,17 @@
   {
     "ContainingType": "TicketsApi.Controllers.ProductoUnidadController",
     "Method": "GetProductosUnidadesDisponibles",
-    "RelativePath": "api/ProductoUnidad/disponibles",
+    "RelativePath": "api/ProductoUnidad/disponibles/{id}/empresa",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
