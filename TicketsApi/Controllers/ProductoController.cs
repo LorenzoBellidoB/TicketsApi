@@ -76,9 +76,9 @@ namespace TicketsApi.Controllers
 
         [HttpGet("empresa/{idEmpresa}")]
         [SwaggerOperation(
-            Summary = "Obtiene un dependiente según su empresa",
+            Summary = "Obtiene un producto según su empresa",
             Description = "Este método obtiene los productos que coincida con el id de la empresa proporcionado.<br>" +
-            "Si no se encuentra ningún dependiente devuelve un mensaje de error."
+            "Si no se encuentra ningún producto devuelve un mensaje de error."
         )]
         public async Task<IActionResult> GetProductosPorEmpresa(int idEmpresa)
         {

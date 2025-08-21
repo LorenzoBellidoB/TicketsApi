@@ -1093,6 +1093,101 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TicketsApi.Controllers.ServicioController",
+    "Method": "GetServicios",
+    "RelativePath": "api/Servicio",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.ServicioController",
+    "Method": "CrearProducto",
+    "RelativePath": "api/Servicio",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTO.ServicioDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.ServicioController",
+    "Method": "GetProducto",
+    "RelativePath": "api/Servicio/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.ServicioController",
+    "Method": "ActualizarProducto",
+    "RelativePath": "api/Servicio/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "DTO.ServicioDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.ServicioController",
+    "Method": "EliminarProducto",
+    "RelativePath": "api/Servicio/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TicketsApi.Controllers.ServicioController",
+    "Method": "GetServiciosPorEmpresa",
+    "RelativePath": "api/Servicio/empresa/{idEmpresa}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idEmpresa",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TicketsApi.Controllers.TicketController",
     "Method": "GetTickets",
     "RelativePath": "api/Ticket",

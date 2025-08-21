@@ -55,7 +55,6 @@ namespace DAL
 
             servicioOriginal.Nombre = servicio.Nombre;
             servicioOriginal.Precio = servicio.Precio;
-            servicioOriginal.Impuesto = servicio.Impuesto;
             servicioOriginal.IdEmpresa = servicio.IdEmpresa;
 
             return await _context.SaveChangesAsync() > 0;

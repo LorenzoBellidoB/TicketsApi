@@ -1420,8 +1420,8 @@
         "tags": [
           "Producto"
         ],
-        "summary": "Obtiene un dependiente según su empresa",
-        "description": "Este método obtiene los productos que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún dependiente devuelve un mensaje de error.",
+        "summary": "Obtiene un producto según su empresa",
+        "description": "Este método obtiene los productos que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún producto devuelve un mensaje de error.",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -1815,6 +1815,166 @@
         ],
         "summary": "Obtiene un proveedor según su empresa",
         "description": "Este método obtiene los proveedores que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún proveedor devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "idEmpresa",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Servicio": {
+      "get": {
+        "tags": [
+          "Servicio"
+        ],
+        "summary": "Obtiene un listado con todos los servicios",
+        "description": "Este método obtiene todos los servicios y los devuelve como un listado.<br>Si no se encuentra ningún servicio devuelve un mensaje de error.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Servicio"
+        ],
+        "summary": "Crea un nuevo servicio",
+        "description": "Este método crea un nuevo servicio en la base de datos.<br>Si la creación es exitosa, devuelve un mensaje de éxito.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicioDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicioDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Servicio/{id}": {
+      "get": {
+        "tags": [
+          "Servicio"
+        ],
+        "summary": "Obtiene un servicio según su id",
+        "description": "Este método obtiene el servicio que coincida con el id proporcionado.<br>Si no se encuentra ningún servicio devuelve un mensaje de error.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Servicio"
+        ],
+        "summary": "Actualiza un servicio existente",
+        "description": "Este método actualiza un servicio existente con los datos proporcionados.<br>Si la actualización es exitosa, devuelve un mensaje de éxito.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicioDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicioDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Servicio"
+        ],
+        "summary": "Elimina un servicio existente",
+        "description": "Este método elimina un servicio existente según su id.<br>Si la eliminación es exitosa, devuelve un mensaje de éxito.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Servicio/empresa/{idEmpresa}": {
+      "get": {
+        "tags": [
+          "Servicio"
+        ],
+        "summary": "Obtiene un servicio según su empresa",
+        "description": "Este método obtiene los servicios que coincida con el id de la empresa proporcionado.<br>Si no se encuentra ningún servicio devuelve un mensaje de error.",
         "parameters": [
           {
             "name": "idEmpresa",
@@ -2329,6 +2489,28 @@
           "provincia": {
             "type": "string",
             "nullable": true
+          },
+          "idEmpresa": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ServicioDTO": {
+        "type": "object",
+        "properties": {
+          "idServicio": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "precio": {
+            "type": "number",
+            "format": "double"
           },
           "idEmpresa": {
             "type": "integer",
