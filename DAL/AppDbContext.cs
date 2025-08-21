@@ -16,6 +16,7 @@ namespace DAL
         public DbSet<clsProveedor> Proveedores { get; set; }
         public DbSet<clsAlbaranDetalle> AlbaranesDetalles { get; set; }
         public DbSet<clsProductoUnidad> ProductosUnidades { get; set; }
+        public DbSet<clsServicio> Servicios { get; set; }
 
         public DbSet<clsPedido> Pedidos { get; set; }
 

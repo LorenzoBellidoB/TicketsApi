@@ -84,6 +84,7 @@ builder.Services.AddScoped<clsClientesDAL, clsClientesDAL>();
 builder.Services.AddScoped<clsProveedoresDAL, clsProveedoresDAL>();
 builder.Services.AddScoped<clsAlbaranesDetallesDAL, clsAlbaranesDetallesDAL>();
 builder.Services.AddScoped<clsProductosUnidadesDAL, clsProductosUnidadesDAL>();
+builder.Services.AddScoped<clsServiciosDAL, clsServiciosDAL>();
 builder.Services.AddScoped<clsPedidosDAL, clsPedidosDAL>();
 
 builder.Services.AddControllers();
