@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ENT
 {
+    [Table("servicios")]
     public class clsServicio : SoftDeletableEntity
     {
         #region Propiedades

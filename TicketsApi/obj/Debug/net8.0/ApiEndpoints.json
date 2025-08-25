@@ -1120,7 +1120,7 @@
   },
   {
     "ContainingType": "TicketsApi.Controllers.ServicioController",
-    "Method": "GetProducto",
+    "Method": "GetServicio",
     "RelativePath": "api/Servicio/{id}",
     "HttpMethod": "GET",
     "IsController": true,

@@ -52,7 +52,7 @@ namespace TicketsApi.Controllers
             Description = "Este método obtiene el servicio que coincida con el id proporcionado.<br>" +
             "Si no se encuentra ningún servicio devuelve un mensaje de error."
         )]
-        public async Task<IActionResult> GetProducto(int id)
+        public async Task<IActionResult> GetServicio(int id)
         {
             IActionResult salida;
             try
