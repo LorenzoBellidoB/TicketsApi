@@ -20,6 +20,12 @@ namespace ENT
 
         [ForeignKey("IdProductoUnidad")]
         public virtual clsProductoUnidad ProductoUnidad { get; set; }
+
+        [Column("servicio_id")]
+        public int IdServicio { get; set; }
+
+        [ForeignKey("IdProductoUnidad")]
+        public virtual clsServicio Servicio { get; set; }
         #endregion
         #region Constructores
         public clsAlbaranDetalle()
@@ -35,11 +41,12 @@ namespace ENT
             IdAlbaran = idAlbaran;
             IdProductoUnidad = idProductoUnidad;
         }
-        public clsAlbaranDetalle(int idAlbaranDetalle, int idAlbaran, int idProductoUnidad)
+        public clsAlbaranDetalle(int idAlbaranDetalle, int idAlbaran, int idProductoUnidad, int idServicio)
         {
             IdAlbaranDetalle = idAlbaranDetalle;
             IdAlbaran = idAlbaran;
             IdProductoUnidad = idProductoUnidad;
+            IdServicio = idServicio;
         }
         #endregion
     }

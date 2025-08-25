@@ -18,6 +18,7 @@ namespace DAL
             return await _context.AlbaranesDetalles
                                  .Include(a => a.Albaran)
                                  .Include(a => a.ProductoUnidad)
+                                 .Include(a => a.Servicio)
                                  .ToListAsync();
         }
 
@@ -26,6 +27,7 @@ namespace DAL
             return await _context.AlbaranesDetalles
                                  .Include(a => a.Albaran)
                                  .Include(a => a.ProductoUnidad)
+                                 .Include(a => a.Servicio)
                                  .FirstOrDefaultAsync(a => a.IdAlbaranDetalle == id);
         }
 
@@ -80,10 +82,6 @@ namespace DAL
             }
         }
 
-
-
-
-
         public async Task<bool> ActualizarAlbaranDetalle(clsAlbaranDetalle detalle)
         {
             var original = await _context.AlbaranesDetalles
@@ -93,6 +91,7 @@ namespace DAL
 
             original.IdAlbaran = detalle.IdAlbaran;
             original.IdProductoUnidad = detalle.IdProductoUnidad;
+            original.IdServicio = detalle.IdServicio;
 
             return await _context.SaveChangesAsync() > 0;
         }

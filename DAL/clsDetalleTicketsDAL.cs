@@ -21,6 +21,7 @@ public class clsDetalleTicketsDAL
         return await _context.DetallesTicket
             .Where(d => d.IdTicket == ticketId)
             .Include(d => d.ProductoUnidad)
+            .Include(d => d.Servicio)
             .ToListAsync();
     }
 

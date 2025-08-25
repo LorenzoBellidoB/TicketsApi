@@ -89,7 +89,8 @@ namespace TicketsApi.Controllers
                 var albaranDetalle = new clsAlbaranDetalle
                 {
                     IdAlbaran = dto.IdAlbaran,
-                    IdProductoUnidad = dto.IdProductoUnidad
+                    IdProductoUnidad = dto.IdProductoUnidad,
+                    IdServicio = dto.IdServicio,
                 };
                 var resultado = await _albaranesDetallesDAL.InsertarAlbaranDetalle(albaranDetalle);
                 if (resultado)
