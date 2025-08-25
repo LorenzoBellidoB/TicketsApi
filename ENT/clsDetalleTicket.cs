@@ -25,7 +25,7 @@ namespace ENT
         public virtual clsProductoUnidad ProductoUnidad { get; set; }
 
         [Column("servicio_id")]
-        public int IdServicio { get; set; }
+        public int? IdServicio { get; set; }
 
         [ForeignKey("IdProductoUnidad")]
         public virtual clsServicio Servicio { get; set; }

@@ -10,7 +10,7 @@ namespace DTO
      
         public int IdProductoUnidad { get; set; }
 
-        public int IdServicio { get; set; }
+        public int? IdServicio { get; set; }
 
         public AlbaranDetalleDTO()
         {
