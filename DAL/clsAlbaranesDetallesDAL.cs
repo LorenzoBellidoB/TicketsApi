@@ -41,61 +41,67 @@ namespace DAL
 
         public async Task<bool> InsertarDetallesEnAlbaran(int idAlbaran, AlbaranDetalleRequestDTO dto)
         {
-            using var transaction = await _context.Database.BeginTransactionAsync();
+            var strategy = _context.Database.CreateExecutionStrategy();
 
-            try
+            return await strategy.ExecuteAsync(async () =>
             {
-                var albaran = await _context.Albaranes.FindAsync(idAlbaran);
-                if (albaran == null)
-                    throw new Exception($"No se encontró el albarán con ID {idAlbaran}");
+                using var transaction = await _context.Database.BeginTransactionAsync();
 
-                // Insertar unidades
-                foreach (var unidadDto in dto.Unidades)
+                try
                 {
-                    var unidadExistente = await _context.ProductosUnidades
-                        .FirstOrDefaultAsync(u => u.IdProductoUnidad == unidadDto.IdProductoUnidad);
+                    var albaran = await _context.Albaranes.FindAsync(idAlbaran);
+                    if (albaran == null)
+                        throw new Exception($"No se encontró el albarán con ID {idAlbaran}");
 
-                    if (unidadExistente == null)
-                        throw new Exception($"No se encontró la unidad con ID {unidadDto.IdProductoUnidad}");
-
-                    unidadExistente.Disponible = false;
-
-                    var detalle = new clsAlbaranDetalle
+                    // Insertar unidades
+                    foreach (var unidadDto in dto.Unidades)
                     {
-                        IdAlbaran = idAlbaran,
-                        IdProductoUnidad = unidadExistente.IdProductoUnidad
-                    };
+                        var unidadExistente = await _context.ProductosUnidades
+                            .FirstOrDefaultAsync(u => u.IdProductoUnidad == unidadDto.IdProductoUnidad);
 
-                    _context.AlbaranesDetalles.Add(detalle);
-                }
+                        if (unidadExistente == null)
+                            throw new Exception($"No se encontró la unidad con ID {unidadDto.IdProductoUnidad}");
 
-                // Insertar servicios si existen
-                if (dto.Servicios != null && dto.Servicios.Any())
-                {
-                    foreach (var servicioDto in dto.Servicios)
-                    {
-                        var detalleServicio = new clsAlbaranDetalle
+                        unidadExistente.Disponible = false;
+
+                        var detalle = new clsAlbaranDetalle
                         {
                             IdAlbaran = idAlbaran,
-                            IdServicio = servicioDto.IdServicio
+                            IdProductoUnidad = unidadExistente.IdProductoUnidad
                         };
 
-                        _context.AlbaranesDetalles.Add(detalleServicio);
+                        _context.AlbaranesDetalles.Add(detalle);
                     }
+
+                    // Insertar servicios si existen
+                    if (dto.Servicios != null && dto.Servicios.Any())
+                    {
+                        foreach (var servicioDto in dto.Servicios)
+                        {
+                            var detalleServicio = new clsAlbaranDetalle
+                            {
+                                IdAlbaran = idAlbaran,
+                                IdServicio = servicioDto.IdServicio
+                            };
+
+                            _context.AlbaranesDetalles.Add(detalleServicio);
+                        }
+                    }
+
+                    await _context.SaveChangesAsync();
+                    await _context.Database.ExecuteSqlRawAsync($"SELECT actualizar_totales_albaran({idAlbaran})");
+
+                    await transaction.CommitAsync();
+                    return true;
                 }
-
-                await _context.SaveChangesAsync();
-                await _context.Database.ExecuteSqlRawAsync($"SELECT actualizar_totales_albaran({idAlbaran})");
-
-                await transaction.CommitAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                await transaction.RollbackAsync();
-                throw new Exception($"Error al insertar detalles en el albarán {idAlbaran}: {ex.Message}", ex);
-            }
+                catch
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+            });
         }
+
 
 
         //public async Task<bool> InsertarUnidadesEnAlbaran(int idAlbaran, UnidadesDTO unidadesDto)

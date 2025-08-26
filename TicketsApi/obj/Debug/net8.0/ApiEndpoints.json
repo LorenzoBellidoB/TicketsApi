@@ -249,8 +249,8 @@
   },
   {
     "ContainingType": "TicketsApi.Controllers.AlbaranDetalleController",
-    "Method": "GuardarUnidadesEnAlbaran",
-    "RelativePath": "api/AlbaranDetalle/{idAlbaran}/unidades",
+    "Method": "GuardarDetallesEnAlbaran",
+    "RelativePath": "api/AlbaranDetalle/{idAlbaran}/detalles",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -262,7 +262,7 @@
       },
       {
         "Name": "request",
-        "Type": "DTO.UnidadesDTO",
+        "Type": "DTO.AlbaranDetalleRequestDTO",
         "IsRequired": true
       }
     ],
