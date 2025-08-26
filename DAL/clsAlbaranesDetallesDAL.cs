@@ -67,25 +67,11 @@ namespace DAL
                         var detalle = new clsAlbaranDetalle
                         {
                             IdAlbaran = idAlbaran,
-                            IdProductoUnidad = unidadExistente.IdProductoUnidad
+                            IdProductoUnidad = unidadExistente.IdProductoUnidad,
+                            IdServicio = dto.Servicios?.FirstOrDefault()?.IdServicio // 👈 aquí lo enganchas
                         };
 
                         _context.AlbaranesDetalles.Add(detalle);
-                    }
-
-                    // Insertar servicios si existen
-                    if (dto.Servicios != null && dto.Servicios.Any())
-                    {
-                        foreach (var servicioDto in dto.Servicios)
-                        {
-                            var detalleServicio = new clsAlbaranDetalle
-                            {
-                                IdAlbaran = idAlbaran,
-                                IdServicio = servicioDto.IdServicio
-                            };
-
-                            _context.AlbaranesDetalles.Add(detalleServicio);
-                        }
                     }
 
                     await _context.SaveChangesAsync();
