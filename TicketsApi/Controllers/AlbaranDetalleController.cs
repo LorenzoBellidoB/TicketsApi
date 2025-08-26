@@ -105,26 +105,31 @@ namespace TicketsApi.Controllers
             return salida;
         }
 
-        [HttpPost("{idAlbaran}/unidades")]
-        public async Task<IActionResult> GuardarUnidadesEnAlbaran(int idAlbaran, [FromBody] UnidadesDTO request)
+        [HttpPost("{idAlbaran}/detalles")]
+        [SwaggerOperation(
+    Summary = "Inserta unidades y servicios en un albarán",
+    Description = "Este método inserta tanto unidades como servicios en un albarán. <br>" +
+                  "Si los servicios son nulos o vacíos, solo se guardarán las unidades."
+)]
+        public async Task<IActionResult> GuardarDetallesEnAlbaran(int idAlbaran, [FromBody] AlbaranDetalleRequestDTO request)
         {
             try
             {
-                bool exito = await _albaranesDetallesDAL.InsertarUnidadesEnAlbaran(idAlbaran, request);
+                bool exito = await _albaranesDetallesDAL.InsertarDetallesEnAlbaran(idAlbaran, request);
 
                 if (!exito)
                 {
                     return BadRequest(new
                     {
                         success = false,
-                        message = "No se pudieron guardar las unidades."
+                        message = "No se pudieron guardar los detalles."
                     });
                 }
 
                 return Ok(new
                 {
                     success = true,
-                    message = "Unidades guardadas correctamente."
+                    message = "Detalles guardados correctamente."
                 });
             }
             catch (Exception ex)
@@ -132,10 +137,43 @@ namespace TicketsApi.Controllers
                 return BadRequest(new
                 {
                     success = false,
-                    message = $"Error al guardar unidades: {ex.Message}"
+                    message = $"Error al guardar detalles: {ex.Message}"
                 });
             }
         }
+
+
+        //[HttpPost("{idAlbaran}/unidades")]
+        //public async Task<IActionResult> GuardarUnidadesEnAlbaran(int idAlbaran, [FromBody] UnidadesDTO request)
+        //{
+        //    try
+        //    {
+        //        bool exito = await _albaranesDetallesDAL.InsertarUnidadesEnAlbaran(idAlbaran, request);
+
+        //        if (!exito)
+        //        {
+        //            return BadRequest(new
+        //            {
+        //                success = false,
+        //                message = "No se pudieron guardar las unidades."
+        //            });
+        //        }
+
+        //        return Ok(new
+        //        {
+        //            success = true,
+        //            message = "Unidades guardadas correctamente."
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new
+        //        {
+        //            success = false,
+        //            message = $"Error al guardar unidades: {ex.Message}"
+        //        });
+        //    }
+        //}
 
 
 

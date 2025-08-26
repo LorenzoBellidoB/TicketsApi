@@ -39,27 +39,27 @@ namespace DAL
             return res;
         }
 
-        public async Task<bool> InsertarUnidadesEnAlbaran(int idAlbaran, UnidadesDTO unidadesDto)
+        public async Task<bool> InsertarDetallesEnAlbaran(int idAlbaran, AlbaranDetalleRequestDTO dto)
         {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
             try
             {
                 var albaran = await _context.Albaranes.FindAsync(idAlbaran);
                 if (albaran == null)
                     throw new Exception($"No se encontró el albarán con ID {idAlbaran}");
 
-                foreach (var unidadDto in unidadesDto.Unidades)
+                // Insertar unidades
+                foreach (var unidadDto in dto.Unidades)
                 {
-                    // Buscar la unidad ya existente
                     var unidadExistente = await _context.ProductosUnidades
                         .FirstOrDefaultAsync(u => u.IdProductoUnidad == unidadDto.IdProductoUnidad);
 
                     if (unidadExistente == null)
                         throw new Exception($"No se encontró la unidad con ID {unidadDto.IdProductoUnidad}");
 
-                    // Marcar la unidad como no disponible en la entidad
                     unidadExistente.Disponible = false;
 
-                    // Crear el detalle usando la unidad existente
                     var detalle = new clsAlbaranDetalle
                     {
                         IdAlbaran = idAlbaran,
@@ -69,18 +69,77 @@ namespace DAL
                     _context.AlbaranesDetalles.Add(detalle);
                 }
 
-                await _context.SaveChangesAsync();
+                // Insertar servicios si existen
+                if (dto.Servicios != null && dto.Servicios.Any())
+                {
+                    foreach (var servicioDto in dto.Servicios)
+                    {
+                        var detalleServicio = new clsAlbaranDetalle
+                        {
+                            IdAlbaran = idAlbaran,
+                            IdServicio = servicioDto.IdServicio
+                        };
 
+                        _context.AlbaranesDetalles.Add(detalleServicio);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
                 await _context.Database.ExecuteSqlRawAsync($"SELECT actualizar_totales_albaran({idAlbaran})");
 
+                await transaction.CommitAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                var innerMessage = ex.InnerException?.Message ?? "No hay inner exception";
-                throw new Exception($"Error al insertar unidades en el albarán {idAlbaran}: {ex.Message} - Inner: {innerMessage}", ex);
+                await transaction.RollbackAsync();
+                throw new Exception($"Error al insertar detalles en el albarán {idAlbaran}: {ex.Message}", ex);
             }
         }
+
+
+        //public async Task<bool> InsertarUnidadesEnAlbaran(int idAlbaran, UnidadesDTO unidadesDto)
+        //{
+        //    try
+        //    {
+        //        var albaran = await _context.Albaranes.FindAsync(idAlbaran);
+        //        if (albaran == null)
+        //            throw new Exception($"No se encontró el albarán con ID {idAlbaran}");
+
+        //        foreach (var unidadDto in unidadesDto.Unidades)
+        //        {
+        //            // Buscar la unidad ya existente
+        //            var unidadExistente = await _context.ProductosUnidades
+        //                .FirstOrDefaultAsync(u => u.IdProductoUnidad == unidadDto.IdProductoUnidad);
+
+        //            if (unidadExistente == null)
+        //                throw new Exception($"No se encontró la unidad con ID {unidadDto.IdProductoUnidad}");
+
+        //            // Marcar la unidad como no disponible en la entidad
+        //            unidadExistente.Disponible = false;
+
+        //            // Crear el detalle usando la unidad existente
+        //            var detalle = new clsAlbaranDetalle
+        //            {
+        //                IdAlbaran = idAlbaran,
+        //                IdProductoUnidad = unidadExistente.IdProductoUnidad
+        //            };
+
+        //            _context.AlbaranesDetalles.Add(detalle);
+        //        }
+
+        //        await _context.SaveChangesAsync();
+
+        //        await _context.Database.ExecuteSqlRawAsync($"SELECT actualizar_totales_albaran({idAlbaran})");
+
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var innerMessage = ex.InnerException?.Message ?? "No hay inner exception";
+        //        throw new Exception($"Error al insertar unidades en el albarán {idAlbaran}: {ex.Message} - Inner: {innerMessage}", ex);
+        //    }
+        //}
 
         public async Task<bool> ActualizarAlbaranDetalle(clsAlbaranDetalle detalle)
         {
