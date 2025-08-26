@@ -52,11 +52,17 @@ public class clsTicketsDAL
                 .ThenInclude(a => a.Detalles)
                     .ThenInclude(d => d.ProductoUnidad)
                         .ThenInclude(pu => pu.Producto)
+            .Include(t => t.Albaran)
+                .ThenInclude(a => a.Detalles)
+                    .ThenInclude(d => d.Servicio)
             .Include(t => t.Detalles)
                 .ThenInclude(d => d.ProductoUnidad)
                     .ThenInclude(pu => pu.Producto)
+            .Include(t => t.Detalles)
+                .ThenInclude(d => d.Servicio)    
             .FirstOrDefaultAsync(t => t.IdTicket == id);
     }
+
 
 
     public async Task<List<clsTicket>> ObtenerTicketsPorIdEmpresa(int idEmpresa)
