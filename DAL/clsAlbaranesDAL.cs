@@ -57,15 +57,15 @@ public class clsAlbaranesDAL
     public async Task<clsAlbaran> ObtenerAlbaranCompletoPorId(int id)
     {
         return await _context.Albaranes
-            .Include(a => a.Empresa)
-            .Include(a => a.Cliente)
-            .Include(a => a.Dependiente)
-            .Include(a => a.Detalles)
-                .ThenInclude(d => d.ProductoUnidad)
-                    .ThenInclude(pu => pu.Producto)
-            .Include(a => a.Detalles)
-            .ThenInclude(d => d.Servicio)
-            .FirstOrDefaultAsync(a => a.IdAlbaran == id);
+        .Include(a => a.Empresa)
+        .Include(a => a.Cliente)
+        .Include(a => a.Dependiente)
+        .Include(a => a.Detalles)
+            .ThenInclude(d => d.ProductoUnidad)
+                .ThenInclude(pu => pu.Producto)
+        .Include(a => a.Detalles)
+            .ThenInclude(d => d.Servicio) // 👈 necesario para cargar Servicio
+        .FirstOrDefaultAsync(a => a.IdAlbaran == id);
     }
 
     public async Task<bool> FacturarAsync(int id)

@@ -27,7 +27,7 @@ namespace ENT
         [Column("servicio_id")]
         public int? IdServicio { get; set; }
 
-        [ForeignKey("IdProductoUnidad")]
+        [ForeignKey("IdServicio")]
         public virtual clsServicio Servicio { get; set; }
         #endregion
 
